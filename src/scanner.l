@@ -1,6 +1,6 @@
 %option noyywrap
 %{
-#include "test_tree.h"
+#include "../tests/test_tree.h" // remove warnings, needed for submission
 #include "parser.h"
 
 int line_num = 1;
