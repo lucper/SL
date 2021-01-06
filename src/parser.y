@@ -1,6 +1,6 @@
 %{
 #include <stdlib.h>
-#include "../tests/test_tree.h" // remove warnings, needed for submission
+#include "../tests/test_tree/test_tree.h" // remove warnings, needed for submission
 #include "tree.h"
 
 void insertTopList();
