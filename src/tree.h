@@ -79,7 +79,7 @@ void dumpTree(TreeNode *p, int indent);
 void freeStack();
 void *push(TreeNode *treeNode);
 TreeNode *pop();
-TreeNode *reverseList(TreeNode *p);
+TreeNode *reverse(TreeNode *p);
 
 extern ParseStackNode *top;
 
