@@ -65,4 +65,8 @@ void saveSymbolTable(); /* ??? */
 void restoreSymbolTable(); /* ??? */
 void loadFormalsSymbolTable(SymbEntry *formals); /* ??? */
 
+extern SymbEntry *symbolTable;
+extern int currentLevel;
+extern int currentDispl;
+
 #endif /* SYMTABLE_H */
