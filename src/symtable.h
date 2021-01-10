@@ -15,25 +15,25 @@ typedef struct _typeDescr {
 typedef enum {P_VALUE = 1, P_REF} Passage;
 typedef struct _paramDescr {
     int displ;
-    TypeDescr type; /* need to be pointer? */
+    TypeDescr *type;
     Passage pass;
     struct _paramDescr *next;
 } ParamDescr;
 
 typedef struct {
     int displ;
-    TypeDescr result; /* need to be pointer? */
+    TypeDescr *result;
     ParamDescr *params;
 } FuncDescr;
 
 typedef struct {
     int value;
-    TypeDescr type; /* need to be pointer? */
+    TypeDescr *type;
 } ConstDescr;
 
 typedef struct {
     int displ;
-    TypeDescr type; /* need to be pointer? */
+    TypeDescr *type;
 } VarDescr;
 
 typedef struct {
@@ -62,7 +62,7 @@ typedef struct _symbEntry {
         FuncDescr function;
         ParamDescr parameters;
         LabelDescr label;
-        TypeDescr type; /* need to be pointer? */
+        TypeDescr *type;
     } descr;
 } SymbEntry;
 
