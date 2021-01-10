@@ -68,7 +68,7 @@ typedef struct _symbEntry {
 
 SymbEntry *searchSymbEntry(char *ident);
 SymbEntry *newSymbEntry(SymbCateg categ, char *ident);
-void insertSymbolTable(SymbEntry *ste);
+void insertSymbolTable(SymbEntry *entry);
 void saveSymbolTable(); /* ??? */
 void restoreSymbolTable(); /* ??? */
 void loadFormalsSymbolTable(SymbEntry *formals); /* ??? */
