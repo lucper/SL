@@ -2,6 +2,18 @@
 #include <stdio.h>
 #include "tree.h"
 
+TreeNode *reverse(TreeNode *p)
+{
+    TreeNode *prev = NULL, *next;
+    while(p) {
+        next = p->next;
+        p->next = prev;
+        prev = p;
+        p = next;
+    }
+    return prev;
+}
+
 void *push(TreeNode *treeNode)
 {
     if (!top) {
