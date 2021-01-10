@@ -1,6 +1,5 @@
-#include "tree.h"
-#include "symtable.h"
 #include <stdbool.h>
+#include "symtable.h"
 
 void processFuncDecl(TreeNode *p, bool isMain);
 TypeDescr *processBinExpr(TreeNode *p);

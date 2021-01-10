@@ -1,4 +1,0 @@
-void processProgram(void *p)
-{
-    ;
-}
