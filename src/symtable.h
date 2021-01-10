@@ -1,30 +1,32 @@
 #include <stdbool.h>
+#include "tree.h"
 
-/* Type Descriptors */
+/* Type Descriptor */
+typedef enum {
+    INTEGER = 1,
+    BOOLEAN
+} PredefType;
+
 typedef enum {
     T_PREDEF = 1,
     T_ARRAY
 } TypeConstr;
 
-typedef struct {
-    /* either boolean or integer */
-} PredefType;
-
-typedef struct {
-    int numElements;
-    TypeDescr *element;
-} ArrayType;
-
 typedef struct _typeDescr {
-    TypeConstr constr; /* must be removed!? */
-    int size; /* 1 for ints and bools, n for arrays */
+    TypeConstr constr;
+    int size;
     union {
-        PredefType predefType;
-        ArrayType arrayType;
+        struct {struct _typeDescr *element; int numElements;} t_array;
+        PredefType t_predef;
     } descr;
 } TypeDescr;
 
-/* Symbol Table entries categories */
+/* Paraneters Descriptor */
+typedef struct _paramDescr {
+    struct _paramDescr *next;
+} ParamDescr; /* ??? */
+
+/* Symbol Table */
 typedef enum {
     S_CONST = 1,
     S_VAR,
@@ -34,51 +36,30 @@ typedef enum {
     S_TYPE
 } SymbCateg;
 
-typedef struct {
-    int value;
-    TypeDescr *type;
-} Constant; /* S_CONST */ 
-
-typedef struct {
-    int displ;
-    TypeDescr *type;
-} Variable; /* S_VAR */
-
-typedef enum {P_VALUE = 1, P_REFERENCE} Passage;
-typedef struct {
-    int displ;
-    TypeDescr *type;
-    Passage pass;
-} Parameter; /* S_PARAM */
-
-typedef struct {
-    int displ;
-    TypeDescr *type;
-    ParamDescr *params; // TODO
-} Function; /* S_FUNC */
-
-typedef struct {
-    char *mepaLabel;
-    bool defined;
-} Label; /* S_LABEL */
-
-typedef struct {
-    TypeDescr *type;
-} Type; /* S_TYPE */
+typedef enum {
+    P_VALUE = 1,
+    P_REF
+} Passage;
 
 typedef struct _symbEntry {
-    SymbCateg categ; /* must be removed!? */
+    SymbCateg categ;
     char *ident;
     int level;
     struct _symbEntry *next;
     union {
-        Constant const;
-        Variable var;
-        Parameter param;
-        Function func;
-        Label label;
-        Type type;        
+        struct {int value; TypeDescr *ctype;} s_constant;
+        struct {int vdispl; TypeDescr *vtype;} s_variable;
+        struct {int pdispl; TypeDescr *ptype; Passage pass;} s_parameter;
+        struct {int fdispl; TypeDescr *result; ParamDescr *params;} s_function;
+        struct {char *label; bool defined;} s_label;
+        struct {TypeDescr *type;} s_type;
     } descr;
 } SymbEntry;
 
-SymbEntry *initSymTable();
+SymbEntry *searchSymbEntry(char *ident);
+SymbEntry *newSymbEntry(SymbCateg categ, char *ident);
+void insertSymbolTable(SymbEntry *ste);
+void saveSymbolTable(); /* ??? */
+void restoreSymbolTable(); /* ??? */
+void loadFormalsSymbolTable(SymbEntry *formals); /* ??? */
+TypeDescr *getTypeDescr(TreeNode *p);
