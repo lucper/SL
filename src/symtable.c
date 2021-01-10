@@ -4,6 +4,7 @@
 
 int currentLevel = 0;
 int currentDispl = -1;
+SymbEntry *symbolTable = NULL;
 
 SymbEntry *newSymbEntry(SymbCateg categ, char *ident)
 {
@@ -37,7 +38,7 @@ void insertSymbolTable(SymbEntry *newEntry)
     else {
         SymbEntry *existingEntry = searchSymbEntry(newEntry->ident);
         if (existingEntry && existingEntry->level == newEntry->level) {
-            printf("%s and %s declared at the same level: not allowed");
+            printf("%s and %s declared at the same level: not allowed", newEntry->ident, existingEntry->ident);
             exit(1); // TODO: return error message
         }
         newEntry->next = symbolTable;
