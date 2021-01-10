@@ -52,11 +52,6 @@ void processVarDecl(TreeNode *p)
     }
 }
 
-TypeDescr *processExpr(TreeNode *p)
-{
-    return NULL;
-}
-
 void processAssign(TreeNode *p)
 {
     TreeNode *var = p->components[0];
