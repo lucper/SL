@@ -2,6 +2,56 @@
 #include "codegen.h"
 #include <stdio.h>
 
+#define INTEGER "integer"
+#define BOOLEAN "boolean"
+
+void processVariables(TreeNode *p)
+{
+    p = reverse(p);
+    while (p) {
+        processVarDecl(p);
+        p = p->next;
+    }
+}
+
+static TypeDescr *getType(TreeNode *p)
+{
+    /* TODO: verify if the checking is correct and
+     * what to do if it is not integer nor boolean. */
+    char *ident = p->symbol;
+    TypeDescr *type = malloc(sizeof(TypeDescr));
+    if (ident == INTEGER) {
+        type->size = 1;
+        type->predefType = T_INTEGER;
+    } else if (ident == BOOLEAN) {
+        type->size = 1;
+        type->predefType = T_BOOLEAN;
+    } else {
+        printf("invalid type");
+        exit(1);
+    }
+    return type;
+}
+
+static char *getIdent(TreeNode *p)
+{
+    return p->symbol;
+}
+
+void processVarDecl(TreeNode *p)
+{
+    TreeNode *vars = reverse(p->components[0]);
+    TypeDescr *type = getType(p->components[1]);
+    SymbEntry *entry;
+    while (vars) {
+        entry = newSymbEntry(S_VAR, getIdent(vars));
+        entry->level = currentLevel; // include in newSymbentry?
+        addVarDescr(entry, currentDispl, type);
+        insertSymbolTable(entry);
+        currentDispl += type->size;
+    }
+}
+
 TypeDescr *processExpr(TreeNode *p)
 {
     return NULL;
