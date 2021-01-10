@@ -2,8 +2,6 @@
 #include <stdio.h>
 #include "tree.h"
 
-extern ParseStackNode *top;
-
 void *push(TreeNode *treeNode)
 {
     if (!top) {

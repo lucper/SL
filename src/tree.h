@@ -1,3 +1,5 @@
+#include <stdlib.h>
+
 #define MAX_COMPS 4
 
 typedef enum {
@@ -74,3 +76,5 @@ void dumpTree(TreeNode *p, int indent);
 void freeStack();
 void *push(TreeNode *treeNode);
 TreeNode *pop();
+
+extern ParseStackNode *top;
