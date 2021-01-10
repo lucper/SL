@@ -3,30 +3,43 @@
 
 #include <stdbool.h>
 
-/* Type Descriptor */
-typedef enum {
-    T_INTEGER = 1,
-    T_BOOLEAN
-} PredefType;
-
-typedef enum {
-    T_PREDEF = 1,
-    T_ARRAY
-} TypeConstr;
-
+/* Descriptors */
+// typedef enum {T_PREDEF = 1, T_ARRAY, T_FUNC} TypeConstr;
+typedef enum {T_INTEGER = 1, T_BOOLEAN} PredefType;
 typedef struct _typeDescr {
-    TypeConstr constr;
+    // TypeConstr constr;
     int size;
-    union {
-        struct {struct _typeDescr *element; int numElements;} t_array;
-        PredefType t_predef;
-    } descr;
+    PredefType predefType;
 } TypeDescr;
 
-/* Paraneters Descriptor */
+typedef enum {P_VALUE = 1, P_REF} Passage;
 typedef struct _paramDescr {
+    int displ;
+    TypeDescr type; /* need to be pointer? */
+    Passage pass;
     struct _paramDescr *next;
-} ParamDescr; /* ??? */
+} ParamDescr;
+
+typedef struct {
+    int displ;
+    TypeDescr result; /* need to be pointer? */
+    ParamDescr *params;
+} FuncDescr;
+
+typedef struct {
+    int value;
+    TypeDescr type; /* need to be pointer? */
+} ConstDescr;
+
+typedef struct {
+    int displ;
+    TypeDescr type; /* need to be pointer? */
+} VarDescr;
+
+typedef struct {
+    char *mepaLabel;
+    bool defined;
+} LabelDescr;
 
 /* Symbol Table */
 typedef enum {
@@ -38,23 +51,18 @@ typedef enum {
     S_TYPE
 } SymbCateg;
 
-typedef enum {
-    P_VALUE = 1,
-    P_REF
-} Passage;
-
 typedef struct _symbEntry {
     SymbCateg categ;
     char *ident;
     int level;
     struct _symbEntry *next;
     union {
-        struct {int value; TypeDescr *ctype;} s_constant;
-        struct {int vdispl; TypeDescr *vtype;} s_variable;
-        struct {int pdispl; TypeDescr *ptype; Passage pass;} s_parameter;
-        struct {int fdispl; TypeDescr *result; ParamDescr *params;} s_function;
-        struct {char *label; bool defined;} s_label;
-        struct {TypeDescr *type;} s_type;
+        ConstDescr constant;
+        VarDescr variable;
+        FuncDescr function;
+        ParamDescr parameters;
+        LabelDescr label;
+        TypeDescr type; /* need to be pointer? */
     } descr;
 } SymbEntry;
 
