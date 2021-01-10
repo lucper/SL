@@ -6,6 +6,36 @@ int currentLevel = 0;
 int currentDispl = -1;
 SymbEntry *symbolTable = NULL;
 
+void addConstDescr(SymbEntry *entry, int value, TypeDescr *type)
+{
+    entry->descr.constant.value = value;
+    entry->descr.constant.type = type;
+}
+
+void addVarDescr(SymbEntry *entry, int displ, TypeDescr *type)
+{
+    entry->descr.variable.displ = displ;
+    entry->descr.variable.type = type;
+}
+
+void addFuncDescr(SymbEntry *entry, int displ, TypeDescr *type, ParamDescr *params)
+{
+    entry->descr.function.displ = displ;
+    entry->descr.function.result = type;
+    entry->descr.function.params = params;
+}
+
+void addLabelDescr(SymbEntry *entry, char *mepaLabel, bool defined)
+{
+    entry->descr.label.mepaLabel = mepaLabel;
+    entry->descr.label.defined = defined;
+}
+
+void addParamDescr(SymbEntry *entry)
+{
+    return;
+}
+
 SymbEntry *newSymbEntry(SymbCateg categ, char *ident)
 {
     SymbEntry *newEntry = malloc(sizeof(SymbEntry));

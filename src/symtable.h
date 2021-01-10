@@ -73,6 +73,12 @@ void saveSymbolTable(); /* ??? */
 void restoreSymbolTable(); /* ??? */
 void loadFormalsSymbolTable(SymbEntry *formals); /* ??? */
 
+void addConstDescr(SymbEntry *entry, int value, TypeDescr *type);
+void addVarDescr(SymbEntry *entry, int displ, TypeDescr *type);
+void addFuncDescr(SymbEntry *entry, int displ, TypeDescr *type, ParamDescr *params);
+void addLabelDescr(SymbEntry *entry, char *mepaLabel, bool defined);
+// void addParamDescr(SymbEntry *entry);
+
 extern SymbEntry *symbolTable;
 extern int currentLevel;
 extern int currentDispl;
