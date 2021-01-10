@@ -1,10 +1,12 @@
+#ifndef SYMTABLE_H
+#define SYMTABLE_H
+
 #include <stdbool.h>
-#include "tree.h"
 
 /* Type Descriptor */
 typedef enum {
-    INTEGER = 1,
-    BOOLEAN
+    T_INTEGER = 1,
+    T_BOOLEAN
 } PredefType;
 
 typedef enum {
@@ -62,4 +64,5 @@ void insertSymbolTable(SymbEntry *ste);
 void saveSymbolTable(); /* ??? */
 void restoreSymbolTable(); /* ??? */
 void loadFormalsSymbolTable(SymbEntry *formals); /* ??? */
-TypeDescr *getTypeDescr(TreeNode *p);
+
+#endif /* SYMTABLE_H */

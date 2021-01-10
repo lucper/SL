@@ -1,4 +1,8 @@
+#ifndef TREE_H
+#define TREE_H
+
 #include <stdlib.h>
+#include "symtable.h"
 
 #define MAX_COMPS 4
 
@@ -72,9 +76,10 @@ typedef struct _parseStackNode {
 void *getTree();
 void counts(void *p, int *functions, int *funcalls, int *whiles, int *ifs, int *bin);
 void dumpTree(TreeNode *p, int indent);
-
 void freeStack();
 void *push(TreeNode *treeNode);
 TreeNode *pop();
 
 extern ParseStackNode *top;
+
+#endif /* TREE_H */

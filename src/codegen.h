@@ -1,6 +1,8 @@
-#include <stdbool.h>
 #include "symtable.h"
+#include "tree.h"
 
+//char *getOp(TreeNode *p);
+//TypeDescr *getTypeDescr(TreeNode *p);
 void processFuncDecl(TreeNode *p, bool isMain);
 TypeDescr *processBinExpr(TreeNode *p);
 TypeDescr *processUniExpr(TreeNode *p);
