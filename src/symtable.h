@@ -60,7 +60,7 @@ typedef struct _symbEntry {
         ConstDescr constant;
         VarDescr variable;
         FuncDescr function;
-        ParamDescr parameters;
+        ParamDescr parameter;
         LabelDescr label;
         TypeDescr *type;
     } descr;
@@ -75,7 +75,7 @@ void loadFormalsSymbolTable(SymbEntry *formals); /* ??? */
 
 void addConstDescr(SymbEntry *entry, int value, TypeDescr *type);
 void addVarDescr(SymbEntry *entry, int displ, TypeDescr *type);
-void addFuncDescr(SymbEntry *entry, int displ, TypeDescr *type, ParamDescr *params);
+void addFuncDescr(SymbEntry *entry, int displ, TypeDescr *type, ParamDescr *param);
 void addLabelDescr(SymbEntry *entry, char *mepaLabel, bool defined);
 // void addParamDescr(SymbEntry *entry);
 

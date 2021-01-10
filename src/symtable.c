@@ -18,11 +18,11 @@ void addVarDescr(SymbEntry *entry, int displ, TypeDescr *type)
     entry->descr.variable.type = type;
 }
 
-void addFuncDescr(SymbEntry *entry, int displ, TypeDescr *type, ParamDescr *params)
+void addFuncDescr(SymbEntry *entry, int displ, TypeDescr *type, ParamDescr *param)
 {
     entry->descr.function.displ = displ;
     entry->descr.function.result = type;
-    entry->descr.function.params = params;
+    entry->descr.function.params = param;
 }
 
 void addLabelDescr(SymbEntry *entry, char *mepaLabel, bool defined)
