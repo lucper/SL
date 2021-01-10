@@ -7,12 +7,11 @@ int currentDispl = -1;
 
 SymbEntry *newSymbEntry(SymbCateg categ, char *ident)
 {
-    SymbEntry *ste = malloc(sizeof(SymbEntry));
-    ste->categ = categ;
-    ste->ident = ident;
-    ste->level = currentLevel;
-    /* switch (categ) { fill descr? } */
-    return ste;
+    SymbEntry *newEntry = malloc(sizeof(SymbEntry));
+    newEntry->categ = categ;
+    newEntry->ident = ident;
+    // newEntry->level = currentLevel;
+    return newEntry;
 }
 
 SymbEntry *searchSymbEntry(char *ident)
@@ -31,12 +30,17 @@ SymbEntry *searchSymbEntry(char *ident)
     }
 }
 
-void insertSymbolTable(SymbEntry *ste)
+void insertSymbolTable(SymbEntry *newEntry)
 {
     if (!symbolTable)
-        symbolTable = ste;
+        symbolTable = newEntry;
     else {
-        ste->next = symbolTable;
-        symbolTable = ste;
+        SymbEntry *existingEntry = searchSymbEntry(newEntry->ident);
+        if (existingEntry && existingEntry->level == newEntry->level) {
+            printf("%s and %s declared at the same level: not allowed");
+            exit(1); // TODO: return error message
+        }
+        newEntry->next = symbolTable;
+        symbolTable = newEntry;
     }
 }
