@@ -2,6 +2,8 @@
 #include <stdio.h>
 #include "tree.h"
 
+ParseStackNode *top = NULL;
+
 TreeNode *reverse(TreeNode *p)
 {
     TreeNode *prev = NULL, *next;

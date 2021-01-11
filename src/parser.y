@@ -10,8 +10,6 @@ void genIdent(char *token_val);
 void genInt(char *token_val);
 void genEmpty();
 void genOpSymbol(Categ categ);
-
-ParseStackNode *top = NULL; // global to be accessed by getTree()
 %}
 
 %union {
@@ -249,8 +247,8 @@ void genNode3(Categ categ, int numComps, char *symbol)
 	treeNode->next = NULL;
 	treeNode->symbol = symbol;
 	if (numComps > 0)
-		for(int i = numComps - 1; i >= 0; i--)
-			treeNode->components[i] = pop();
+            for(int i = numComps - 1; i >= 0; i--)
+                treeNode->components[i] = pop();
 	push(treeNode);
 }
 
@@ -261,7 +259,7 @@ void genNode(Categ categ, int numComps)
 
 void genIdent(char *token_val)
 {
-	genNode3(C_IDENTIFIER, 0, token_val);
+    genNode3(C_IDENTIFIER, 0, token_val);
 }
 
 void genInt(char *token_val)
