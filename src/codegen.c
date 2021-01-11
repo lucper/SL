@@ -52,6 +52,11 @@ void processVarDecl(TreeNode *p)
     }
 }
 
+TypeDescr *processExpr(TreeNode *p)
+{
+    return NULL;
+}
+
 void processAssign(TreeNode *p)
 {
     TreeNode *var = p->components[0];
@@ -73,4 +78,18 @@ void processAssign(TreeNode *p)
     }
     if (entry->categ == S_VAR)
         printf("STVL %d, %d\n", entry->level, entry->descr.variable.displ);
+}
+
+void processFuncDecl(TreeNode *p, bool isMain)
+{
+    char *name = getIdent(p->components[1]);
+    printf("function name: %s\n", name);
+}
+
+void processProgram(void *p)
+{
+    /* init symbol table */
+    if (p) {
+        processFuncDecl(p, true);
+    }
 }
