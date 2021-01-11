@@ -1370,578 +1370,584 @@ yyreduce:
 #line 1371 "src/parser.c"
     break;
 
+  case 10: /* block: functions body  */
+#line 70 "src/parser.y"
+                    { genNode(C_BLOCK, 2); }
+#line 1377 "src/parser.c"
+    break;
+
   case 16: /* block: variables functions body  */
 #line 76 "src/parser.y"
                                                                                                                                                 { genNode(C_BLOCK, 3); }
-#line 1377 "src/parser.c"
+#line 1383 "src/parser.c"
     break;
 
   case 20: /* block: types variables functions body  */
 #line 80 "src/parser.y"
                                                                                                                                 { genNode(C_BLOCK, 4); }
-#line 1383 "src/parser.c"
+#line 1389 "src/parser.c"
     break;
 
   case 22: /* block: body  */
 #line 82 "src/parser.y"
                                                                                                                                                                 { genNode(C_BLOCK, 1); }
-#line 1389 "src/parser.c"
+#line 1395 "src/parser.c"
     break;
 
   case 23: /* types: TYPES types_list  */
 #line 84 "src/parser.y"
                                                                                                                                 { genNode(C_TYPES, 1); }
-#line 1395 "src/parser.c"
+#line 1401 "src/parser.c"
     break;
 
   case 24: /* types_list: identifier_list ASSIGN type SEMI_COLON  */
 #line 86 "src/parser.y"
                                                                                                         { genNode(C_TYPES_LIST, 2); }
-#line 1401 "src/parser.c"
+#line 1407 "src/parser.c"
     break;
 
   case 25: /* types_list: types_list identifier_list ASSIGN type SEMI_COLON  */
 #line 87 "src/parser.y"
                                                                                                                 { genNode(C_TYPES_LIST, 2); insertTopList(); }
-#line 1407 "src/parser.c"
+#line 1413 "src/parser.c"
     break;
 
   case 26: /* labels: LABELS identifier_list SEMI_COLON  */
 #line 89 "src/parser.y"
                                                                                                                                 { genNode(C_LABELS, 1); }
-#line 1413 "src/parser.c"
+#line 1419 "src/parser.c"
     break;
 
   case 27: /* variables: VARS declaration_vars  */
 #line 91 "src/parser.y"
                                                                                                                                         { genNode(C_VARIABLES, 1); }
-#line 1419 "src/parser.c"
+#line 1425 "src/parser.c"
     break;
 
   case 28: /* declaration_vars: identifier_list COLON type SEMI_COLON  */
 #line 93 "src/parser.y"
                                                                                                                 { genNode(C_DECLARATION_VARS, 2); }
-#line 1425 "src/parser.c"
+#line 1431 "src/parser.c"
     break;
 
   case 29: /* declaration_vars: declaration_vars identifier_list COLON type SEMI_COLON  */
 #line 94 "src/parser.y"
                                                                                                                 { genNode(C_DECLARATION_VARS, 2); insertTopList(); }
-#line 1431 "src/parser.c"
+#line 1437 "src/parser.c"
     break;
 
   case 30: /* functions: FUNCTIONS declaration_funcs  */
 #line 96 "src/parser.y"
                                                                                                                                 { genNode(C_FUNCTIONS, 1); }
-#line 1437 "src/parser.c"
+#line 1443 "src/parser.c"
     break;
 
   case 31: /* declaration_funcs: function  */
 #line 98 "src/parser.y"
                                                                                                                                                 { genNode(C_DECLARATION_FUNCS, 1); }
-#line 1443 "src/parser.c"
+#line 1449 "src/parser.c"
     break;
 
   case 32: /* declaration_funcs: declaration_funcs function  */
 #line 99 "src/parser.y"
                                                                                                                                         { genNode(C_DECLARATION_FUNCS, 1); insertTopList(); }
-#line 1449 "src/parser.c"
+#line 1455 "src/parser.c"
     break;
 
   case 33: /* body: OPEN_BRACE statements CLOSE_BRACE  */
 #line 101 "src/parser.y"
                                                                                                                                 { genNode(C_BODY, 1); }
-#line 1455 "src/parser.c"
+#line 1461 "src/parser.c"
     break;
 
   case 34: /* body: OPEN_BRACE empty CLOSE_BRACE  */
 #line 102 "src/parser.y"
                                                                                                                                         { genNode(C_BODY, 1); }
-#line 1461 "src/parser.c"
+#line 1467 "src/parser.c"
     break;
 
   case 35: /* statements: statement  */
 #line 104 "src/parser.y"
                                                                                                                                                 { genNode(C_STATEMENTS, 1); }
-#line 1467 "src/parser.c"
+#line 1473 "src/parser.c"
     break;
 
   case 36: /* statements: statements statement  */
 #line 105 "src/parser.y"
                                                                                                                                                 { genNode(C_STATEMENTS, 1); insertTopList(); }
-#line 1473 "src/parser.c"
+#line 1479 "src/parser.c"
     break;
 
   case 37: /* type: identifier array_size  */
 #line 107 "src/parser.y"
                                                                                                                 { genNode(C_TYPE, 2); }
-#line 1479 "src/parser.c"
+#line 1485 "src/parser.c"
     break;
 
   case 38: /* type: identifier  */
 #line 108 "src/parser.y"
                                                                                                                                                         { genNode(C_TYPE, 1); }
-#line 1485 "src/parser.c"
+#line 1491 "src/parser.c"
     break;
 
   case 39: /* array_size: OPEN_BRACKET integer CLOSE_BRACKET  */
 #line 110 "src/parser.y"
                                                                                                         { genNode(C_ARRAY_SIZE, 1); }
-#line 1491 "src/parser.c"
+#line 1497 "src/parser.c"
     break;
 
   case 40: /* array_size: array_size OPEN_BRACKET integer CLOSE_BRACKET  */
 #line 111 "src/parser.y"
                                                                                                                         { genNode(C_ARRAY_SIZE, 1); insertTopList(); }
-#line 1497 "src/parser.c"
+#line 1503 "src/parser.c"
     break;
 
   case 41: /* formal_parameters: OPEN_PAREN formal_parameter formal_parameter_rest CLOSE_PAREN  */
 #line 113 "src/parser.y"
                                                                                         { genNode(C_FORMAL_PARAMS, 2); }
-#line 1503 "src/parser.c"
+#line 1509 "src/parser.c"
     break;
 
   case 42: /* formal_parameters: OPEN_PAREN formal_parameter CLOSE_PAREN  */
 #line 114 "src/parser.y"
                                                                                                                                 { genNode(C_FORMAL_PARAMS, 1); }
-#line 1509 "src/parser.c"
+#line 1515 "src/parser.c"
     break;
 
   case 43: /* formal_parameters: OPEN_PAREN empty CLOSE_PAREN  */
 #line 115 "src/parser.y"
                                                                                                                                         { genNode(C_FORMAL_PARAMS, 1); }
-#line 1515 "src/parser.c"
+#line 1521 "src/parser.c"
     break;
 
   case 44: /* formal_parameter_rest: COMMA formal_parameter  */
 #line 117 "src/parser.y"
                                                                                                                         { genNode(C_FORMAL_PARAMS_REST, 1); }
-#line 1521 "src/parser.c"
+#line 1527 "src/parser.c"
     break;
 
   case 45: /* formal_parameter_rest: formal_parameter_rest COMMA formal_parameter  */
 #line 118 "src/parser.y"
                                                                                                                         { genNode(C_FORMAL_PARAMS_REST, 1); insertTopList(); }
-#line 1527 "src/parser.c"
+#line 1533 "src/parser.c"
     break;
 
   case 46: /* formal_parameter: expression_parameter  */
 #line 120 "src/parser.y"
                                                                                                 { genNode(C_FORMAL_PARAM, 1); }
-#line 1533 "src/parser.c"
+#line 1539 "src/parser.c"
     break;
 
   case 47: /* formal_parameter: function_parameter  */
 #line 121 "src/parser.y"
                                                                                                                                                 { genNode(C_FORMAL_PARAM, 1); }
-#line 1539 "src/parser.c"
+#line 1545 "src/parser.c"
     break;
 
   case 48: /* function_parameter: function_header  */
 #line 123 "src/parser.y"
                                                                                                                         { genNode(C_FUNCTION_PARAM, 1); }
-#line 1545 "src/parser.c"
+#line 1551 "src/parser.c"
     break;
 
   case 49: /* expression_parameter: VAR identifier_list COLON identifier  */
 #line 125 "src/parser.y"
                                                                                                                 { genNode(C_EXPRESSION_PARAM, 2); }
-#line 1551 "src/parser.c"
+#line 1557 "src/parser.c"
     break;
 
   case 50: /* expression_parameter: identifier_list COLON identifier  */
 #line 126 "src/parser.y"
                                                                                                                                         { genNode(C_EXPRESSION_PARAM, 2); }
-#line 1557 "src/parser.c"
+#line 1563 "src/parser.c"
     break;
 
   case 51: /* statement: unlabeled_statement  */
 #line 128 "src/parser.y"
                                                                                                                                         { genNode(C_STATEMENT, 1); }
-#line 1563 "src/parser.c"
+#line 1569 "src/parser.c"
     break;
 
   case 52: /* statement: identifier COLON unlabeled_statement  */
 #line 129 "src/parser.y"
                                                                                                                                 { genNode(C_STATEMENT, 2); }
-#line 1569 "src/parser.c"
+#line 1575 "src/parser.c"
     break;
 
   case 53: /* variable: identifier array  */
 #line 131 "src/parser.y"
                                                                                                                         { genNode(C_VARIABLE, 2); }
-#line 1575 "src/parser.c"
+#line 1581 "src/parser.c"
     break;
 
   case 54: /* variable: identifier  */
 #line 132 "src/parser.y"
                                                                                                                                                         { genNode(C_VARIABLE, 1); }
-#line 1581 "src/parser.c"
+#line 1587 "src/parser.c"
     break;
 
   case 55: /* array: OPEN_BRACKET expression CLOSE_BRACKET  */
 #line 134 "src/parser.y"
                                                                                                                 { genNode(C_ARRAY, 1); }
-#line 1587 "src/parser.c"
+#line 1593 "src/parser.c"
     break;
 
   case 56: /* array: array OPEN_BRACKET expression CLOSE_BRACKET  */
 #line 135 "src/parser.y"
                                                                                                                         { genNode(C_ARRAY, 1); insertTopList(); }
-#line 1593 "src/parser.c"
+#line 1599 "src/parser.c"
     break;
 
   case 57: /* unlabeled_statement: assignment  */
 #line 137 "src/parser.y"
                                                                                                                                         { genNode(C_UNLABELED_STATEMENT, 1); }
-#line 1599 "src/parser.c"
+#line 1605 "src/parser.c"
     break;
 
   case 58: /* unlabeled_statement: function_call_statement  */
 #line 138 "src/parser.y"
                                                                                                                                                 { genNode(C_UNLABELED_STATEMENT, 1); }
-#line 1605 "src/parser.c"
+#line 1611 "src/parser.c"
     break;
 
   case 59: /* unlabeled_statement: goto  */
 #line 139 "src/parser.y"
                                                                                                                                                                 { genNode(C_UNLABELED_STATEMENT, 1); }
-#line 1611 "src/parser.c"
+#line 1617 "src/parser.c"
     break;
 
   case 60: /* unlabeled_statement: return  */
 #line 140 "src/parser.y"
                                                                                                                                                                 { genNode(C_UNLABELED_STATEMENT, 1); }
-#line 1617 "src/parser.c"
+#line 1623 "src/parser.c"
     break;
 
   case 61: /* unlabeled_statement: conditional  */
 #line 141 "src/parser.y"
                                                                                                                                                         { genNode(C_UNLABELED_STATEMENT, 1); }
-#line 1623 "src/parser.c"
+#line 1629 "src/parser.c"
     break;
 
   case 62: /* unlabeled_statement: repetitive  */
 #line 142 "src/parser.y"
                                                                                                                                                         { genNode(C_UNLABELED_STATEMENT, 1); }
-#line 1629 "src/parser.c"
+#line 1635 "src/parser.c"
     break;
 
   case 63: /* unlabeled_statement: compound  */
 #line 143 "src/parser.y"
                                                                                                                                                                 { genNode(C_UNLABELED_STATEMENT, 1); }
-#line 1635 "src/parser.c"
+#line 1641 "src/parser.c"
     break;
 
   case 64: /* unlabeled_statement: empty_statement  */
 #line 144 "src/parser.y"
                                                                                                                                                         { genNode(C_UNLABELED_STATEMENT, 1); }
-#line 1641 "src/parser.c"
+#line 1647 "src/parser.c"
     break;
 
   case 65: /* assignment: variable ASSIGN expression SEMI_COLON  */
 #line 146 "src/parser.y"
                                                                                                                         { genNode(C_ASSIGNMENT, 2); }
-#line 1647 "src/parser.c"
+#line 1653 "src/parser.c"
     break;
 
   case 66: /* function_call_statement: function_call SEMI_COLON  */
 #line 148 "src/parser.y"
                                                                                                                         { genNode(C_FUNCTION_CALL_STATEMENT, 1); }
-#line 1653 "src/parser.c"
+#line 1659 "src/parser.c"
     break;
 
   case 67: /* goto: GOTO identifier SEMI_COLON  */
 #line 150 "src/parser.y"
                                                                                                                                         { genNode(C_GOTO, 1); }
-#line 1659 "src/parser.c"
+#line 1665 "src/parser.c"
     break;
 
   case 68: /* return: RETURN expression SEMI_COLON  */
 #line 152 "src/parser.y"
                                                                                                                                 { genNode(C_RETURN, 1); }
-#line 1665 "src/parser.c"
+#line 1671 "src/parser.c"
     break;
 
   case 69: /* conditional: IF OPEN_PAREN expression CLOSE_PAREN compound  */
 #line 154 "src/parser.y"
                                                                                                                 { genNode(C_CONDITIONAL, 2); }
-#line 1671 "src/parser.c"
+#line 1677 "src/parser.c"
     break;
 
   case 70: /* conditional: IF OPEN_PAREN expression CLOSE_PAREN compound ELSE compound  */
 #line 155 "src/parser.y"
                                                                                                         { genNode(C_CONDITIONAL, 3); }
-#line 1677 "src/parser.c"
+#line 1683 "src/parser.c"
     break;
 
   case 71: /* repetitive: WHILE OPEN_PAREN expression CLOSE_PAREN compound  */
 #line 157 "src/parser.y"
                                                                                                         { genNode(C_REPETITIVE, 2); }
-#line 1683 "src/parser.c"
+#line 1689 "src/parser.c"
     break;
 
   case 72: /* compound: OPEN_BRACE unlabeled_statements CLOSE_BRACE  */
 #line 159 "src/parser.y"
                                                                                                                 { genNode(C_COMPOUND, 1); }
-#line 1689 "src/parser.c"
+#line 1695 "src/parser.c"
     break;
 
   case 73: /* compound: OPEN_BRACE empty CLOSE_BRACE  */
 #line 160 "src/parser.y"
                                                                                                                                         { genNode(C_COMPOUND, 1); }
-#line 1695 "src/parser.c"
+#line 1701 "src/parser.c"
     break;
 
   case 74: /* unlabeled_statements: unlabeled_statement  */
 #line 162 "src/parser.y"
                                                                                                                                 { genNode(C_UNLABELED_STATEMENTS, 1); }
-#line 1701 "src/parser.c"
+#line 1707 "src/parser.c"
     break;
 
   case 75: /* unlabeled_statements: unlabeled_statements unlabeled_statement  */
 #line 163 "src/parser.y"
                                                                                                                                 { genNode(C_UNLABELED_STATEMENTS, 1); insertTopList(); }
-#line 1707 "src/parser.c"
+#line 1713 "src/parser.c"
     break;
 
   case 76: /* empty_statement: SEMI_COLON  */
 #line 165 "src/parser.y"
                                                                                                                                                 { /*?*/ genEmpty(); }
-#line 1713 "src/parser.c"
+#line 1719 "src/parser.c"
     break;
 
   case 77: /* expression: simple_expression  */
 #line 167 "src/parser.y"
                                                                                                                                         { genNode(C_EXPRESSION, 1); }
-#line 1719 "src/parser.c"
+#line 1725 "src/parser.c"
     break;
 
   case 78: /* expression: binop_expression  */
 #line 168 "src/parser.y"
                                                                                                                                                         { genNode(C_EXPRESSION, 1); }
-#line 1725 "src/parser.c"
+#line 1731 "src/parser.c"
     break;
 
   case 79: /* expression: unop_expression  */
 #line 169 "src/parser.y"
                                                                                                                                                         { genNode(C_EXPRESSION, 1); }
-#line 1731 "src/parser.c"
+#line 1737 "src/parser.c"
     break;
 
   case 81: /* binop_expression: unop_expression relational_operator simple_expression  */
 #line 172 "src/parser.y"
                                                                                                 { /*!*/ genNode(C_BINOP_EXPRESSION, 3); }
-#line 1737 "src/parser.c"
+#line 1743 "src/parser.c"
     break;
 
   case 82: /* binop_expression: simple_expression relational_operator simple_expression  */
 #line 173 "src/parser.y"
                                                                                                                 { /*!*/ genNode(C_BINOP_EXPRESSION, 3); }
-#line 1743 "src/parser.c"
+#line 1749 "src/parser.c"
     break;
 
   case 83: /* simple_expression: term additive_term  */
 #line 175 "src/parser.y"
                                                                                                                                 { genNode(C_SIMPLE_EXPRESSION, 2); }
-#line 1749 "src/parser.c"
+#line 1755 "src/parser.c"
     break;
 
   case 84: /* simple_expression: term  */
 #line 176 "src/parser.y"
                                                                                                                                                                 { genNode(C_SIMPLE_EXPRESSION, 1); }
-#line 1755 "src/parser.c"
+#line 1761 "src/parser.c"
     break;
 
   case 85: /* unop_expression: unary_operator term additive_term  */
 #line 178 "src/parser.y"
                                                                                                                         { /*!*/ genNode(C_UNOP_EXPRESSION, 3); }
-#line 1761 "src/parser.c"
+#line 1767 "src/parser.c"
     break;
 
   case 86: /* unop_expression: unary_operator term  */
 #line 179 "src/parser.y"
                                                                                                                                                 { /*!*/ genNode(C_UNOP_EXPRESSION, 2); }
-#line 1767 "src/parser.c"
+#line 1773 "src/parser.c"
     break;
 
   case 87: /* additive_term: additive_operator term  */
 #line 181 "src/parser.y"
                                                                                                                                 { /*!*/ genNode(C_ADDITIVE_TERM, 2); }
-#line 1773 "src/parser.c"
+#line 1779 "src/parser.c"
     break;
 
   case 88: /* additive_term: additive_term additive_operator term  */
 #line 182 "src/parser.y"
                                                                                                                                 { /*!*/ genNode(C_ADDITIVE_TERM, 2); insertTopList(); }
-#line 1779 "src/parser.c"
+#line 1785 "src/parser.c"
     break;
 
   case 90: /* relational_operator: LESS  */
 #line 185 "src/parser.y"
                                                                                                                                                                 { genOpSymbol(C_LESS); }
-#line 1785 "src/parser.c"
+#line 1791 "src/parser.c"
     break;
 
   case 94: /* relational_operator: GREATER  */
 #line 189 "src/parser.y"
                                                                                                                                                                 { genOpSymbol(C_GREATER); }
-#line 1791 "src/parser.c"
+#line 1797 "src/parser.c"
     break;
 
   case 95: /* additive_operator: PLUS  */
 #line 191 "src/parser.y"
                                                                                                                                                 { genOpSymbol(C_PLUS); }
-#line 1797 "src/parser.c"
+#line 1803 "src/parser.c"
     break;
 
   case 96: /* additive_operator: MINUS  */
 #line 192 "src/parser.y"
                                                                                                                                                                 { genOpSymbol(C_MINUS); }
-#line 1803 "src/parser.c"
+#line 1809 "src/parser.c"
     break;
 
   case 98: /* unary_operator: PLUS  */
 #line 195 "src/parser.y"
                                                                                                                                                 { genOpSymbol(C_PLUS); }
-#line 1809 "src/parser.c"
+#line 1815 "src/parser.c"
     break;
 
   case 99: /* unary_operator: MINUS  */
 #line 196 "src/parser.y"
                                                                                                                                                                 { genOpSymbol(C_MINUS); }
-#line 1815 "src/parser.c"
+#line 1821 "src/parser.c"
     break;
 
   case 101: /* term: factor multiplicative_factor  */
 #line 199 "src/parser.y"
                                                                                                                                         { genNode(C_TERM, 2); }
-#line 1821 "src/parser.c"
+#line 1827 "src/parser.c"
     break;
 
   case 102: /* term: factor  */
 #line 200 "src/parser.y"
                                                                                                                                                                 { genNode(C_TERM, 1); }
-#line 1827 "src/parser.c"
+#line 1833 "src/parser.c"
     break;
 
   case 103: /* multiplicative_factor: multiplicative_operator factor  */
 #line 202 "src/parser.y"
                                                                                                                 { /*!*/ genNode(C_MULTIPLICATIVE_FACTOR, 2); }
-#line 1833 "src/parser.c"
+#line 1839 "src/parser.c"
     break;
 
   case 104: /* multiplicative_factor: multiplicative_factor multiplicative_operator factor  */
 #line 203 "src/parser.y"
                                                                                                                 { /*!*/ genNode(C_MULTIPLICATIVE_FACTOR, 2); insertTopList(); }
-#line 1839 "src/parser.c"
+#line 1845 "src/parser.c"
     break;
 
   case 105: /* multiplicative_operator: MULTIPLY  */
 #line 205 "src/parser.y"
                                                                                                                                         { genOpSymbol(C_MULTIPLY); }
-#line 1845 "src/parser.c"
+#line 1851 "src/parser.c"
     break;
 
   case 108: /* factor: variable  */
 #line 209 "src/parser.y"
                                                                                                                                                         { genNode(C_FACTOR, 1); }
-#line 1851 "src/parser.c"
+#line 1857 "src/parser.c"
     break;
 
   case 109: /* factor: integer  */
 #line 210 "src/parser.y"
                                                                                                                                                                 { genNode(C_FACTOR, 1); }
-#line 1857 "src/parser.c"
+#line 1863 "src/parser.c"
     break;
 
   case 110: /* factor: function_call  */
 #line 211 "src/parser.y"
                                                                                                                                                         { genNode(C_FACTOR, 1); }
-#line 1863 "src/parser.c"
+#line 1869 "src/parser.c"
     break;
 
   case 111: /* factor: OPEN_PAREN expression CLOSE_PAREN  */
 #line 212 "src/parser.y"
                                                                                                                                         { genNode(C_FACTOR, 1); }
-#line 1869 "src/parser.c"
+#line 1875 "src/parser.c"
     break;
 
   case 112: /* function_call: identifier OPEN_PAREN expression_list CLOSE_PAREN  */
 #line 214 "src/parser.y"
                                                                                                         { genNode(C_FUNCTION_CALL, 2); }
-#line 1875 "src/parser.c"
+#line 1881 "src/parser.c"
     break;
 
   case 113: /* identifier_list: identifier identifier_list_rest  */
 #line 216 "src/parser.y"
                                                                                                                         { genNode(C_IDENTIFIER_LIST, 2); }
-#line 1881 "src/parser.c"
+#line 1887 "src/parser.c"
     break;
 
   case 114: /* identifier_list: identifier  */
 #line 217 "src/parser.y"
                                                                                                                                                         { genNode(C_IDENTIFIER_LIST, 1); }
-#line 1887 "src/parser.c"
+#line 1893 "src/parser.c"
     break;
 
   case 115: /* identifier_list_rest: COMMA identifier  */
 #line 219 "src/parser.y"
                                                                                                                                 { genNode(C_IDENTIFIER_LIST_REST, 1); }
-#line 1893 "src/parser.c"
+#line 1899 "src/parser.c"
     break;
 
   case 116: /* identifier_list_rest: identifier_list_rest COMMA identifier  */
 #line 220 "src/parser.y"
                                                                                                                                 { genNode(C_IDENTIFIER_LIST_REST, 1); insertTopList(); }
-#line 1899 "src/parser.c"
+#line 1905 "src/parser.c"
     break;
 
   case 117: /* expression_list: expression expression_list_rest  */
 #line 222 "src/parser.y"
                                                                                                                         { genNode(C_EXPRESSION_LIST, 2); }
-#line 1905 "src/parser.c"
+#line 1911 "src/parser.c"
     break;
 
   case 118: /* expression_list: expression  */
 #line 223 "src/parser.y"
                                                                                                                                                         { genNode(C_EXPRESSION_LIST, 1); }
-#line 1911 "src/parser.c"
+#line 1917 "src/parser.c"
     break;
 
   case 119: /* expression_list_rest: COMMA expression  */
 #line 225 "src/parser.y"
                                                                                                                                 { genNode(C_EXPRESSION_LIST_REST, 1); }
-#line 1917 "src/parser.c"
+#line 1923 "src/parser.c"
     break;
 
   case 120: /* expression_list_rest: expression_list_rest COMMA expression  */
 #line 226 "src/parser.y"
                                                                                                                                 { genNode(C_EXPRESSION_LIST_REST, 1); insertTopList(); }
-#line 1923 "src/parser.c"
+#line 1929 "src/parser.c"
     break;
 
   case 121: /* identifier: IDENTIFIER  */
 #line 228 "src/parser.y"
                                                                                                                                                 { genIdent((yyvsp[0].symbol)); }
-#line 1929 "src/parser.c"
+#line 1935 "src/parser.c"
     break;
 
   case 122: /* integer: INTEGER  */
 #line 230 "src/parser.y"
                                                                                                                                                         { genInt((yyvsp[0].symbol)); }
-#line 1935 "src/parser.c"
+#line 1941 "src/parser.c"
     break;
 
   case 123: /* empty: %empty  */
 #line 232 "src/parser.y"
                                                                                                                                                         { genEmpty(); }
-#line 1941 "src/parser.c"
+#line 1947 "src/parser.c"
     break;
 
 
-#line 1945 "src/parser.c"
+#line 1951 "src/parser.c"
 
       default: break;
     }

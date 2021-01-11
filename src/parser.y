@@ -67,7 +67,7 @@ function_header: identifier identifier formal_parameters							{ genNode(C_FUNCT
 /* types is optional */ block: labels body											{ genNode(C_BLOCK, 2); }
     | types body
 	| variables body																{ genNode(C_BLOCK, 2); }
-	| functions body
+| functions body    { genNode(C_BLOCK, 2); }
     | labels types body
     | labels variables body
     | labels functions body
