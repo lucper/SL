@@ -1,3 +1,4 @@
+
 #include "../tests/test_compiler/slc.h" // SemanticError
 #include "codegen.h"
 #include <stdio.h>
@@ -83,13 +84,23 @@ void processAssign(TreeNode *p)
 void processFuncDecl(TreeNode *p, bool isMain)
 {
     char *name = getIdent(p->components[1]);
-    printf("function name: %s\n", name);
+    printf("%s\n", name);
 }
 
 void processProgram(void *p)
 {
     /* init symbol table */
-    if (p) {
-        processFuncDecl(p, true);
+    TreeNode *node = p;
+    if (!node)
+        return;
+    else {
+        if (node->next)
+            processProgram(node->next);
+        for (int i = 0; i < MAX_COMPS; i++)
+            if (node->components[i])
+                processProgram(node->components[i]);
+        printf("categ %d\n", node->categ);
+        if (node->categ == C_IDENTIFIER)
+            printf("ident = %s\n", node->symbol);
     }
 }
