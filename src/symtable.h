@@ -4,10 +4,8 @@
 #include <stdbool.h>
 
 /* Descriptors */
-// typedef enum {T_PREDEF = 1, T_ARRAY, T_FUNC} TypeConstr;
 typedef enum {T_INTEGER = 1, T_BOOLEAN} PredefType;
-typedef struct _typeDescr {
-    // TypeConstr constr;
+typedef struct {
     int size;
     PredefType predefType;
 } TypeDescr;
@@ -50,37 +48,40 @@ typedef enum {
     S_LABEL,
     S_TYPE
 } SymbCateg;
-
+typedef union {
+    TypeDescr *typeDescr;
+    ParamDescr *paramDescr;
+    FuncDescr *funcDescr;
+    ConstDescr *constDescr;
+    VarDescr *varDescr;
+    LabelDescr *labelDescr;
+} Descr;
 typedef struct _symbEntry {
     SymbCateg categ;
     char *ident;
     int level;
     struct _symbEntry *next;
-    union {
-        ConstDescr constant;
-        VarDescr variable;
-        FuncDescr function;
-        ParamDescr parameter;
-        LabelDescr label;
-        TypeDescr *type;
-    } descr;
+    Descr *descr;
 } SymbEntry;
 
 SymbEntry *searchSymbEntry(char *ident);
-SymbEntry *newSymbEntry(SymbCateg categ, char *ident);
+SymbEntry *newSymbEntry(SymbCateg categ, char *ident, int level);
 void insertSymbolTable(SymbEntry *entry);
 void saveSymbolTable(); /* ??? */
 void restoreSymbolTable(); /* ??? */
 void loadFormalsSymbolTable(SymbEntry *formals); /* ??? */
 
-void addConstDescr(SymbEntry *entry, int value, TypeDescr *type);
-void addVarDescr(SymbEntry *entry, int displ, TypeDescr *type);
-void addFuncDescr(SymbEntry *entry, int displ, TypeDescr *type, ParamDescr *param);
-void addLabelDescr(SymbEntry *entry, char *mepaLabel, bool defined);
-// void addParamDescr(SymbEntry *entry);
+Descr *newTypeDescr(int size, PredefType predefType);
+Descr *newParamDescr(int displ, TypeDescr *type, Passage pass);
+Descr *newFuncDescr(int displ, TypeDescr *result, ParamDescr *params);
+Descr *newConstDescr(int value, TypeDescr *type);
+Descr *newVarDescr(int displ, TypeDescr *type);
+Descr *newLabelDescr(char *mepaLabel, bool defined);
+
+void initSymbolTable();
+void freeSymbolTable();
+void dumpSymbolTable();
 
 extern SymbEntry *symbolTable;
-extern int currentLevel;
-extern int currentDispl;
 
 #endif /* SYMTABLE_H */
