@@ -1,106 +1,90 @@
-
 #include "../tests/test_compiler/slc.h" // SemanticError
 #include "codegen.h"
 #include <stdio.h>
 
-#define INTEGER "integer"
-#define BOOLEAN "boolean"
+int currentLevel = 0;
+int currentDispl = -1;
+int labelCounter = 99;
+
+static int nextLabel()
+{
+    return ++labelCounter;
+}
+
+static TypeDescr *getType(TreeNode *p)
+{
+    char *ident = p->symbol;
+    SymbEntry *entry = searchSymbEntry(ident);
+    if (entry->categ != S_TYPE) {
+        printf("not a type: categ %d\n", entry->categ);
+        exit(1);
+    }
+    return entry->descr->type;
+}
 
 void processVariables(TreeNode *p)
 {
-    p = reverse(p);
+    p = p->components[0];
+    //p = reverse(p);
     while (p) {
         processVarDecl(p);
         p = p->next;
     }
 }
 
-static TypeDescr *getType(TreeNode *p)
-{
-    /* TODO: verify if the checking is correct and
-     * what to do if it is not integer nor boolean. */
-    char *ident = p->symbol;
-    TypeDescr *type = malloc(sizeof(TypeDescr));
-    if (ident == INTEGER) {
-        type->size = 1;
-        type->predefType = T_INTEGER;
-    } else if (ident == BOOLEAN) {
-        type->size = 1;
-        type->predefType = T_BOOLEAN;
-    } else {
-        printf("invalid type");
-        exit(1);
-    }
-    return type;
-}
-
-static char *getIdent(TreeNode *p)
-{
-    return p->symbol;
-}
-
 void processVarDecl(TreeNode *p)
 {
-    TreeNode *vars = reverse(p->components[0]);
+    for (int i = 0; i < MAX_COMPS; ++i)
+        printf("categ %d\n", p->components[i]->categ);
+    TreeNode *vars = p->components[0]; /* reverse? */
     TypeDescr *type = getType(p->components[1]);
     SymbEntry *entry;
     while (vars) {
-        entry = newSymbEntry(S_VAR, getIdent(vars));
-        entry->level = currentLevel; // include in newSymbentry?
-        addVarDescr(entry, currentDispl, type);
+        Descr *varDescr = newVarDescr(currentDispl, type);
+        entry = newSymbEntry(S_VAR, vars->symbol, currentLevel, varDescr);
         insertSymbolTable(entry);
         currentDispl += type->size;
+        vars = vars->next;
     }
-}
-
-TypeDescr *processExpr(TreeNode *p)
-{
-    return NULL;
-}
-
-void processAssign(TreeNode *p)
-{
-    TreeNode *var = p->components[0];
-    TreeNode *expr = p->components[1];
-    SymbEntry *entry = searchSymbEntry(var->symbol);
-    if (!entry)
-        SemanticError("");
-    if (entry->categ != S_VAR && entry->categ != S_PARAM)
-        SemanticError("");
-    TypeDescr *tvar = entry->descr.type;
-    TypeDescr *texpr = processExpr(expr);
-    if (tvar->predefType != texpr->predefType)
-        SemanticError("");
-    if (entry->categ == S_PARAM) {
-        if (entry->descr.parameter.pass == P_REF)
-            printf("STVI %d, %d\n", entry->level, entry->descr.parameter.displ);
-        else
-            printf("STVL %d, %d\n", entry->level, entry->descr.parameter.displ);
-    }
-    if (entry->categ == S_VAR)
-        printf("STVL %d, %d\n", entry->level, entry->descr.variable.displ);
 }
 
 void processFuncDecl(TreeNode *p, bool isMain)
 {
-    char *name = getIdent(p->components[1]);
-    printf("%s\n", name);
+    TreeNode *header = p->components[0];
+    TreeNode *block = p->components[1];
+    char *name = header->components[0]->symbol;
+    TypeDescr *resType = NULL;
+
+    int lastDispl = -4;
+    Descr *funcDescr = newFuncDescr(lastDispl, resType, NULL);
+    SymbEntry *funcEntry = newSymbEntry(S_FUNC, name, currentLevel - 1, funcDescr);
+    insertSymbolTable(funcEntry);
+    
+    if (isMain)
+        printf("MAIN\n");
+    processVariables(block->components[0]);
+    printf("ALOC %d\n", currentDispl);
+    printf("DLOC %d\n", currentDispl);
+    if (isMain)
+        printf("STOP\n");
 }
 
 void processProgram(void *p)
 {
-    /* init symbol table */
-    TreeNode *node = p;
-    if (!node)
+    if (!symbolTable)
+        initSymbolTable();
+    TreeNode *tree = p;
+    if (!tree)
         return;
     else {
-        if (node->next)
-            processProgram(node->next);
+        if (tree->next)
+            processProgram(tree->next);
         for (int i = 0; i < MAX_COMPS; i++)
-            if (node->components[i])
-                processProgram(node->components[i]);
-        printf("categ %d\n", node->categ);
-        if (node->categ == C_IDENTIFIER)
-            printf("ident = %s\n", node->symbol);
+            if (tree->components[i] || i == 0)
+                processProgram(tree->components[i]);
+        if (tree->categ == C_FUNCTION) {
+            processFuncDecl(tree, true);
+            //dumpSymbolTable();
+        }
     }
 }
