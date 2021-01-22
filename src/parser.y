@@ -74,7 +74,7 @@ function_header: identifier identifier formal_parameters							{ genNode(C_FUNCT
 	| variables functions body														{ genNode(C_BLOCK, 3); }
     | labels types variables body
     | labels types functions body
-    | labels variables functions body
+    | labels variables functions body                                                                                           { genNode(C_BLOCK, 4); }
     | types variables functions body												{ genNode(C_BLOCK, 4); }
     | labels types variables functions body
 	| body																			{ genNode(C_BLOCK, 1); }
