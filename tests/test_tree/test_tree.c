@@ -16,6 +16,12 @@
 
 extern int line_num;
 
+void SemanticError(char *s)
+{
+    printf("Semantic Error.\n");
+    exit(1);
+}
+
 int yyerror(char *s) {
   
   printf("Error detected on line %d.\n",line_num);
