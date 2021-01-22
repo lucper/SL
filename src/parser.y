@@ -60,7 +60,7 @@ program: function END_OF_FILE														{ genNode(C_PROGRAM, 1); return 0; }
 function: function_header block														{ genNode(C_FUNCTION, 2); }
 	;
 function_header: identifier identifier formal_parameters							{ genNode(C_FUNCTION_HEADER, 3); }
-	| VOID { genEmpty(); } identifier formal_parameters								{ genNode(C_FUNCTION_HEADER, 2); }
+| VOID { genEmpty(); } identifier formal_parameters								{ genNode(C_FUNCTION_HEADER, 2); }
 	;
 /* types is optional */ block: labels body											{ genNode(C_BLOCK, 2); }
     | types body
