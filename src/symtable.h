@@ -49,12 +49,12 @@ typedef enum {
     S_TYPE
 } SymbCateg;
 typedef union {
-    TypeDescr *typeDescr;
-    ParamDescr *paramDescr;
-    FuncDescr *funcDescr;
-    ConstDescr *constDescr;
-    VarDescr *varDescr;
-    LabelDescr *labelDescr;
+    TypeDescr *type;
+    ParamDescr *parameter;
+    FuncDescr *function;
+    ConstDescr *constant;
+    VarDescr *variable;
+    LabelDescr *label;
 } Descr;
 typedef struct _symbEntry {
     SymbCateg categ;
@@ -65,7 +65,7 @@ typedef struct _symbEntry {
 } SymbEntry;
 
 SymbEntry *searchSymbEntry(char *ident);
-SymbEntry *newSymbEntry(SymbCateg categ, char *ident, int level);
+SymbEntry *newSymbEntry(SymbCateg categ, char *ident, int level, Descr *descr);
 void insertSymbolTable(SymbEntry *entry);
 void saveSymbolTable(); /* ??? */
 void restoreSymbolTable(); /* ??? */
