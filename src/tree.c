@@ -4,6 +4,18 @@
 
 ParseStackNode *top = NULL;
 
+static void freeTreeNode(TreeNode *p)
+{
+    if (p) {
+        if (p->next)
+            freeTreeNode(p->next);
+        for (int i = 0; i < MAX_COMPS; i++)
+            if (p->components[i])
+                freeTreeNode(p->components[i]);
+        free(p);
+    }
+}
+
 TreeNode *reverse(TreeNode *p)
 {
     TreeNode *prev = NULL, *next;
@@ -46,13 +58,12 @@ TreeNode *pop()
 
 void freeStack()
 {
-    if (!top)
-        return;
-    else {
+    if (top) {
         ParseStackNode *temp;
         while (top) {
             temp = top;
             top = top->next;
+            freeTreeNode(temp->treeNode);
             free(temp);
         }
     }
