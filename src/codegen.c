@@ -25,7 +25,7 @@ static TypeDescr *getType(TreeNode *p)
         exit(1);
     }
     if (entry->categ != S_TYPE) {
-        printf("not a type: categ %d\n", entry->categ);
+        printf("not a type: %s\n", entry->ident);
         exit(1);
     }
     return entry->descr->type;
@@ -36,14 +36,16 @@ static void processBlock(TreeNode *block)
     TreeNode *currComp;
     for (int i = 0; i < MAX_COMPS; i++) {
         currComp = block->components[i];
-        if (currComp->categ == C_VARIABLES)
-            processVariables(currComp);
-        else if (currComp->categ == C_LABELS)
-            ;
-        else if (currComp->categ == C_FUNCTIONS)
-            processFunctions(currComp);
-        else if (currComp->categ == C_BODY)
-            ;
+        if (currComp) {
+            if (currComp->categ == C_VARIABLES)
+                processVariables(currComp);
+            else if (currComp->categ == C_LABELS)
+                ;
+            else if (currComp->categ == C_FUNCTIONS)
+                processFunctions(currComp);
+            else if (currComp->categ == C_BODY)
+                ;
+        }
     }
 }
 
@@ -127,8 +129,7 @@ void processProgram(void *p)
     if (!symbolTable)
         initSymbolTable();
     TreeNode *program = p;
-    dumpTree(program, 0);
-    //processFuncDecl(program->components[0], true);
+    processFuncDecl(program->components[0], true);
     //freeStack();
     //freeSymbolTable();
 }
