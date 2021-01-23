@@ -12,6 +12,7 @@ static void freeTreeNode(TreeNode *p)
         for (int i = 0; i < MAX_COMPS; i++)
             if (p->components[i])
                 freeTreeNode(p->components[i]);
+        free(p->symbol);
         free(p);
     }
 }
@@ -131,6 +132,6 @@ void dumpTree(TreeNode *p, int indent)
         for (int i = 0; i < MAX_COMPS; i++)
             if (p->components[i])
                 dumpTree(p->components[i], indent);
-        printf("Categ = %d\n", p->categ);
+        printf("Categ = %d\tSymbol = %s\n", p->categ, p->symbol);
     }
 }

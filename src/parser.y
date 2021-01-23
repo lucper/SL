@@ -1,5 +1,6 @@
 %{
 #include <stdlib.h>
+#include <string.h>
 #include "../tests/test_compiler/slc.h" // only for submission
 #include "tree.h"
 
@@ -245,7 +246,8 @@ void genNode3(Categ categ, int numComps, char *symbol)
 	TreeNode *treeNode = malloc(sizeof(TreeNode));
 	treeNode->categ = categ;
 	treeNode->next = NULL;
-	treeNode->symbol = symbol;
+	treeNode->symbol = malloc(strlen(symbol) + 1);
+        strcpy(treeNode->symbol, symbol);
 	if (numComps > 0)
             for(int i = numComps - 1; i >= 0; i--)
                 treeNode->components[i] = pop();
@@ -254,7 +256,7 @@ void genNode3(Categ categ, int numComps, char *symbol)
 
 void genNode(Categ categ, int numComps)
 {
-	genNode3(categ, numComps, NULL);
+	genNode3(categ, numComps, "");
 }
 
 void genIdent(char *token_val)
@@ -273,8 +275,6 @@ void genEmpty()
 }
 
 void genOpSymbol(Categ categ)
-{	
-	// Is this the correct way to do it?
-	// Probably, will be different when generating code.
+{
 	genNode(categ, 0);
 }

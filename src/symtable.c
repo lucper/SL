@@ -1,6 +1,7 @@
 #include "symtable.h"
 #include <stdlib.h>
 #include <stdio.h>
+#include <string.h>
 
 SymbEntry *symbolTable = NULL;
 
@@ -41,6 +42,7 @@ static void freeFuncDescr(FuncDescr *funcDescr)
 
 static void freeLabelDescr(LabelDescr *labelDescr)
 {
+    free(labelDescr->mepaLabel);
     free(labelDescr);
 }
 
@@ -121,7 +123,8 @@ Descr *newVarDescr(int displ, TypeDescr *type)
 Descr *newLabelDescr(char *mepaLabel, bool defined)
 {
     LabelDescr *labelDescr = malloc(sizeof(LabelDescr));
-    labelDescr->mepaLabel = mepaLabel;
+    labelDescr->mepaLabel = malloc(strlen(mepaLabel) + 1);
+    strcpy(labelDescr->mepaLabel, mepaLabel);
     labelDescr->defined = defined;
     Descr *descr = malloc(sizeof(Descr));
     descr->label = labelDescr;
@@ -156,6 +159,7 @@ void freeSymbolTable()
     SymbEntry *prev = NULL;
     while (symbolTable) {
         freeDescr(symbolTable->categ, symbolTable->descr);
+        free(symbolTable->ident);
         prev = symbolTable;
         symbolTable = symbolTable->next;
         free(prev);
@@ -166,7 +170,8 @@ SymbEntry *newSymbEntry(SymbCateg categ, char *ident, int level, Descr *descr)
 {
     SymbEntry *newEntry = malloc(sizeof(SymbEntry));
     newEntry->categ = categ;
-    newEntry->ident = ident;
+    newEntry->ident = malloc(strlen(ident) + 1);
+    strcpy(newEntry->ident, ident);
     newEntry->level = level;
     newEntry->descr = descr;
     return newEntry;
