@@ -127,7 +127,8 @@ void processProgram(void *p)
     if (!symbolTable)
         initSymbolTable();
     TreeNode *program = p;
-    processFuncDecl(program->components[0], true);
+    dumpTree(program, 0);
+    //processFuncDecl(program->components[0], true);
     //freeStack();
     //freeSymbolTable();
 }

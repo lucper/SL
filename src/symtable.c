@@ -5,6 +5,13 @@
 
 SymbEntry *symbolTable = NULL;
 
+static bool declaredAtSameLevel(SymbEntry *entry1, SymbEntry *entry2)
+{
+    int entry1Level = entry1->level;
+    int entry2Level = entry2->level;
+    return entry1Level == entry2Level && entry1Level != -1;
+}
+
 static void freeTypeDescr(TypeDescr *typeDescr)
 {
     free(typeDescr);
@@ -185,8 +192,9 @@ SymbEntry *searchSymbEntry(char *ident)
     } else {
         SymbEntry *currEntry = symbolTable;
         while (currEntry) {
-            if (currEntry->ident == ident)
+            if (strcmp(currEntry->ident, ident)) {
                 return currEntry;
+            }
             currEntry = currEntry->next;
         }
         return NULL;
@@ -197,7 +205,7 @@ void insertSymbolTable(SymbEntry *newEntry)
 {
     if (symbolTable) {
         SymbEntry *existingEntry = searchSymbEntry(newEntry->ident);
-        if (existingEntry && existingEntry->level == newEntry->level) {
+        if (existingEntry && declaredAtSameLevel(existingEntry, newEntry)) {
             printf("%s and %s declared at the same level: not allowed\n", newEntry->ident, existingEntry->ident);
             exit(1); // TODO: return error message
         }
