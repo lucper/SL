@@ -184,8 +184,7 @@ SymbEntry *searchSymbEntry(char *ident)
                 return currEntry;
             currEntry = currEntry->next;
         }
-        printf("%s not found in symbol table\n", ident);
-        exit(1);
+        return NULL;
     }
 }
 
@@ -193,7 +192,7 @@ void insertSymbolTable(SymbEntry *newEntry)
 {
     if (symbolTable) {
         SymbEntry *existingEntry = searchSymbEntry(newEntry->ident);
-        if (existingEntry->level == newEntry->level) {
+        if (existingEntry && existingEntry->level == newEntry->level) {
             printf("%s and %s declared at the same level: not allowed\n", newEntry->ident, existingEntry->ident);
             exit(1); // TODO: return error message
         }

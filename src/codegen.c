@@ -86,6 +86,7 @@ void processFuncDecl(TreeNode *p, bool isMain)
     Descr *funcDescr = newFuncDescr(lastDispl, resType, params);
     SymbEntry *funcEntry = newSymbEntry(S_FUNC, name, currentLevel - 1, funcDescr);
     insertSymbolTable(funcEntry);
+    dumpSymbolTable();
     // saveSymbolTable();
     /**************/
    
@@ -115,6 +116,9 @@ void processProgram(void *p)
 {
     if (!symbolTable)
         initSymbolTable();
+    dumpSymbolTable();
     TreeNode *program = p;
     processFuncDecl(program->components[0], true);
+    freeStack();
+    freeSymbolTable();
 }
