@@ -18,7 +18,7 @@ static bool isVoidFunc(TreeNode *p)
 
 static TypeDescr *getType(TreeNode *p)
 {
-    char *ident = p->symbol;
+    char *ident = p->components[0]->symbol;
     SymbEntry *entry = searchSymbEntry(ident);
     if (!entry) {
         printf("%s not found in symbol table\n", ident);
@@ -49,8 +49,8 @@ static void processBlock(TreeNode *block)
 
 void processVariables(TreeNode *p)
 {
-    p = p->components[0]; printf("CATEG %d\n", p->categ);
-    //p = reverse(p);
+    p = p->components[0];
+    p = reverse(p);
     while (p) {
         processVarDecl(p);
         p = p->next;
@@ -59,17 +59,15 @@ void processVariables(TreeNode *p)
 
 void processVarDecl(TreeNode *p)
 {
-    //for (int i = 0; i < MAX_COMPS; ++i)
-    //    printf("categ %d\n", p->components[i]->categ);
-    TreeNode *vars = p->components[0]; /* reverse? */
+    TreeNode *identList = p->components[0]; /* reverse? */
     TypeDescr *type = getType(p->components[1]);
     SymbEntry *entry;
-    while (vars) {
+    while (identList) {
         Descr *varDescr = newVarDescr(currentDispl, type);
-        entry = newSymbEntry(S_VAR, vars->symbol, currentLevel, varDescr);
+        entry = newSymbEntry(S_VAR, identList->symbol, currentLevel, varDescr);
         insertSymbolTable(entry);
         currentDispl += type->size;
-        vars = vars->next;
+        identList = identList->next;
     }
 }
 
@@ -93,7 +91,7 @@ void processFuncDecl(TreeNode *p, bool isMain)
         name = header->components[1]->symbol;
         resType = getType(header->components[0]);
     }
-    if (!resType) /* if void function, no displ for return value */
+    if (resType) /* if function returns value, reserve positions for return value */
         lastDispl -= resType->size;
     ParamDescr *params = NULL; // TODO: processParams
     Descr *funcDescr = newFuncDescr(lastDispl, resType, params);
