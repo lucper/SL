@@ -11,10 +11,19 @@ static int nextLabel()
     return ++labelCounter;
 }
 
+static bool isVoidFunc(TreeNode *p)
+{
+    return p->categ == C_FUNCTION_HEADER && p->components[1]->categ == C_FORMAL_PARAMS;
+}
+
 static TypeDescr *getType(TreeNode *p)
 {
     char *ident = p->symbol;
     SymbEntry *entry = searchSymbEntry(ident);
+    if (!entry) {
+        printf("%s not found in symbol table\n", ident);
+        exit(1);
+    }
     if (entry->categ != S_TYPE) {
         printf("not a type: categ %d\n", entry->categ);
         exit(1);
@@ -73,20 +82,23 @@ void processFuncDecl(TreeNode *p, bool isMain)
 {
     int lastDispl = -4, entLabel, retLabel;
     currentLevel++;
-    
+
     /*** HEADER ***/
     TreeNode *header = p->components[0];
-    char *name = header->components[0]->symbol;
     TypeDescr *resType = NULL;
-    if (header->components[0]->categ == C_IDENTIFIER) /* if function returns value, get its type */
+    char *name;
+    if (isVoidFunc(header))
+        name = header->components[0]->symbol;
+    else {
+        name = header->components[1]->symbol;
         resType = getType(header->components[0]);
+    }
     if (!resType) /* if void function, no displ for return value */
         lastDispl -= resType->size;
     ParamDescr *params = NULL; // TODO: processParams
     Descr *funcDescr = newFuncDescr(lastDispl, resType, params);
     SymbEntry *funcEntry = newSymbEntry(S_FUNC, name, currentLevel - 1, funcDescr);
     insertSymbolTable(funcEntry);
-    dumpSymbolTable();
     // saveSymbolTable();
     /**************/
    
@@ -116,9 +128,8 @@ void processProgram(void *p)
 {
     if (!symbolTable)
         initSymbolTable();
-    dumpSymbolTable();
     TreeNode *program = p;
     processFuncDecl(program->components[0], true);
-    freeStack();
-    freeSymbolTable();
+    //freeStack();
+    //freeSymbolTable();
 }
