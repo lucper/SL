@@ -4,7 +4,7 @@
 #include <stdlib.h>
 #include "symtable.h"
 
-#define MAX_COMPS 4
+#define MAX_COMPS 5
 
 typedef enum {
     C_PROGRAM = 1,
