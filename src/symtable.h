@@ -67,9 +67,9 @@ typedef struct _symbEntry {
 SymbEntry *searchSymbEntry(char *ident);
 SymbEntry *newSymbEntry(SymbCateg categ, char *ident, int level, Descr *descr);
 void insertSymbolTable(SymbEntry *entry);
-void saveSymbolTable(); /* ??? */
-void restoreSymbolTable(); /* ??? */
-void loadFormalsSymbolTable(SymbEntry *formals); /* ??? */
+void saveSymbolTable();
+void restoreSymbolTable();
+void loadFormalsSymbolTable(SymbEntry *formals);
 
 Descr *newTypeDescr(int size, PredefType predefType);
 Descr *newParamDescr(int displ, TypeDescr *type, Passage pass);
