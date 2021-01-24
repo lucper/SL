@@ -171,7 +171,7 @@ expression: simple_expression														{ genNode(C_EXPRESSION, 1); }
 binop_expression: unop_expression relational_operator simple_expression				{ /*!*/ genNode(C_BINOP_EXPRESSION, 3); }
 	| simple_expression relational_operator simple_expression						{ /*!*/ genNode(C_BINOP_EXPRESSION, 3); }
 	;
-simple_expression: term additive_term												{ genNode(C_SIMPLE_EXPRESSION, 2); }
+simple_expression: term additive_term			    								{ genNode(C_SIMPLE_EXPRESSION, 2); }
 	| term																			{ genNode(C_SIMPLE_EXPRESSION, 1); }
 	;
 unop_expression: unary_operator term additive_term									{ /*!*/ genNode(C_UNOP_EXPRESSION, 3); }

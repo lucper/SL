@@ -1746,7 +1746,7 @@ yyreduce:
 
   case 83: /* simple_expression: term additive_term  */
 #line 174 "src/parser.y"
-                                                                                                                                { genNode(C_SIMPLE_EXPRESSION, 2); }
+                                                                                                                        { genNode(C_SIMPLE_EXPRESSION, 2); }
 #line 1751 "src/parser.c"
     break;
 
