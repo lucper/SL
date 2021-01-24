@@ -192,7 +192,7 @@ SymbEntry *searchSymbEntry(char *ident)
     } else {
         SymbEntry *currEntry = symbolTable;
         while (currEntry) {
-            if (strcmp(currEntry->ident, ident)) {
+            if (strcmp(currEntry->ident, ident) == 0) {
                 return currEntry;
             }
             currEntry = currEntry->next;
