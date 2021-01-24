@@ -1,4 +1,4 @@
-#include "../tests/test_compiler/slc.h" // SemanticError
+#include "slc.h" // mandatory for submission
 #include "codegen.h"
 #include <stdio.h>
 
@@ -53,7 +53,6 @@ static void processBlock(TreeNode *block)
 
 void processVariables(TreeNode *p)
 {
-    dumpTree(p, 0);
     p = p->components[0];
     p = reverse(p);
     while (p) {
