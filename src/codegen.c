@@ -37,8 +37,10 @@ static void processBlock(TreeNode *block)
     for (int i = 0; i < MAX_COMPS; i++) {
         if (block->components[i]) {
             currComp = block->components[i];
-            if (currComp->categ == C_VARIABLES)
+            if (currComp->categ == C_VARIABLES) {
                 processVariables(currComp);
+                printf("DLOC %d\n", currentDispl);
+            }
             else if (currComp->categ == C_LABELS)
                 ;
             else if (currComp->categ == C_FUNCTIONS)
@@ -120,7 +122,6 @@ void processFuncDecl(TreeNode *p, bool isMain)
     processBlock(block);
     /*************/
 
-    printf("DLOC %d\n", currentDispl);
     if (isMain)
         printf("STOP\n");
     else {
