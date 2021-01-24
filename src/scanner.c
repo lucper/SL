@@ -520,7 +520,7 @@ int yy_flex_debug = 0;
 char *yytext;
 #line 1 "src/scanner.l"
 #line 3 "src/scanner.l"
-#include "../tests/test_compiler/slc.h" // only for submission
+#include "slc.h" // mandatory for submission
 #include "parser.h"
 
 int line_num = 1;
