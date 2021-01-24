@@ -1,8 +1,6 @@
 #include "symtable.h"
 #include "tree.h"
 
-TypeDescr *processBinExpr(TreeNode *p);
-TypeDescr *processUniExpr(TreeNode *p);
 TypeDescr *processExpr(TreeNode *p);
 void processVarDecl(TreeNode *p);
 void processVariables(TreeNode *p);

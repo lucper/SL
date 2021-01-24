@@ -2,7 +2,7 @@
 #include "codegen.h"
 #include <stdio.h>
 
-int currentLevel = 0;
+int currentLevel = -1;
 int currentDispl = 0;
 int labelCounter = 99;
 
@@ -14,6 +14,11 @@ static int nextLabel()
 static bool isVoidFunc(TreeNode *p)
 {
     return p->categ == C_FUNCTION_HEADER && p->components[1]->categ == C_FORMAL_PARAMS;
+}
+
+static bool labeledStatement(TreeNode *p)
+{
+    return p->components[1] != NULL;
 }
 
 static TypeDescr *getType(TreeNode *p)
@@ -31,6 +36,7 @@ static TypeDescr *getType(TreeNode *p)
     return entry->descr->type;
 }
 
+
 static void processBlock(TreeNode *block)
 {
     TreeNode *currComp;
@@ -39,15 +45,95 @@ static void processBlock(TreeNode *block)
             currComp = block->components[i];
             if (currComp->categ == C_VARIABLES) {
                 processVariables(currComp);
-                printf("DLOC %d\n", currentDispl);
             }
             else if (currComp->categ == C_LABELS)
                 ;
             else if (currComp->categ == C_FUNCTIONS)
                 processFunctions(currComp);
-            else if (currComp->categ == C_BODY)
-                ;
+            else if (currComp->categ == C_BODY) {
+                TreeNode *stmts = currComp->components[0];
+                while (stmts) {
+                    processStatement(stmts->components[0]);
+                    stmts = stmts->next;
+                }
+            }
         }
+    }
+}
+
+static TypeDescr *processBinExpr(TreeNode *expr)
+{
+    return NULL;
+}
+
+static TypeDescr *processUniExpr(TreeNode *expr)
+{
+    return NULL;
+}
+
+static TypeDescr *processSimpExpr(TreeNode *expr)
+{
+    bool singleTerm = expr->components[0]->categ == C_TERM; 
+    if (singleTerm) {
+        if (expr->components[0]->components[0]->components[0]->categ == C_INTEGER) {
+            printf("LVCT %s\n", expr->components[0]->components[0]->components[0]->symbol);
+            return newTypeDescr(1, T_INTEGER)->type;
+        }
+    } else {
+        return NULL;
+    }
+}
+
+TypeDescr *processExpr(TreeNode *p)
+{
+    TreeNode *expr = p->components[0]; /* can be NULL! */
+    if (expr->categ == C_SIMPLE_EXPRESSION)
+        return processSimpExpr(expr);
+    else if (expr->categ == C_BINOP_EXPRESSION)
+        return processBinExpr(expr);
+    else if (expr->categ == C_UNOP_EXPRESSION)
+        return processUniExpr(expr);
+    else {
+        printf("not expression\n");
+        exit(1);
+    }        
+}
+
+void processAssign(TreeNode *assign)
+{
+    TreeNode *variable = assign->components[0];
+    TreeNode *expression = assign->components[1];
+    char *ident = variable->components[0]->symbol;
+    SymbEntry *entry = searchSymbEntry(ident);
+    if (!entry)
+        printf("semantic error: %s undefined\n", entry->ident);
+    if (entry->categ != S_VAR && entry->categ != S_PARAM)
+        printf("semantic error: %s not variable nor parameter\n", entry->ident);
+    TypeDescr *variableType = entry->descr->variable->type;
+    TypeDescr *expressionType = processExpr(expression);
+    if (variableType->predefType != expressionType->predefType)
+        printf("semantic error: incompatible types\n");
+    if (entry->categ == S_PARAM) {
+        int level = entry->level;
+        int displ = entry->descr->parameter->displ;
+        Passage pass = entry->descr->parameter->pass;
+        if (pass == P_REF)
+            printf("STVI %d,%d\n", level, displ);
+        else
+            printf("STVL %d,%d\n", level, displ);
+    } else
+        printf("STVL %d,%d\n", entry->level, entry->descr->variable->displ);
+}
+
+void processStatement(TreeNode *stmt)
+{
+    if (labeledStatement(stmt)) {
+        ;
+    } else {
+        TreeNode *unlabeledStmt = stmt->components[0]->components[0];
+        if (unlabeledStmt->categ == C_ASSIGNMENT) {
+            processAssign(unlabeledStmt);
+        } /* TODO: other categs */
     }
 }
 
@@ -120,6 +206,8 @@ void processFuncDecl(TreeNode *p, bool isMain)
     TreeNode *block = p->components[1];
     processBlock(block);
     /*************/
+
+    printf("DLOC %d\n", currentDispl);
 
     if (isMain)
         printf("STOP\n");
