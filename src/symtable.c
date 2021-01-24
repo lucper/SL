@@ -159,6 +159,10 @@ void initSymbolTable()
     Descr *boolDescr = newTypeDescr(1, T_BOOLEAN);
     SymbEntry *boolType = newSymbEntry(S_TYPE, "boolean", -1, boolDescr);
     insertSymbolTable(boolType);
+    SymbEntry *trueConst = newSymbEntry(S_CONST, "true", -1, boolDescr);
+    insertSymbolTable(trueConst);
+    SymbEntry *falseConst = newSymbEntry(S_CONST, "false", -1, boolDescr);
+    insertSymbolTable(falseConst);
 }
 
 void freeSymbolTable()
