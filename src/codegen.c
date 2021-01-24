@@ -3,7 +3,7 @@
 #include <stdio.h>
 
 int currentLevel = 0;
-int currentDispl = -1;
+int currentDispl = 0;
 int labelCounter = 99;
 
 static int nextLabel()
@@ -35,8 +35,8 @@ static void processBlock(TreeNode *block)
 {
     TreeNode *currComp;
     for (int i = 0; i < MAX_COMPS; i++) {
-        currComp = block->components[i];
-        if (currComp) {
+        if (block->components[i]) {
+            currComp = block->components[i];
             if (currComp->categ == C_VARIABLES)
                 processVariables(currComp);
             else if (currComp->categ == C_LABELS)
@@ -51,22 +51,27 @@ static void processBlock(TreeNode *block)
 
 void processVariables(TreeNode *p)
 {
+    dumpTree(p, 0);
     p = p->components[0];
     p = reverse(p);
     while (p) {
         processVarDecl(p);
         p = p->next;
     }
+    printf("ALOC %d\n", currentDispl);
 }
 
 void processVarDecl(TreeNode *p)
 {
-    TreeNode *identList = p->components[0]; /* reverse? */
+    TreeNode *identList = reverse(p->components[0]); /* need to reverse? */
     TypeDescr *type = getType(p->components[1]);
     SymbEntry *entry;
+    char *ident;
+    Descr *varDescr;
     while (identList) {
-        Descr *varDescr = newVarDescr(currentDispl, type);
-        entry = newSymbEntry(S_VAR, identList->symbol, currentLevel, varDescr);
+        varDescr = newVarDescr(currentDispl, type);
+        ident = identList->components[0]->symbol;
+        entry = newSymbEntry(S_VAR, ident, currentLevel, varDescr);
         insertSymbolTable(entry);
         currentDispl += type->size;
         identList = identList->next;
@@ -101,7 +106,7 @@ void processFuncDecl(TreeNode *p, bool isMain)
     insertSymbolTable(funcEntry);
     // saveSymbolTable();
     /**************/
-   
+
     if (isMain)
         printf("MAIN\n");
     else {
@@ -114,7 +119,8 @@ void processFuncDecl(TreeNode *p, bool isMain)
     TreeNode *block = p->components[1];
     processBlock(block);
     /*************/
-    
+
+    printf("DLOC %d\n", currentDispl);
     if (isMain)
         printf("STOP\n");
     else {
@@ -130,6 +136,7 @@ void processProgram(void *p)
         initSymbolTable();
     TreeNode *program = p;
     processFuncDecl(program->components[0], true);
+    printf("END\n");
     //freeStack();
     //freeSymbolTable();
 }
