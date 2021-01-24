@@ -27,7 +27,6 @@ typedef enum {
     C_INTEGER,
     C_GOTO,
     C_ASSIGNMENT,
-    C_EXPRESSION_LIST_REST,
     C_ADDITIVE_TERM,
     C_PLUS,                     /* TODO: verify if this is correct */
     C_MINUS,                    /* TODO: verify if this is correct */
@@ -41,7 +40,6 @@ typedef enum {
     C_DECLARATION_VARS,
     C_TYPE,
     C_IDENTIFIER_LIST,
-    C_IDENTIFIER_LIST_REST,
     C_UNLABELED_STATEMENTS,
     C_BINOP_EXPRESSION,
     C_REPETITIVE,

@@ -58,10 +58,10 @@ void genOpSymbol(Categ categ);
 %%
 program: function END_OF_FILE														{ genNode(C_PROGRAM, 1); return 0; }
     ;
-function: function_header block														{ genNode(C_FUNCTION, 2); }
+function: function_header block	                                                    { genNode(C_FUNCTION, 2); }
 	;
-function_header: identifier identifier formal_parameters							{ genNode(C_FUNCTION_HEADER, 3); }
-| VOID { genEmpty(); } identifier formal_parameters								{ genNode(C_FUNCTION_HEADER, 2); }
+function_header: identifier identifier formal_parameters                            { genNode(C_FUNCTION_HEADER, 3); }
+| VOID { genEmpty(); } identifier formal_parameters                                 { genNode(C_FUNCTION_HEADER, 2); }
 	;
 /* types is optional */ block: labels body											{ genNode(C_BLOCK, 2); }
     | types body
@@ -75,7 +75,7 @@ function_header: identifier identifier formal_parameters							{ genNode(C_FUNCT
 	| variables functions body														{ genNode(C_BLOCK, 3); }
     | labels types variables body
     | labels types functions body
-    | labels variables functions body                                                                                           { genNode(C_BLOCK, 4); }
+    | labels variables functions body                                               { genNode(C_BLOCK, 4); }
     | types variables functions body												{ genNode(C_BLOCK, 4); }
     | labels types variables functions body
 	| body																			{ genNode(C_BLOCK, 1); }
@@ -212,17 +212,11 @@ factor: variable																	{ genNode(C_FACTOR, 1); }
 	;
 function_call: identifier OPEN_PAREN expression_list CLOSE_PAREN					{ genNode(C_FUNCTION_CALL, 2); }
 	;
-identifier_list: identifier identifier_list_rest									{ genNode(C_IDENTIFIER_LIST, 2); }
-	| identifier																	{ genNode(C_IDENTIFIER_LIST, 1); }
+identifier_list: identifier									                        { genNode(C_IDENTIFIER_LIST, 1); }
+	| identifier_list COMMA identifier												{ genNode(C_IDENTIFIER_LIST, 1); insertTopList(); }
 	;
-identifier_list_rest: COMMA identifier												{ genNode(C_IDENTIFIER_LIST_REST, 1); }
-	| identifier_list_rest COMMA identifier											{ genNode(C_IDENTIFIER_LIST_REST, 1); insertTopList(); }
-	;
-expression_list: expression expression_list_rest									{ genNode(C_EXPRESSION_LIST, 2); }
-	| expression																	{ genNode(C_EXPRESSION_LIST, 1); }
-	;
-expression_list_rest: COMMA expression												{ genNode(C_EXPRESSION_LIST_REST, 1); }
-	| expression_list_rest COMMA expression											{ genNode(C_EXPRESSION_LIST_REST, 1); insertTopList(); }
+expression_list: expression									                        { genNode(C_EXPRESSION_LIST, 1); }
+	| expression_list COMMA expression												{ genNode(C_EXPRESSION_LIST, 1); insertTopList(); }
 	;
 identifier: IDENTIFIER																{ genIdent($1); }
 	;
