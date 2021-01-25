@@ -36,7 +36,6 @@ static TypeDescr *getType(TreeNode *p)
     return entry->descr->type;
 }
 
-
 static void processBlock(TreeNode *block)
 {
     TreeNode *currComp;
