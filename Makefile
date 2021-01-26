@@ -3,15 +3,10 @@ compiler: test_compiler.out
 
 tree: test_tree.out
 
-parser: test_parser.out
-
-scanner: test_scanner.out
-	$(warning  "Warning: tests will not be compatible, but the scanner is correct!")
-
 test_%.out: tests/test_%/*.c src/*.c
 	bison -d -o src/parser.c src/parser.y
 	flex -i -o src/scanner.c src/scanner.l
-	gcc -std=c99 -pedantic -o $@ $^
+	gcc -std=c99 -pedantic -g -o $@ $^
 
 clean:
 	rm -rf *.out
