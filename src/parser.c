@@ -157,53 +157,48 @@ enum yysymbol_kind_t
   YYSYMBOL_function_header = 44,           /* function_header  */
   YYSYMBOL_45_1 = 45,                      /* $@1  */
   YYSYMBOL_block = 46,                     /* block  */
-  YYSYMBOL_types = 47,                     /* types  */
-  YYSYMBOL_types_list = 48,                /* types_list  */
-  YYSYMBOL_labels = 49,                    /* labels  */
-  YYSYMBOL_variables = 50,                 /* variables  */
-  YYSYMBOL_declaration_vars = 51,          /* declaration_vars  */
-  YYSYMBOL_functions = 52,                 /* functions  */
-  YYSYMBOL_declaration_funcs = 53,         /* declaration_funcs  */
-  YYSYMBOL_body = 54,                      /* body  */
-  YYSYMBOL_statements = 55,                /* statements  */
-  YYSYMBOL_type = 56,                      /* type  */
-  YYSYMBOL_array_size = 57,                /* array_size  */
-  YYSYMBOL_formal_parameters = 58,         /* formal_parameters  */
-  YYSYMBOL_formal_parameter_rest = 59,     /* formal_parameter_rest  */
-  YYSYMBOL_formal_parameter = 60,          /* formal_parameter  */
-  YYSYMBOL_function_parameter = 61,        /* function_parameter  */
-  YYSYMBOL_expression_parameter = 62,      /* expression_parameter  */
-  YYSYMBOL_statement = 63,                 /* statement  */
-  YYSYMBOL_variable = 64,                  /* variable  */
-  YYSYMBOL_array = 65,                     /* array  */
-  YYSYMBOL_unlabeled_statement = 66,       /* unlabeled_statement  */
-  YYSYMBOL_assignment = 67,                /* assignment  */
-  YYSYMBOL_function_call_statement = 68,   /* function_call_statement  */
-  YYSYMBOL_goto = 69,                      /* goto  */
-  YYSYMBOL_return = 70,                    /* return  */
-  YYSYMBOL_conditional = 71,               /* conditional  */
-  YYSYMBOL_repetitive = 72,                /* repetitive  */
-  YYSYMBOL_compound = 73,                  /* compound  */
-  YYSYMBOL_unlabeled_statements = 74,      /* unlabeled_statements  */
-  YYSYMBOL_empty_statement = 75,           /* empty_statement  */
-  YYSYMBOL_expression = 76,                /* expression  */
-  YYSYMBOL_binop_expression = 77,          /* binop_expression  */
-  YYSYMBOL_simple_expression = 78,         /* simple_expression  */
-  YYSYMBOL_unop_expression = 79,           /* unop_expression  */
-  YYSYMBOL_additive_term = 80,             /* additive_term  */
-  YYSYMBOL_relational_operator = 81,       /* relational_operator  */
-  YYSYMBOL_additive_operator = 82,         /* additive_operator  */
-  YYSYMBOL_unary_operator = 83,            /* unary_operator  */
-  YYSYMBOL_term = 84,                      /* term  */
-  YYSYMBOL_multiplicative_factor = 85,     /* multiplicative_factor  */
-  YYSYMBOL_multiplicative_operator = 86,   /* multiplicative_operator  */
-  YYSYMBOL_factor = 87,                    /* factor  */
-  YYSYMBOL_function_call = 88,             /* function_call  */
-  YYSYMBOL_identifier_list = 89,           /* identifier_list  */
-  YYSYMBOL_expression_list = 90,           /* expression_list  */
-  YYSYMBOL_identifier = 91,                /* identifier  */
-  YYSYMBOL_integer = 92,                   /* integer  */
-  YYSYMBOL_empty = 93                      /* empty  */
+  YYSYMBOL_labels = 47,                    /* labels  */
+  YYSYMBOL_variables = 48,                 /* variables  */
+  YYSYMBOL_declaration_vars = 49,          /* declaration_vars  */
+  YYSYMBOL_functions = 50,                 /* functions  */
+  YYSYMBOL_declaration_funcs = 51,         /* declaration_funcs  */
+  YYSYMBOL_body = 52,                      /* body  */
+  YYSYMBOL_statements = 53,                /* statements  */
+  YYSYMBOL_formal_parameters = 54,         /* formal_parameters  */
+  YYSYMBOL_formal_parameter_rest = 55,     /* formal_parameter_rest  */
+  YYSYMBOL_formal_parameter = 56,          /* formal_parameter  */
+  YYSYMBOL_expression_parameter = 57,      /* expression_parameter  */
+  YYSYMBOL_statement = 58,                 /* statement  */
+  YYSYMBOL_unlabeled_statement = 59,       /* unlabeled_statement  */
+  YYSYMBOL_assignment = 60,                /* assignment  */
+  YYSYMBOL_function_call_statement = 61,   /* function_call_statement  */
+  YYSYMBOL_goto = 62,                      /* goto  */
+  YYSYMBOL_return = 63,                    /* return  */
+  YYSYMBOL_conditional = 64,               /* conditional  */
+  YYSYMBOL_repetitive = 65,                /* repetitive  */
+  YYSYMBOL_compound = 66,                  /* compound  */
+  YYSYMBOL_unlabeled_statements = 67,      /* unlabeled_statements  */
+  YYSYMBOL_empty_statement = 68,           /* empty_statement  */
+  YYSYMBOL_expression = 69,                /* expression  */
+  YYSYMBOL_binop_expression = 70,          /* binop_expression  */
+  YYSYMBOL_simple_expression = 71,         /* simple_expression  */
+  YYSYMBOL_unop_expression = 72,           /* unop_expression  */
+  YYSYMBOL_additive_term = 73,             /* additive_term  */
+  YYSYMBOL_relational_operator = 74,       /* relational_operator  */
+  YYSYMBOL_additive_operator = 75,         /* additive_operator  */
+  YYSYMBOL_unary_operator = 76,            /* unary_operator  */
+  YYSYMBOL_term = 77,                      /* term  */
+  YYSYMBOL_multiplicative_factor = 78,     /* multiplicative_factor  */
+  YYSYMBOL_multiplicative_operator = 79,   /* multiplicative_operator  */
+  YYSYMBOL_factor = 80,                    /* factor  */
+  YYSYMBOL_function_call = 81,             /* function_call  */
+  YYSYMBOL_identifier_list = 82,           /* identifier_list  */
+  YYSYMBOL_expression_list = 83,           /* expression_list  */
+  YYSYMBOL_variable = 84,                  /* variable  */
+  YYSYMBOL_type = 85,                      /* type  */
+  YYSYMBOL_identifier = 86,                /* identifier  */
+  YYSYMBOL_integer = 87,                   /* integer  */
+  YYSYMBOL_empty = 88                      /* empty  */
 };
 typedef enum yysymbol_kind_t yysymbol_kind_t;
 
@@ -513,16 +508,16 @@ union yyalloc
 /* YYFINAL -- State number of the termination state.  */
 #define YYFINAL  8
 /* YYLAST -- Last index in YYTABLE.  */
-#define YYLAST   230
+#define YYLAST   176
 
 /* YYNTOKENS -- Number of terminals.  */
 #define YYNTOKENS  41
 /* YYNNTS -- Number of nonterminals.  */
-#define YYNNTS  53
+#define YYNNTS  48
 /* YYNRULES -- Number of rules.  */
-#define YYNRULES  119
+#define YYNRULES  100
 /* YYNSTATES -- Number of states.  */
-#define YYNSTATES  216
+#define YYNSTATES  173
 
 /* YYMAXUTOK -- Last valid token kind.  */
 #define YYMAXUTOK   295
@@ -576,17 +571,16 @@ static const yytype_int8 yytranslate[] =
 static const yytype_uint8 yyrline[] =
 {
        0,    59,    59,    61,    63,    64,    64,    66,    67,    68,
-      69,    70,    71,    72,    73,    74,    75,    76,    77,    78,
-      79,    80,    81,    83,    85,    86,    88,    90,    92,    93,
-      95,    97,    98,   100,   101,   103,   104,   106,   107,   109,
-     110,   112,   113,   114,   116,   117,   119,   120,   122,   124,
-     125,   127,   128,   130,   131,   133,   134,   136,   137,   138,
-     139,   140,   141,   142,   143,   145,   147,   149,   151,   153,
-     154,   156,   158,   159,   161,   162,   164,   166,   167,   168,
-     169,   171,   172,   174,   175,   177,   178,   180,   181,   183,
-     184,   185,   186,   187,   188,   190,   191,   192,   194,   195,
-     196,   198,   199,   201,   202,   204,   205,   206,   208,   209,
-     210,   211,   213,   215,   216,   218,   219,   221,   223,   225
+      69,    70,    71,    72,    73,    75,    77,    79,    80,    82,
+      84,    85,    87,    88,    90,    91,    93,    94,    95,    97,
+      98,   100,   102,   103,   105,   106,   108,   109,   110,   111,
+     112,   113,   114,   115,   117,   119,   121,   123,   125,   126,
+     128,   130,   131,   133,   134,   136,   138,   139,   140,   141,
+     143,   144,   146,   147,   149,   150,   152,   153,   155,   156,
+     157,   158,   159,   160,   162,   163,   164,   166,   167,   168,
+     170,   171,   173,   174,   176,   177,   178,   180,   181,   182,
+     183,   185,   187,   188,   190,   191,   193,   195,   197,   199,
+     201
 };
 #endif
 
@@ -609,19 +603,18 @@ static const char *const yytname[] =
   "GOTO", "IDENTIFIER", "ASSIGN", "IF", "INTEGER", "LABELS", "NOT",
   "OPEN_BRACE", "OPEN_BRACKET", "OPEN_PAREN", "RETURN", "SEMI_COLON",
   "TYPES", "VAR", "VARS", "VOID", "WHILE", "LEXICAL_ERROR", "$accept",
-  "program", "function", "function_header", "$@1", "block", "types",
-  "types_list", "labels", "variables", "declaration_vars", "functions",
-  "declaration_funcs", "body", "statements", "type", "array_size",
-  "formal_parameters", "formal_parameter_rest", "formal_parameter",
-  "function_parameter", "expression_parameter", "statement", "variable",
-  "array", "unlabeled_statement", "assignment", "function_call_statement",
-  "goto", "return", "conditional", "repetitive", "compound",
+  "program", "function", "function_header", "$@1", "block", "labels",
+  "variables", "declaration_vars", "functions", "declaration_funcs",
+  "body", "statements", "formal_parameters", "formal_parameter_rest",
+  "formal_parameter", "expression_parameter", "statement",
+  "unlabeled_statement", "assignment", "function_call_statement", "goto",
+  "return", "conditional", "repetitive", "compound",
   "unlabeled_statements", "empty_statement", "expression",
   "binop_expression", "simple_expression", "unop_expression",
   "additive_term", "relational_operator", "additive_operator",
   "unary_operator", "term", "multiplicative_factor",
   "multiplicative_operator", "factor", "function_call", "identifier_list",
-  "expression_list", "identifier", "integer", "empty", YY_NULLPTR
+  "expression_list", "variable", "type", "identifier", "integer", "empty", YY_NULLPTR
 };
 
 static const char *
@@ -644,7 +637,7 @@ static const yytype_int16 yytoknum[] =
 };
 #endif
 
-#define YYPACT_NINF (-148)
+#define YYPACT_NINF (-115)
 
 #define yypact_value_is_default(Yyn) \
   ((Yyn) == YYPACT_NINF)
@@ -658,28 +651,24 @@ static const yytype_int16 yytoknum[] =
      STATE-NUM.  */
 static const yytype_int16 yypact[] =
 {
-      53,  -148,  -148,    26,    37,   150,    46,    46,  -148,  -148,
-      53,    46,   143,    46,    46,  -148,   149,    88,   104,    60,
-    -148,    54,    54,  -148,    53,    33,  -148,    46,    77,   143,
-     133,  -148,    96,    82,  -148,    79,  -148,  -148,  -148,  -148,
-    -148,  -148,  -148,  -148,  -148,    98,    47,   120,    46,   108,
-      46,    12,   104,    60,  -148,   149,   104,    60,  -148,    60,
-    -148,  -148,    93,  -148,  -148,  -148,    46,  -148,   112,   133,
-    -148,   115,    68,   140,  -148,  -148,  -148,  -148,   133,  -148,
-     124,  -148,   185,   185,    56,   142,   186,  -148,  -148,  -148,
-     133,  -148,  -148,   133,  -148,   143,   133,   133,   153,  -148,
-     125,    46,   156,    46,    60,  -148,  -148,   104,    60,  -148,
-      60,  -148,  -148,  -148,    46,  -148,   144,  -148,  -148,   177,
-      46,   147,  -148,  -148,   192,  -148,  -148,  -148,   193,  -148,
-    -148,  -148,  -148,  -148,  -148,  -148,    56,    56,   142,  -148,
-    -148,  -148,   142,    56,  -148,  -148,  -148,   186,    56,   194,
-     168,  -148,   188,  -148,   164,   133,    46,   178,   182,    46,
-     180,  -148,    60,  -148,  -148,  -148,   187,  -148,    93,   184,
-      46,  -148,   189,  -148,  -148,  -148,   142,    56,  -148,    56,
-    -148,   189,  -148,  -148,  -148,   133,   199,   183,  -148,   191,
-     190,   195,  -148,  -148,    46,  -148,  -148,    93,  -148,   196,
-    -148,  -148,  -148,  -148,  -148,  -148,   204,   191,  -148,  -148,
-    -148,   189,  -148,   206,  -148,  -148
+      10,  -115,  -115,     2,    16,    48,    21,    21,  -115,  -115,
+      10,    21,    86,    21,  -115,    81,    99,    47,  -115,    70,
+      70,  -115,    10,    32,  -115,    21,   108,    86,    63,  -115,
+     120,    41,  -115,  -115,  -115,  -115,  -115,  -115,  -115,  -115,
+    -115,  -115,   103,   128,    83,   140,    21,    87,    99,    47,
+    -115,    47,  -115,  -115,    11,  -115,  -115,  -115,    21,  -115,
+     122,    63,  -115,    74,   125,   144,  -115,  -115,  -115,  -115,
+      63,   126,  -115,   139,   139,    90,   117,   118,  -115,  -115,
+    -115,  -115,    63,  -115,  -115,  -115,    63,    86,    63,  -115,
+     105,    21,    47,  -115,  -115,  -115,    21,    24,  -115,   116,
+     137,  -115,  -115,   145,  -115,  -115,  -115,   146,  -115,  -115,
+    -115,  -115,  -115,  -115,  -115,    90,    90,   117,  -115,  -115,
+    -115,   117,    90,  -115,  -115,  -115,   118,    90,   147,   131,
+    -115,  -115,    64,    21,   132,  -115,  -115,   130,  -115,    11,
+     119,    21,  -115,   138,  -115,  -115,  -115,   117,    90,  -115,
+      90,  -115,   138,  -115,  -115,    63,   133,  -115,    21,  -115,
+    -115,    11,  -115,   149,  -115,  -115,  -115,  -115,  -115,  -115,
+    -115,   138,  -115
 };
 
   /* YYDEFACT[STATE-NUM] -- Default reduction number in state STATE-NUM.
@@ -687,50 +676,44 @@ static const yytype_int16 yypact[] =
      means the default is an error.  */
 static const yytype_int8 yydefact[] =
 {
-       0,   117,     5,     0,     0,     0,     0,     0,     1,     2,
-       0,     0,   119,     0,     0,     3,     0,     0,     0,     0,
-      22,     0,     0,    31,    30,     0,   113,     0,     0,   119,
-     119,    76,     0,     0,    35,     0,    51,    57,    58,    59,
-      60,    61,    62,    63,    64,     0,    54,     0,    23,     0,
-      27,     0,     0,     0,     8,     0,     0,     0,     7,     0,
-       9,    10,   119,     4,     6,    32,     0,    26,     0,   119,
-      74,     0,    54,     0,    98,    99,   118,   100,   119,   108,
-       0,    78,    77,    79,     0,    84,   102,   110,   109,    80,
-     119,    33,    36,   119,    66,     0,   119,   119,    53,    34,
-       0,     0,     0,     0,     0,    14,    15,     0,     0,    11,
-       0,    12,    13,    16,     0,    48,     0,    47,    46,     0,
-     113,     0,   114,    67,     0,    72,    75,    73,     0,    68,
-      91,    92,    90,    89,    94,    93,     0,     0,    86,    95,
-      96,    97,    83,     0,   105,   106,   107,   101,     0,     0,
-       0,    52,     0,   115,     0,   119,     0,     0,    38,     0,
-       0,    20,     0,    17,    18,    19,     0,    42,     0,     0,
-       0,    43,     0,   111,    82,    81,    85,     0,    87,     0,
-     103,     0,    65,    55,   112,   119,     0,     0,    24,     0,
-      37,     0,    28,    21,     0,    44,    41,     0,    50,    69,
-      88,   104,    71,   116,    56,    25,     0,     0,    29,    49,
-      45,     0,    39,     0,    70,    40
+       0,    98,     5,     0,     0,     0,     0,     0,     1,     2,
+       0,     0,   100,     0,     3,     0,     0,     0,     7,     0,
+       0,    20,    19,     0,    92,     0,     0,   100,   100,    55,
+       0,     0,    24,    34,    36,    37,    38,    39,    40,    41,
+      42,    43,     0,     0,    96,     0,    16,     0,     0,     0,
+       8,     0,     9,    10,   100,     4,     6,    21,     0,    15,
+       0,   100,    53,     0,    96,     0,    77,    78,    99,    79,
+     100,     0,    57,    56,    58,     0,    63,    81,    89,    87,
+      88,    59,   100,    22,    25,    45,   100,     0,   100,    23,
+       0,     0,     0,    11,    12,    13,     0,     0,    31,     0,
+       0,    93,    46,     0,    51,    54,    52,     0,    47,    70,
+      71,    69,    68,    73,    72,     0,     0,    65,    74,    75,
+      76,    62,     0,    84,    85,    86,    80,     0,     0,     0,
+      35,    94,     0,     0,     0,    97,    14,     0,    27,     0,
+       0,     0,    28,     0,    90,    61,    60,    64,     0,    66,
+       0,    82,     0,    44,    91,   100,     0,    17,     0,    29,
+      26,     0,    33,    48,    67,    83,    50,    95,    18,    32,
+      30,     0,    49
 };
 
   /* YYPGOTO[NTERM-NUM].  */
 static const yytype_int16 yypgoto[] =
 {
-    -148,  -148,    72,   -57,  -148,  -148,   207,  -148,  -148,     6,
-    -148,    29,  -148,   -15,  -148,   -83,  -148,   201,  -148,  -125,
-    -148,  -148,   197,    27,  -148,    -8,  -148,  -148,  -148,  -148,
-    -148,  -148,  -147,  -148,  -148,   -61,  -148,    71,  -148,    87,
-     145,  -127,  -148,   -75,  -148,    80,  -120,    42,     5,  -148,
-       0,  -138,    45
+    -115,  -115,    72,  -115,  -115,  -115,  -115,   155,  -115,     5,
+    -115,     1,  -115,   151,  -115,  -100,  -115,   141,   -19,  -115,
+    -115,  -115,  -115,  -115,  -115,  -114,  -115,  -115,   -56,  -115,
+      35,  -115,    56,   100,   -88,  -115,   -60,  -115,    49,   -87,
+      -8,   -10,  -115,    -3,    43,     0,  -115,    15
 };
 
   /* YYDEFGOTO[NTERM-NUM].  */
 static const yytype_int16 yydefgoto[] =
 {
-      -1,     3,     4,     5,     7,    15,    16,    48,    17,    18,
-      50,    19,    24,    20,    33,   157,   190,    63,   169,   116,
-     117,   118,    34,    79,    98,    36,    37,    38,    39,    40,
-      41,    42,    43,    71,    44,    80,    81,    82,    83,   142,
-     136,   143,    84,    85,   147,   148,    86,    87,   119,   154,
-      72,    88,    89
+      -1,     3,     4,     5,     7,    14,    15,    16,    46,    17,
+      22,    18,    31,    55,   140,    97,    98,    32,    33,    34,
+      35,    36,    37,    38,    39,    40,    63,    41,    71,    72,
+      73,    74,   121,   115,   122,    75,    76,   126,   127,    77,
+      78,    99,   132,    79,   134,    64,    80,    81
 };
 
   /* YYTABLE[YYPACT[STATE-NUM]] -- What to do in state STATE-NUM.  If
@@ -738,120 +721,102 @@ static const yytype_int16 yydefgoto[] =
      number is the opposite.  If YYTABLE_NINF, syntax error.  */
 static const yytype_uint8 yytable[] =
 {
-       6,    54,    58,    60,    61,   115,    21,    22,   124,   138,
-       6,    26,    46,    26,    26,   177,    25,   128,    49,    51,
-     160,    70,    52,    56,     6,   199,     8,    68,   180,   149,
-     103,    66,   150,    46,   202,   152,   153,   105,   106,    35,
-     109,   111,   112,   195,   113,    53,    57,    59,    26,   177,
-      26,   206,    66,   100,    45,   102,    35,    47,     9,   201,
-      35,   107,   120,   126,   214,    95,   122,    67,   178,   213,
-       1,    45,   210,   187,    73,    45,   191,     1,    96,    97,
-       1,   104,    23,    76,   108,   110,    62,   151,    78,   161,
-      12,     2,   163,   164,   186,   165,    65,    91,    35,    96,
-      97,   158,   200,   158,    93,    27,     1,   121,    28,    69,
-      10,   115,    29,    45,    26,    30,    31,     1,    12,   166,
-      21,    32,    35,    13,   203,    14,    10,    66,    90,   114,
-     125,     2,    94,   101,    12,    99,   162,    45,    27,     1,
-     115,    28,    74,    75,    66,    29,   123,   193,    30,    31,
-     156,   139,   140,   141,    32,   127,   158,     1,   129,   158,
-      76,   167,    77,   168,   171,    78,    27,     1,   120,    28,
-     198,    10,    10,    29,   159,    66,    30,    31,    11,    12,
-      12,   184,    32,   185,   155,    13,    14,    14,   130,   131,
-     132,   133,   134,   135,   209,   170,    66,   120,   144,   145,
-     146,   196,   182,   197,   183,   194,    66,   174,   175,   172,
-     173,   181,   188,   189,   192,   204,   211,   205,    76,    29,
-     212,   207,   215,    64,    55,   176,     0,   179,   137,   208,
-      92
+       6,    23,     8,    47,    42,   103,    19,    20,    62,    43,
+       6,    24,    44,    24,   107,   117,    50,    52,    53,    42,
+      49,    51,     6,    42,    43,    60,   128,    45,    43,   163,
+     129,    44,   131,   148,     1,     1,    90,     9,   166,   159,
+     151,   138,    65,   139,   105,     1,    24,    96,     2,    93,
+      94,    58,    95,    92,    24,    42,    83,   172,   101,   148,
+      43,   170,   149,   165,    25,     1,    59,    26,   130,   100,
+      10,    27,    66,    67,    28,    29,    11,    12,    12,    42,
+      30,   154,    21,   155,    43,    13,   137,     1,   164,   104,
+      68,   135,    69,   136,    57,    70,    24,    25,     1,   167,
+      26,    87,    54,    10,    27,    91,    58,    28,    29,    25,
+       1,    12,    26,    30,     1,    88,    27,    68,    13,    28,
+      29,    10,    70,   133,    58,    30,   118,   119,   120,    12,
+     123,   124,   125,   135,   141,    58,   160,    85,   161,    24,
+      61,   162,   109,   110,   111,   112,   113,   114,   158,    58,
+     145,   146,    82,    86,   142,    89,   102,    88,   169,   106,
+     108,    24,   143,   144,   152,   153,   157,   168,    27,   171,
+      48,    56,    84,   147,   116,   150,   156
 };
 
-static const yytype_int16 yycheck[] =
+static const yytype_uint8 yycheck[] =
 {
-       0,    16,    17,    18,    19,    62,     6,     7,    69,    84,
-      10,    11,    12,    13,    14,   142,    11,    78,    13,    14,
-     103,    29,    16,    17,    24,   172,     0,    27,   148,    90,
-      18,    19,    93,    33,   181,    96,    97,    52,    53,    12,
-      55,    56,    57,   168,    59,    16,    17,    18,    48,   176,
-      50,   189,    19,    48,    12,    50,    29,    12,    21,   179,
-      33,    55,    62,    71,   211,    18,    66,    34,   143,   207,
-      24,    29,   197,   156,    29,    33,   159,    24,    31,    32,
-      24,    52,    10,    27,    55,    56,    32,    95,    32,   104,
-      30,    38,   107,   108,   155,   110,    24,    15,    71,    31,
-      32,   101,   177,   103,    25,    23,    24,    62,    26,    32,
-      22,   168,    30,    71,   114,    33,    34,    24,    30,   114,
-     120,    39,    95,    35,   185,    37,    22,    19,    32,    36,
-      15,    38,    34,    25,    30,    15,   107,    95,    23,    24,
-     197,    26,     9,    10,    19,    30,    34,   162,    33,    34,
-      25,     9,    10,    11,    39,    15,   156,    24,    34,   159,
-      27,    17,    29,    19,    17,    32,    23,    24,   168,    26,
-     170,    22,    22,    30,    18,    19,    33,    34,    28,    30,
-      30,    17,    39,    19,    31,    35,    37,    37,     3,     4,
-       5,     6,     7,     8,   194,    18,    19,   197,    12,    13,
-      14,    17,    34,    19,    16,    18,    19,   136,   137,    17,
-      17,    17,    34,    31,    34,    16,    20,    34,    27,    30,
-      16,    31,    16,    22,    17,   138,    -1,   147,    83,    34,
-      33
+       0,    11,     0,    13,    12,    61,     6,     7,    27,    12,
+      10,    11,    12,    13,    70,    75,    15,    16,    17,    27,
+      15,    16,    22,    31,    27,    25,    82,    12,    31,   143,
+      86,    31,    88,   121,    24,    24,    46,    21,   152,   139,
+     127,    17,    27,    19,    63,    24,    46,    36,    38,    48,
+      49,    19,    51,    48,    54,    63,    15,   171,    58,   147,
+      63,   161,   122,   150,    23,    24,    34,    26,    87,    54,
+      22,    30,     9,    10,    33,    34,    28,    30,    30,    87,
+      39,    17,    10,    19,    87,    37,    96,    24,   148,    15,
+      27,    91,    29,    92,    22,    32,    96,    23,    24,   155,
+      26,    18,    32,    22,    30,    18,    19,    33,    34,    23,
+      24,    30,    26,    39,    24,    32,    30,    27,    37,    33,
+      34,    22,    32,    18,    19,    39,     9,    10,    11,    30,
+      12,    13,    14,   133,    18,    19,    17,    34,    19,   139,
+      32,   141,     3,     4,     5,     6,     7,     8,    18,    19,
+     115,   116,    32,    25,    17,    15,    34,    32,   158,    15,
+      34,   161,    17,    17,    17,    34,    34,    34,    30,    20,
+      15,    20,    31,   117,    74,   126,   133
 };
 
   /* YYSTOS[STATE-NUM] -- The (internal number of the) accessing
      symbol of state STATE-NUM.  */
 static const yytype_int8 yystos[] =
 {
-       0,    24,    38,    42,    43,    44,    91,    45,     0,    21,
-      22,    28,    30,    35,    37,    46,    47,    49,    50,    52,
-      54,    91,    91,    43,    53,    89,    91,    23,    26,    30,
-      33,    34,    39,    55,    63,    64,    66,    67,    68,    69,
-      70,    71,    72,    73,    75,    88,    91,    93,    48,    89,
-      51,    89,    50,    52,    54,    47,    50,    52,    54,    52,
-      54,    54,    32,    58,    58,    43,    19,    34,    91,    32,
-      66,    74,    91,    93,     9,    10,    27,    29,    32,    64,
-      76,    77,    78,    79,    83,    84,    87,    88,    92,    93,
-      32,    15,    63,    25,    34,    18,    31,    32,    65,    15,
-      89,    25,    89,    18,    52,    54,    54,    50,    52,    54,
-      52,    54,    54,    54,    36,    44,    60,    61,    62,    89,
-      91,    93,    91,    34,    76,    15,    66,    15,    76,    34,
-       3,     4,     5,     6,     7,     8,    81,    81,    84,     9,
-      10,    11,    80,    82,    12,    13,    14,    85,    86,    76,
-      76,    66,    76,    76,    90,    31,    25,    56,    91,    18,
-      56,    54,    52,    54,    54,    54,    89,    17,    19,    59,
-      18,    17,    17,    17,    78,    78,    80,    82,    84,    86,
-      87,    17,    34,    16,    17,    19,    76,    56,    34,    31,
-      57,    56,    34,    54,    18,    60,    17,    19,    91,    73,
-      84,    87,    73,    76,    16,    34,    92,    31,    34,    91,
-      60,    20,    16,    92,    73,    16
+       0,    24,    38,    42,    43,    44,    86,    45,     0,    21,
+      22,    28,    30,    37,    46,    47,    48,    50,    52,    86,
+      86,    43,    51,    82,    86,    23,    26,    30,    33,    34,
+      39,    53,    58,    59,    60,    61,    62,    63,    64,    65,
+      66,    68,    81,    84,    86,    88,    49,    82,    48,    50,
+      52,    50,    52,    52,    32,    54,    54,    43,    19,    34,
+      86,    32,    59,    67,    86,    88,     9,    10,    27,    29,
+      32,    69,    70,    71,    72,    76,    77,    80,    81,    84,
+      87,    88,    32,    15,    58,    34,    25,    18,    32,    15,
+      82,    18,    50,    52,    52,    52,    36,    56,    57,    82,
+      88,    86,    34,    69,    15,    59,    15,    69,    34,     3,
+       4,     5,     6,     7,     8,    74,    74,    77,     9,    10,
+      11,    73,    75,    12,    13,    14,    78,    79,    69,    69,
+      59,    69,    83,    18,    85,    86,    52,    82,    17,    19,
+      55,    18,    17,    17,    17,    71,    71,    73,    75,    77,
+      79,    80,    17,    34,    17,    19,    85,    34,    18,    56,
+      17,    19,    86,    66,    77,    80,    66,    69,    34,    86,
+      56,    20,    66
 };
 
   /* YYR1[YYN] -- Symbol number of symbol that rule YYN derives.  */
 static const yytype_int8 yyr1[] =
 {
        0,    41,    42,    43,    44,    45,    44,    46,    46,    46,
-      46,    46,    46,    46,    46,    46,    46,    46,    46,    46,
-      46,    46,    46,    47,    48,    48,    49,    50,    51,    51,
-      52,    53,    53,    54,    54,    55,    55,    56,    56,    57,
-      57,    58,    58,    58,    59,    59,    60,    60,    61,    62,
-      62,    63,    63,    64,    64,    65,    65,    66,    66,    66,
-      66,    66,    66,    66,    66,    67,    68,    69,    70,    71,
-      71,    72,    73,    73,    74,    74,    75,    76,    76,    76,
-      76,    77,    77,    78,    78,    79,    79,    80,    80,    81,
-      81,    81,    81,    81,    81,    82,    82,    82,    83,    83,
-      83,    84,    84,    85,    85,    86,    86,    86,    87,    87,
-      87,    87,    88,    89,    89,    90,    90,    91,    92,    93
+      46,    46,    46,    46,    46,    47,    48,    49,    49,    50,
+      51,    51,    52,    52,    53,    53,    54,    54,    54,    55,
+      55,    56,    57,    57,    58,    58,    59,    59,    59,    59,
+      59,    59,    59,    59,    60,    61,    62,    63,    64,    64,
+      65,    66,    66,    67,    67,    68,    69,    69,    69,    69,
+      70,    70,    71,    71,    72,    72,    73,    73,    74,    74,
+      74,    74,    74,    74,    75,    75,    75,    76,    76,    76,
+      77,    77,    78,    78,    79,    79,    79,    80,    80,    80,
+      80,    81,    82,    82,    83,    83,    84,    85,    86,    87,
+      88
 };
 
   /* YYR2[YYN] -- Number of symbols on the right hand side of rule YYN.  */
 static const yytype_int8 yyr2[] =
 {
-       0,     2,     2,     2,     3,     0,     4,     2,     2,     2,
-       2,     3,     3,     3,     3,     3,     3,     4,     4,     4,
-       4,     5,     1,     2,     4,     5,     3,     2,     4,     5,
-       2,     1,     2,     3,     3,     1,     2,     2,     1,     3,
-       4,     4,     3,     3,     2,     3,     1,     1,     1,     4,
-       3,     1,     3,     2,     1,     3,     4,     1,     1,     1,
-       1,     1,     1,     1,     1,     4,     2,     3,     3,     5,
-       7,     5,     3,     3,     1,     2,     1,     1,     1,     1,
-       1,     3,     3,     2,     1,     3,     2,     2,     3,     1,
+       0,     2,     2,     2,     3,     0,     4,     1,     2,     2,
+       2,     3,     3,     3,     4,     3,     2,     4,     5,     2,
+       1,     2,     3,     3,     1,     2,     4,     3,     3,     2,
+       3,     1,     4,     3,     1,     3,     1,     1,     1,     1,
+       1,     1,     1,     1,     4,     2,     3,     3,     5,     7,
+       5,     3,     3,     1,     2,     1,     1,     1,     1,     1,
+       3,     3,     2,     1,     3,     2,     2,     3,     1,     1,
        1,     1,     1,     1,     1,     1,     1,     1,     1,     1,
-       1,     2,     1,     2,     3,     1,     1,     1,     1,     1,
-       1,     3,     4,     1,     3,     1,     3,     1,     1,     0
+       2,     1,     2,     3,     1,     1,     1,     1,     1,     1,
+       3,     4,     1,     3,     1,     3,     1,     1,     1,     1,
+       0
 };
 
 
@@ -1321,605 +1286,545 @@ yyreduce:
   case 2: /* program: function END_OF_FILE  */
 #line 59 "src/parser.y"
                                                                                                                                         { genNode(C_PROGRAM, 1); return 0; }
-#line 1325 "src/parser.c"
+#line 1290 "src/parser.c"
     break;
 
   case 3: /* function: function_header block  */
 #line 61 "src/parser.y"
                                                                                     { genNode(C_FUNCTION, 2); }
-#line 1331 "src/parser.c"
+#line 1296 "src/parser.c"
     break;
 
   case 4: /* function_header: identifier identifier formal_parameters  */
 #line 63 "src/parser.y"
                                                                                     { genNode(C_FUNCTION_HEADER, 3); }
-#line 1337 "src/parser.c"
+#line 1302 "src/parser.c"
     break;
 
   case 5: /* $@1: %empty  */
 #line 64 "src/parser.y"
        { genEmpty(); }
-#line 1343 "src/parser.c"
+#line 1308 "src/parser.c"
     break;
 
   case 6: /* function_header: VOID $@1 identifier formal_parameters  */
 #line 64 "src/parser.y"
                                                                                     { genNode(C_FUNCTION_HEADER, 2); }
-#line 1349 "src/parser.c"
+#line 1314 "src/parser.c"
     break;
 
-  case 7: /* block: labels body  */
+  case 7: /* block: body  */
 #line 66 "src/parser.y"
-                                                                                                                                { genNode(C_BLOCK, 2); }
-#line 1355 "src/parser.c"
+                                                                                                                                                                { genNode(C_BLOCK, 1); }
+#line 1320 "src/parser.c"
+    break;
+
+  case 8: /* block: labels body  */
+#line 67 "src/parser.y"
+                                                                                                                                                        { genNode(C_BLOCK, 2); }
+#line 1326 "src/parser.c"
     break;
 
   case 9: /* block: variables body  */
 #line 68 "src/parser.y"
                                                                                                                                                         { genNode(C_BLOCK, 2); }
-#line 1361 "src/parser.c"
+#line 1332 "src/parser.c"
     break;
 
   case 10: /* block: functions body  */
 #line 69 "src/parser.y"
-                    { genNode(C_BLOCK, 2); }
-#line 1367 "src/parser.c"
+                                                                                                                                                { genNode(C_BLOCK, 2); }
+#line 1338 "src/parser.c"
     break;
 
-  case 16: /* block: variables functions body  */
-#line 75 "src/parser.y"
+  case 11: /* block: labels variables body  */
+#line 70 "src/parser.y"
+                                                                                                                                        { genNode(C_BLOCK, 3); }
+#line 1344 "src/parser.c"
+    break;
+
+  case 12: /* block: labels functions body  */
+#line 71 "src/parser.y"
+                                                                                                                                        { genNode(C_BLOCK, 3); }
+#line 1350 "src/parser.c"
+    break;
+
+  case 13: /* block: variables functions body  */
+#line 72 "src/parser.y"
                                                                                                                                                 { genNode(C_BLOCK, 3); }
-#line 1373 "src/parser.c"
+#line 1356 "src/parser.c"
     break;
 
-  case 19: /* block: labels variables functions body  */
-#line 78 "src/parser.y"
+  case 14: /* block: labels variables functions body  */
+#line 73 "src/parser.y"
                                                                                     { genNode(C_BLOCK, 4); }
-#line 1379 "src/parser.c"
+#line 1362 "src/parser.c"
     break;
 
-  case 20: /* block: types variables functions body  */
-#line 79 "src/parser.y"
-                                                                                                                                { genNode(C_BLOCK, 4); }
-#line 1385 "src/parser.c"
-    break;
-
-  case 22: /* block: body  */
-#line 81 "src/parser.y"
-                                                                                                                                                                { genNode(C_BLOCK, 1); }
-#line 1391 "src/parser.c"
-    break;
-
-  case 23: /* types: TYPES types_list  */
-#line 83 "src/parser.y"
-                                                                                                                                { genNode(C_TYPES, 1); }
-#line 1397 "src/parser.c"
-    break;
-
-  case 24: /* types_list: identifier_list ASSIGN type SEMI_COLON  */
-#line 85 "src/parser.y"
-                                                                                                        { genNode(C_TYPES_LIST, 2); }
-#line 1403 "src/parser.c"
-    break;
-
-  case 25: /* types_list: types_list identifier_list ASSIGN type SEMI_COLON  */
-#line 86 "src/parser.y"
-                                                                                                                { genNode(C_TYPES_LIST, 2); insertTopList(); }
-#line 1409 "src/parser.c"
-    break;
-
-  case 26: /* labels: LABELS identifier_list SEMI_COLON  */
-#line 88 "src/parser.y"
+  case 15: /* labels: LABELS identifier_list SEMI_COLON  */
+#line 75 "src/parser.y"
                                                                                                                                 { genNode(C_LABELS, 1); }
-#line 1415 "src/parser.c"
+#line 1368 "src/parser.c"
     break;
 
-  case 27: /* variables: VARS declaration_vars  */
-#line 90 "src/parser.y"
+  case 16: /* variables: VARS declaration_vars  */
+#line 77 "src/parser.y"
                                                                                                                                         { genNode(C_VARIABLES, 1); }
-#line 1421 "src/parser.c"
+#line 1374 "src/parser.c"
     break;
 
-  case 28: /* declaration_vars: identifier_list COLON type SEMI_COLON  */
-#line 92 "src/parser.y"
+  case 17: /* declaration_vars: identifier_list COLON type SEMI_COLON  */
+#line 79 "src/parser.y"
                                                                                                                 { genNode(C_DECLARATION_VARS, 2); }
-#line 1427 "src/parser.c"
+#line 1380 "src/parser.c"
     break;
 
-  case 29: /* declaration_vars: declaration_vars identifier_list COLON type SEMI_COLON  */
-#line 93 "src/parser.y"
+  case 18: /* declaration_vars: declaration_vars identifier_list COLON type SEMI_COLON  */
+#line 80 "src/parser.y"
                                                                                                                 { genNode(C_DECLARATION_VARS, 2); insertTopList(); }
-#line 1433 "src/parser.c"
+#line 1386 "src/parser.c"
     break;
 
-  case 30: /* functions: FUNCTIONS declaration_funcs  */
-#line 95 "src/parser.y"
+  case 19: /* functions: FUNCTIONS declaration_funcs  */
+#line 82 "src/parser.y"
                                                                                                                                 { genNode(C_FUNCTIONS, 1); }
-#line 1439 "src/parser.c"
+#line 1392 "src/parser.c"
     break;
 
-  case 31: /* declaration_funcs: function  */
-#line 97 "src/parser.y"
+  case 20: /* declaration_funcs: function  */
+#line 84 "src/parser.y"
                                                                                                                                                 { genNode(C_DECLARATION_FUNCS, 1); }
-#line 1445 "src/parser.c"
+#line 1398 "src/parser.c"
     break;
 
-  case 32: /* declaration_funcs: declaration_funcs function  */
-#line 98 "src/parser.y"
+  case 21: /* declaration_funcs: declaration_funcs function  */
+#line 85 "src/parser.y"
                                                                                                                                         { genNode(C_DECLARATION_FUNCS, 1); insertTopList(); }
-#line 1451 "src/parser.c"
+#line 1404 "src/parser.c"
     break;
 
-  case 33: /* body: OPEN_BRACE statements CLOSE_BRACE  */
-#line 100 "src/parser.y"
+  case 22: /* body: OPEN_BRACE statements CLOSE_BRACE  */
+#line 87 "src/parser.y"
                                                                                                                                 { genNode(C_BODY, 1); }
-#line 1457 "src/parser.c"
+#line 1410 "src/parser.c"
     break;
 
-  case 34: /* body: OPEN_BRACE empty CLOSE_BRACE  */
-#line 101 "src/parser.y"
+  case 23: /* body: OPEN_BRACE empty CLOSE_BRACE  */
+#line 88 "src/parser.y"
                                                                                                                                         { genNode(C_BODY, 1); }
-#line 1463 "src/parser.c"
+#line 1416 "src/parser.c"
     break;
 
-  case 35: /* statements: statement  */
-#line 103 "src/parser.y"
+  case 24: /* statements: statement  */
+#line 90 "src/parser.y"
                                                                                                                                                 { genNode(C_STATEMENTS, 1); }
-#line 1469 "src/parser.c"
+#line 1422 "src/parser.c"
     break;
 
-  case 36: /* statements: statements statement  */
-#line 104 "src/parser.y"
+  case 25: /* statements: statements statement  */
+#line 91 "src/parser.y"
                                                                                                                                                 { genNode(C_STATEMENTS, 1); insertTopList(); }
-#line 1475 "src/parser.c"
+#line 1428 "src/parser.c"
     break;
 
-  case 37: /* type: identifier array_size  */
-#line 106 "src/parser.y"
-                                                                                                                { genNode(C_TYPE, 2); }
-#line 1481 "src/parser.c"
-    break;
-
-  case 38: /* type: identifier  */
-#line 107 "src/parser.y"
-                                                                                                                                                        { genNode(C_TYPE, 1); }
-#line 1487 "src/parser.c"
-    break;
-
-  case 39: /* array_size: OPEN_BRACKET integer CLOSE_BRACKET  */
-#line 109 "src/parser.y"
-                                                                                                        { genNode(C_ARRAY_SIZE, 1); }
-#line 1493 "src/parser.c"
-    break;
-
-  case 40: /* array_size: array_size OPEN_BRACKET integer CLOSE_BRACKET  */
-#line 110 "src/parser.y"
-                                                                                                                        { genNode(C_ARRAY_SIZE, 1); insertTopList(); }
-#line 1499 "src/parser.c"
-    break;
-
-  case 41: /* formal_parameters: OPEN_PAREN formal_parameter formal_parameter_rest CLOSE_PAREN  */
-#line 112 "src/parser.y"
+  case 26: /* formal_parameters: OPEN_PAREN formal_parameter formal_parameter_rest CLOSE_PAREN  */
+#line 93 "src/parser.y"
                                                                                         { genNode(C_FORMAL_PARAMS, 2); }
-#line 1505 "src/parser.c"
+#line 1434 "src/parser.c"
     break;
 
-  case 42: /* formal_parameters: OPEN_PAREN formal_parameter CLOSE_PAREN  */
-#line 113 "src/parser.y"
+  case 27: /* formal_parameters: OPEN_PAREN formal_parameter CLOSE_PAREN  */
+#line 94 "src/parser.y"
                                                                                                                                 { genNode(C_FORMAL_PARAMS, 1); }
-#line 1511 "src/parser.c"
+#line 1440 "src/parser.c"
     break;
 
-  case 43: /* formal_parameters: OPEN_PAREN empty CLOSE_PAREN  */
-#line 114 "src/parser.y"
+  case 28: /* formal_parameters: OPEN_PAREN empty CLOSE_PAREN  */
+#line 95 "src/parser.y"
                                                                                                                                         { genNode(C_FORMAL_PARAMS, 1); }
-#line 1517 "src/parser.c"
+#line 1446 "src/parser.c"
     break;
 
-  case 44: /* formal_parameter_rest: COMMA formal_parameter  */
-#line 116 "src/parser.y"
+  case 29: /* formal_parameter_rest: COMMA formal_parameter  */
+#line 97 "src/parser.y"
                                                                                                                         { genNode(C_FORMAL_PARAMS_REST, 1); }
-#line 1523 "src/parser.c"
+#line 1452 "src/parser.c"
     break;
 
-  case 45: /* formal_parameter_rest: formal_parameter_rest COMMA formal_parameter  */
-#line 117 "src/parser.y"
+  case 30: /* formal_parameter_rest: formal_parameter_rest COMMA formal_parameter  */
+#line 98 "src/parser.y"
                                                                                                                         { genNode(C_FORMAL_PARAMS_REST, 1); insertTopList(); }
-#line 1529 "src/parser.c"
+#line 1458 "src/parser.c"
     break;
 
-  case 46: /* formal_parameter: expression_parameter  */
-#line 119 "src/parser.y"
-                                                                                                { genNode(C_FORMAL_PARAM, 1); }
-#line 1535 "src/parser.c"
+  case 31: /* formal_parameter: expression_parameter  */
+#line 100 "src/parser.y"
+                                                                                                                                { genNode(C_FORMAL_PARAM, 1); }
+#line 1464 "src/parser.c"
     break;
 
-  case 47: /* formal_parameter: function_parameter  */
-#line 120 "src/parser.y"
-                                                                                                                                                { genNode(C_FORMAL_PARAM, 1); }
-#line 1541 "src/parser.c"
-    break;
-
-  case 48: /* function_parameter: function_header  */
-#line 122 "src/parser.y"
-                                                                                                                        { genNode(C_FUNCTION_PARAM, 1); }
-#line 1547 "src/parser.c"
-    break;
-
-  case 49: /* expression_parameter: VAR identifier_list COLON identifier  */
-#line 124 "src/parser.y"
+  case 32: /* expression_parameter: VAR identifier_list COLON identifier  */
+#line 102 "src/parser.y"
                                                                                                                 { genNode(C_EXPRESSION_PARAM, 2); }
-#line 1553 "src/parser.c"
+#line 1470 "src/parser.c"
     break;
 
-  case 50: /* expression_parameter: identifier_list COLON identifier  */
-#line 125 "src/parser.y"
+  case 33: /* expression_parameter: identifier_list COLON identifier  */
+#line 103 "src/parser.y"
                                                                                                                                         { genNode(C_EXPRESSION_PARAM, 2); }
-#line 1559 "src/parser.c"
+#line 1476 "src/parser.c"
     break;
 
-  case 51: /* statement: unlabeled_statement  */
-#line 127 "src/parser.y"
+  case 34: /* statement: unlabeled_statement  */
+#line 105 "src/parser.y"
                                                                                                                                         { genNode(C_STATEMENT, 1); }
-#line 1565 "src/parser.c"
+#line 1482 "src/parser.c"
     break;
 
-  case 52: /* statement: identifier COLON unlabeled_statement  */
-#line 128 "src/parser.y"
+  case 35: /* statement: identifier COLON unlabeled_statement  */
+#line 106 "src/parser.y"
                                                                                                                                 { genNode(C_STATEMENT, 2); }
-#line 1571 "src/parser.c"
+#line 1488 "src/parser.c"
     break;
 
-  case 53: /* variable: identifier array  */
-#line 130 "src/parser.y"
-                                                                                                                        { genNode(C_VARIABLE, 2); }
-#line 1577 "src/parser.c"
-    break;
-
-  case 54: /* variable: identifier  */
-#line 131 "src/parser.y"
-                                                                                                                                                        { genNode(C_VARIABLE, 1); }
-#line 1583 "src/parser.c"
-    break;
-
-  case 55: /* array: OPEN_BRACKET expression CLOSE_BRACKET  */
-#line 133 "src/parser.y"
-                                                                                                                { genNode(C_ARRAY, 1); }
-#line 1589 "src/parser.c"
-    break;
-
-  case 56: /* array: array OPEN_BRACKET expression CLOSE_BRACKET  */
-#line 134 "src/parser.y"
-                                                                                                                        { genNode(C_ARRAY, 1); insertTopList(); }
-#line 1595 "src/parser.c"
-    break;
-
-  case 57: /* unlabeled_statement: assignment  */
-#line 136 "src/parser.y"
+  case 36: /* unlabeled_statement: assignment  */
+#line 108 "src/parser.y"
                                                                                                                                         { genNode(C_UNLABELED_STATEMENT, 1); }
-#line 1601 "src/parser.c"
+#line 1494 "src/parser.c"
     break;
 
-  case 58: /* unlabeled_statement: function_call_statement  */
-#line 137 "src/parser.y"
+  case 37: /* unlabeled_statement: function_call_statement  */
+#line 109 "src/parser.y"
                                                                                                                                                 { genNode(C_UNLABELED_STATEMENT, 1); }
-#line 1607 "src/parser.c"
+#line 1500 "src/parser.c"
     break;
 
-  case 59: /* unlabeled_statement: goto  */
-#line 138 "src/parser.y"
+  case 38: /* unlabeled_statement: goto  */
+#line 110 "src/parser.y"
                                                                                                                                                                 { genNode(C_UNLABELED_STATEMENT, 1); }
-#line 1613 "src/parser.c"
+#line 1506 "src/parser.c"
     break;
 
-  case 60: /* unlabeled_statement: return  */
-#line 139 "src/parser.y"
+  case 39: /* unlabeled_statement: return  */
+#line 111 "src/parser.y"
                                                                                                                                                                 { genNode(C_UNLABELED_STATEMENT, 1); }
-#line 1619 "src/parser.c"
+#line 1512 "src/parser.c"
     break;
 
-  case 61: /* unlabeled_statement: conditional  */
-#line 140 "src/parser.y"
+  case 40: /* unlabeled_statement: conditional  */
+#line 112 "src/parser.y"
                                                                                                                                                         { genNode(C_UNLABELED_STATEMENT, 1); }
-#line 1625 "src/parser.c"
+#line 1518 "src/parser.c"
     break;
 
-  case 62: /* unlabeled_statement: repetitive  */
-#line 141 "src/parser.y"
+  case 41: /* unlabeled_statement: repetitive  */
+#line 113 "src/parser.y"
                                                                                                                                                         { genNode(C_UNLABELED_STATEMENT, 1); }
-#line 1631 "src/parser.c"
+#line 1524 "src/parser.c"
     break;
 
-  case 63: /* unlabeled_statement: compound  */
-#line 142 "src/parser.y"
+  case 42: /* unlabeled_statement: compound  */
+#line 114 "src/parser.y"
                                                                                                                                                                 { genNode(C_UNLABELED_STATEMENT, 1); }
-#line 1637 "src/parser.c"
+#line 1530 "src/parser.c"
     break;
 
-  case 64: /* unlabeled_statement: empty_statement  */
-#line 143 "src/parser.y"
+  case 43: /* unlabeled_statement: empty_statement  */
+#line 115 "src/parser.y"
                                                                                                                                                         { genNode(C_UNLABELED_STATEMENT, 1); }
-#line 1643 "src/parser.c"
+#line 1536 "src/parser.c"
     break;
 
-  case 65: /* assignment: variable ASSIGN expression SEMI_COLON  */
-#line 145 "src/parser.y"
+  case 44: /* assignment: variable ASSIGN expression SEMI_COLON  */
+#line 117 "src/parser.y"
                                                                                                                         { genNode(C_ASSIGNMENT, 2); }
-#line 1649 "src/parser.c"
+#line 1542 "src/parser.c"
     break;
 
-  case 66: /* function_call_statement: function_call SEMI_COLON  */
-#line 147 "src/parser.y"
+  case 45: /* function_call_statement: function_call SEMI_COLON  */
+#line 119 "src/parser.y"
                                                                                                                         { genNode(C_FUNCTION_CALL_STATEMENT, 1); }
-#line 1655 "src/parser.c"
+#line 1548 "src/parser.c"
     break;
 
-  case 67: /* goto: GOTO identifier SEMI_COLON  */
-#line 149 "src/parser.y"
+  case 46: /* goto: GOTO identifier SEMI_COLON  */
+#line 121 "src/parser.y"
                                                                                                                                         { genNode(C_GOTO, 1); }
-#line 1661 "src/parser.c"
+#line 1554 "src/parser.c"
     break;
 
-  case 68: /* return: RETURN expression SEMI_COLON  */
-#line 151 "src/parser.y"
+  case 47: /* return: RETURN expression SEMI_COLON  */
+#line 123 "src/parser.y"
                                                                                                                                 { genNode(C_RETURN, 1); }
-#line 1667 "src/parser.c"
+#line 1560 "src/parser.c"
     break;
 
-  case 69: /* conditional: IF OPEN_PAREN expression CLOSE_PAREN compound  */
-#line 153 "src/parser.y"
+  case 48: /* conditional: IF OPEN_PAREN expression CLOSE_PAREN compound  */
+#line 125 "src/parser.y"
                                                                                                                 { genNode(C_CONDITIONAL, 2); }
-#line 1673 "src/parser.c"
+#line 1566 "src/parser.c"
     break;
 
-  case 70: /* conditional: IF OPEN_PAREN expression CLOSE_PAREN compound ELSE compound  */
-#line 154 "src/parser.y"
+  case 49: /* conditional: IF OPEN_PAREN expression CLOSE_PAREN compound ELSE compound  */
+#line 126 "src/parser.y"
                                                                                                         { genNode(C_CONDITIONAL, 3); }
-#line 1679 "src/parser.c"
+#line 1572 "src/parser.c"
     break;
 
-  case 71: /* repetitive: WHILE OPEN_PAREN expression CLOSE_PAREN compound  */
-#line 156 "src/parser.y"
+  case 50: /* repetitive: WHILE OPEN_PAREN expression CLOSE_PAREN compound  */
+#line 128 "src/parser.y"
                                                                                                         { genNode(C_REPETITIVE, 2); }
-#line 1685 "src/parser.c"
+#line 1578 "src/parser.c"
     break;
 
-  case 72: /* compound: OPEN_BRACE unlabeled_statements CLOSE_BRACE  */
-#line 158 "src/parser.y"
+  case 51: /* compound: OPEN_BRACE unlabeled_statements CLOSE_BRACE  */
+#line 130 "src/parser.y"
                                                                                                                 { genNode(C_COMPOUND, 1); }
-#line 1691 "src/parser.c"
+#line 1584 "src/parser.c"
     break;
 
-  case 73: /* compound: OPEN_BRACE empty CLOSE_BRACE  */
-#line 159 "src/parser.y"
+  case 52: /* compound: OPEN_BRACE empty CLOSE_BRACE  */
+#line 131 "src/parser.y"
                                                                                                                                         { genNode(C_COMPOUND, 1); }
-#line 1697 "src/parser.c"
+#line 1590 "src/parser.c"
     break;
 
-  case 74: /* unlabeled_statements: unlabeled_statement  */
-#line 161 "src/parser.y"
+  case 53: /* unlabeled_statements: unlabeled_statement  */
+#line 133 "src/parser.y"
                                                                                                                                 { genNode(C_UNLABELED_STATEMENTS, 1); }
-#line 1703 "src/parser.c"
+#line 1596 "src/parser.c"
     break;
 
-  case 75: /* unlabeled_statements: unlabeled_statements unlabeled_statement  */
-#line 162 "src/parser.y"
+  case 54: /* unlabeled_statements: unlabeled_statements unlabeled_statement  */
+#line 134 "src/parser.y"
                                                                                                                                 { genNode(C_UNLABELED_STATEMENTS, 1); insertTopList(); }
-#line 1709 "src/parser.c"
+#line 1602 "src/parser.c"
     break;
 
-  case 76: /* empty_statement: SEMI_COLON  */
-#line 164 "src/parser.y"
+  case 55: /* empty_statement: SEMI_COLON  */
+#line 136 "src/parser.y"
                                                                                                                                                 { /*?*/ genEmpty(); }
-#line 1715 "src/parser.c"
+#line 1608 "src/parser.c"
     break;
 
-  case 77: /* expression: simple_expression  */
-#line 166 "src/parser.y"
+  case 56: /* expression: simple_expression  */
+#line 138 "src/parser.y"
                                                                                                                                         { genNode(C_EXPRESSION, 1); }
-#line 1721 "src/parser.c"
+#line 1614 "src/parser.c"
     break;
 
-  case 78: /* expression: binop_expression  */
-#line 167 "src/parser.y"
+  case 57: /* expression: binop_expression  */
+#line 139 "src/parser.y"
                                                                                                                                                         { genNode(C_EXPRESSION, 1); }
-#line 1727 "src/parser.c"
+#line 1620 "src/parser.c"
     break;
 
-  case 79: /* expression: unop_expression  */
-#line 168 "src/parser.y"
+  case 58: /* expression: unop_expression  */
+#line 140 "src/parser.y"
                                                                                                                                                         { genNode(C_EXPRESSION, 1); }
-#line 1733 "src/parser.c"
+#line 1626 "src/parser.c"
     break;
 
-  case 81: /* binop_expression: unop_expression relational_operator simple_expression  */
-#line 171 "src/parser.y"
+  case 60: /* binop_expression: unop_expression relational_operator simple_expression  */
+#line 143 "src/parser.y"
                                                                                                 { /*!*/ genNode(C_BINOP_EXPRESSION, 3); }
-#line 1739 "src/parser.c"
+#line 1632 "src/parser.c"
     break;
 
-  case 82: /* binop_expression: simple_expression relational_operator simple_expression  */
-#line 172 "src/parser.y"
+  case 61: /* binop_expression: simple_expression relational_operator simple_expression  */
+#line 144 "src/parser.y"
                                                                                                                 { /*!*/ genNode(C_BINOP_EXPRESSION, 3); }
-#line 1745 "src/parser.c"
+#line 1638 "src/parser.c"
     break;
 
-  case 83: /* simple_expression: term additive_term  */
-#line 174 "src/parser.y"
+  case 62: /* simple_expression: term additive_term  */
+#line 146 "src/parser.y"
                                                                                                                         { genNode(C_SIMPLE_EXPRESSION, 2); }
-#line 1751 "src/parser.c"
+#line 1644 "src/parser.c"
     break;
 
-  case 84: /* simple_expression: term  */
-#line 175 "src/parser.y"
+  case 63: /* simple_expression: term  */
+#line 147 "src/parser.y"
                                                                                                                                                                 { genNode(C_SIMPLE_EXPRESSION, 1); }
-#line 1757 "src/parser.c"
+#line 1650 "src/parser.c"
     break;
 
-  case 85: /* unop_expression: unary_operator term additive_term  */
-#line 177 "src/parser.y"
+  case 64: /* unop_expression: unary_operator term additive_term  */
+#line 149 "src/parser.y"
                                                                                                                         { /*!*/ genNode(C_UNOP_EXPRESSION, 3); }
-#line 1763 "src/parser.c"
+#line 1656 "src/parser.c"
     break;
 
-  case 86: /* unop_expression: unary_operator term  */
-#line 178 "src/parser.y"
+  case 65: /* unop_expression: unary_operator term  */
+#line 150 "src/parser.y"
                                                                                                                                                 { /*!*/ genNode(C_UNOP_EXPRESSION, 2); }
-#line 1769 "src/parser.c"
+#line 1662 "src/parser.c"
     break;
 
-  case 87: /* additive_term: additive_operator term  */
-#line 180 "src/parser.y"
+  case 66: /* additive_term: additive_operator term  */
+#line 152 "src/parser.y"
                                                                                                                                 { /*!*/ genNode(C_ADDITIVE_TERM, 2); }
-#line 1775 "src/parser.c"
+#line 1668 "src/parser.c"
     break;
 
-  case 88: /* additive_term: additive_term additive_operator term  */
-#line 181 "src/parser.y"
+  case 67: /* additive_term: additive_term additive_operator term  */
+#line 153 "src/parser.y"
                                                                                                                                 { /*!*/ genNode(C_ADDITIVE_TERM, 2); insertTopList(); }
-#line 1781 "src/parser.c"
+#line 1674 "src/parser.c"
     break;
 
-  case 90: /* relational_operator: LESS  */
-#line 184 "src/parser.y"
+  case 69: /* relational_operator: LESS  */
+#line 156 "src/parser.y"
                                                                                                                                                                 { genOpSymbol(C_LESS); }
-#line 1787 "src/parser.c"
+#line 1680 "src/parser.c"
     break;
 
-  case 94: /* relational_operator: GREATER  */
-#line 188 "src/parser.y"
+  case 73: /* relational_operator: GREATER  */
+#line 160 "src/parser.y"
                                                                                                                                                                 { genOpSymbol(C_GREATER); }
-#line 1793 "src/parser.c"
+#line 1686 "src/parser.c"
     break;
 
-  case 95: /* additive_operator: PLUS  */
-#line 190 "src/parser.y"
+  case 74: /* additive_operator: PLUS  */
+#line 162 "src/parser.y"
                                                                                                                                                 { genOpSymbol(C_PLUS); }
-#line 1799 "src/parser.c"
+#line 1692 "src/parser.c"
     break;
 
-  case 96: /* additive_operator: MINUS  */
-#line 191 "src/parser.y"
+  case 75: /* additive_operator: MINUS  */
+#line 163 "src/parser.y"
                                                                                                                                                                 { genOpSymbol(C_MINUS); }
-#line 1805 "src/parser.c"
+#line 1698 "src/parser.c"
     break;
 
-  case 98: /* unary_operator: PLUS  */
-#line 194 "src/parser.y"
+  case 77: /* unary_operator: PLUS  */
+#line 166 "src/parser.y"
                                                                                                                                                 { genOpSymbol(C_PLUS); }
-#line 1811 "src/parser.c"
+#line 1704 "src/parser.c"
     break;
 
-  case 99: /* unary_operator: MINUS  */
-#line 195 "src/parser.y"
+  case 78: /* unary_operator: MINUS  */
+#line 167 "src/parser.y"
                                                                                                                                                                 { genOpSymbol(C_MINUS); }
-#line 1817 "src/parser.c"
+#line 1710 "src/parser.c"
     break;
 
-  case 101: /* term: factor multiplicative_factor  */
-#line 198 "src/parser.y"
+  case 80: /* term: factor multiplicative_factor  */
+#line 170 "src/parser.y"
                                                                                                                                         { genNode(C_TERM, 2); }
-#line 1823 "src/parser.c"
+#line 1716 "src/parser.c"
     break;
 
-  case 102: /* term: factor  */
-#line 199 "src/parser.y"
+  case 81: /* term: factor  */
+#line 171 "src/parser.y"
                                                                                                                                                                 { genNode(C_TERM, 1); }
-#line 1829 "src/parser.c"
+#line 1722 "src/parser.c"
     break;
 
-  case 103: /* multiplicative_factor: multiplicative_operator factor  */
-#line 201 "src/parser.y"
+  case 82: /* multiplicative_factor: multiplicative_operator factor  */
+#line 173 "src/parser.y"
                                                                                                                 { /*!*/ genNode(C_MULTIPLICATIVE_FACTOR, 2); }
-#line 1835 "src/parser.c"
+#line 1728 "src/parser.c"
     break;
 
-  case 104: /* multiplicative_factor: multiplicative_factor multiplicative_operator factor  */
-#line 202 "src/parser.y"
+  case 83: /* multiplicative_factor: multiplicative_factor multiplicative_operator factor  */
+#line 174 "src/parser.y"
                                                                                                                 { /*!*/ genNode(C_MULTIPLICATIVE_FACTOR, 2); insertTopList(); }
-#line 1841 "src/parser.c"
+#line 1734 "src/parser.c"
     break;
 
-  case 105: /* multiplicative_operator: MULTIPLY  */
-#line 204 "src/parser.y"
+  case 84: /* multiplicative_operator: MULTIPLY  */
+#line 176 "src/parser.y"
                                                                                                                                         { genOpSymbol(C_MULTIPLY); }
-#line 1847 "src/parser.c"
+#line 1740 "src/parser.c"
     break;
 
-  case 108: /* factor: variable  */
-#line 208 "src/parser.y"
+  case 87: /* factor: variable  */
+#line 180 "src/parser.y"
                                                                                                                                                         { genNode(C_FACTOR, 1); }
-#line 1853 "src/parser.c"
+#line 1746 "src/parser.c"
     break;
 
-  case 109: /* factor: integer  */
-#line 209 "src/parser.y"
+  case 88: /* factor: integer  */
+#line 181 "src/parser.y"
                                                                                                                                                                 { genNode(C_FACTOR, 1); }
-#line 1859 "src/parser.c"
+#line 1752 "src/parser.c"
     break;
 
-  case 110: /* factor: function_call  */
-#line 210 "src/parser.y"
+  case 89: /* factor: function_call  */
+#line 182 "src/parser.y"
                                                                                                                                                         { genNode(C_FACTOR, 1); }
-#line 1865 "src/parser.c"
+#line 1758 "src/parser.c"
     break;
 
-  case 111: /* factor: OPEN_PAREN expression CLOSE_PAREN  */
-#line 211 "src/parser.y"
+  case 90: /* factor: OPEN_PAREN expression CLOSE_PAREN  */
+#line 183 "src/parser.y"
                                                                                                                                         { genNode(C_FACTOR, 1); }
-#line 1871 "src/parser.c"
+#line 1764 "src/parser.c"
     break;
 
-  case 112: /* function_call: identifier OPEN_PAREN expression_list CLOSE_PAREN  */
-#line 213 "src/parser.y"
+  case 91: /* function_call: identifier OPEN_PAREN expression_list CLOSE_PAREN  */
+#line 185 "src/parser.y"
                                                                                                         { genNode(C_FUNCTION_CALL, 2); }
-#line 1877 "src/parser.c"
+#line 1770 "src/parser.c"
     break;
 
-  case 113: /* identifier_list: identifier  */
-#line 215 "src/parser.y"
+  case 92: /* identifier_list: identifier  */
+#line 187 "src/parser.y"
                                                                                                                         { genNode(C_IDENTIFIER_LIST, 1); }
-#line 1883 "src/parser.c"
+#line 1776 "src/parser.c"
     break;
 
-  case 114: /* identifier_list: identifier_list COMMA identifier  */
-#line 216 "src/parser.y"
+  case 93: /* identifier_list: identifier_list COMMA identifier  */
+#line 188 "src/parser.y"
                                                                                                                                         { genNode(C_IDENTIFIER_LIST, 1); insertTopList(); }
-#line 1889 "src/parser.c"
+#line 1782 "src/parser.c"
     break;
 
-  case 115: /* expression_list: expression  */
-#line 218 "src/parser.y"
+  case 94: /* expression_list: expression  */
+#line 190 "src/parser.y"
                                                                                                                         { genNode(C_EXPRESSION_LIST, 1); }
-#line 1895 "src/parser.c"
+#line 1788 "src/parser.c"
     break;
 
-  case 116: /* expression_list: expression_list COMMA expression  */
-#line 219 "src/parser.y"
+  case 95: /* expression_list: expression_list COMMA expression  */
+#line 191 "src/parser.y"
                                                                                                                                         { genNode(C_EXPRESSION_LIST, 1); insertTopList(); }
-#line 1901 "src/parser.c"
+#line 1794 "src/parser.c"
     break;
 
-  case 117: /* identifier: IDENTIFIER  */
-#line 221 "src/parser.y"
+  case 96: /* variable: identifier  */
+#line 193 "src/parser.y"
+                                                                                                                                                { genNode(C_VARIABLE, 1); }
+#line 1800 "src/parser.c"
+    break;
+
+  case 97: /* type: identifier  */
+#line 195 "src/parser.y"
+                                                                                                                                                        { genNode(C_TYPE, 1); }
+#line 1806 "src/parser.c"
+    break;
+
+  case 98: /* identifier: IDENTIFIER  */
+#line 197 "src/parser.y"
                                                                                                                                                 { genIdent((yyvsp[0].symbol)); }
-#line 1907 "src/parser.c"
+#line 1812 "src/parser.c"
     break;
 
-  case 118: /* integer: INTEGER  */
-#line 223 "src/parser.y"
+  case 99: /* integer: INTEGER  */
+#line 199 "src/parser.y"
                                                                                                                                                         { genInt((yyvsp[0].symbol)); }
-#line 1913 "src/parser.c"
+#line 1818 "src/parser.c"
     break;
 
-  case 119: /* empty: %empty  */
-#line 225 "src/parser.y"
+  case 100: /* empty: %empty  */
+#line 201 "src/parser.y"
                                                                                                                                                         { genEmpty(); }
-#line 1919 "src/parser.c"
+#line 1824 "src/parser.c"
     break;
 
 
-#line 1923 "src/parser.c"
+#line 1828 "src/parser.c"
 
       default: break;
     }
@@ -2113,7 +2018,7 @@ yyreturn:
   return yyresult;
 }
 
-#line 228 "src/parser.y"
+#line 204 "src/parser.y"
 
 
 void insertTopList()

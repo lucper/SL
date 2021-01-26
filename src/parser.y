@@ -63,27 +63,14 @@ function: function_header block	                                                
 function_header: identifier identifier formal_parameters                            { genNode(C_FUNCTION_HEADER, 3); }
 | VOID { genEmpty(); } identifier formal_parameters                                 { genNode(C_FUNCTION_HEADER, 2); }
 	;
-/* types is optional */ block: labels body											{ genNode(C_BLOCK, 2); }
-    | types body
+block: body																			{ genNode(C_BLOCK, 1); }
+	| labels body																	{ genNode(C_BLOCK, 2); }
 	| variables body																{ genNode(C_BLOCK, 2); }
-| functions body    { genNode(C_BLOCK, 2); }
-    | labels types body
-    | labels variables body
-    | labels functions body
-    | types variables body
-    | types functions body
+	| functions body    															{ genNode(C_BLOCK, 2); }
+    | labels variables body 														{ genNode(C_BLOCK, 3); }
+    | labels functions body 														{ genNode(C_BLOCK, 3); }
 	| variables functions body														{ genNode(C_BLOCK, 3); }
-    | labels types variables body
-    | labels types functions body
     | labels variables functions body                                               { genNode(C_BLOCK, 4); }
-    | types variables functions body												{ genNode(C_BLOCK, 4); }
-    | labels types variables functions body
-	| body																			{ genNode(C_BLOCK, 1); }
-	;
-/* optional */ types: TYPES types_list												{ genNode(C_TYPES, 1); }
-    ;
-/* optional */ types_list: identifier_list ASSIGN type SEMI_COLON					{ genNode(C_TYPES_LIST, 2); }
-    | types_list identifier_list ASSIGN type SEMI_COLON								{ genNode(C_TYPES_LIST, 2); insertTopList(); }
 	;
 labels: LABELS identifier_list SEMI_COLON											{ genNode(C_LABELS, 1); }
 	;
@@ -103,12 +90,6 @@ body: OPEN_BRACE statements CLOSE_BRACE												{ genNode(C_BODY, 1); }
 statements: statement																{ genNode(C_STATEMENTS, 1); }
 	| statements statement															{ genNode(C_STATEMENTS, 1); insertTopList(); }
 	;
-/* array_size is optional */ type: identifier array_size							{ genNode(C_TYPE, 2); }
-    | identifier																	{ genNode(C_TYPE, 1); }
-	;
-/* optional */ array_size: OPEN_BRACKET integer CLOSE_BRACKET						{ genNode(C_ARRAY_SIZE, 1); }	
-    | array_size OPEN_BRACKET integer CLOSE_BRACKET									{ genNode(C_ARRAY_SIZE, 1); insertTopList(); }
-    ;
 formal_parameters: OPEN_PAREN formal_parameter formal_parameter_rest CLOSE_PAREN	{ genNode(C_FORMAL_PARAMS, 2); }
 	| OPEN_PAREN formal_parameter CLOSE_PAREN										{ genNode(C_FORMAL_PARAMS, 1); }
 	| OPEN_PAREN empty CLOSE_PAREN													{ genNode(C_FORMAL_PARAMS, 1); }
@@ -116,23 +97,14 @@ formal_parameters: OPEN_PAREN formal_parameter formal_parameter_rest CLOSE_PAREN
 formal_parameter_rest: COMMA formal_parameter										{ genNode(C_FORMAL_PARAMS_REST, 1); }
 	| formal_parameter_rest COMMA formal_parameter									{ genNode(C_FORMAL_PARAMS_REST, 1); insertTopList(); }
 	;
-/* function_parameter is optional */ formal_parameter: expression_parameter			{ genNode(C_FORMAL_PARAM, 1); }
-    | function_parameter															{ genNode(C_FORMAL_PARAM, 1); }
+formal_parameter: expression_parameter												{ genNode(C_FORMAL_PARAM, 1); }
 	;
-/* optional */ function_parameter: function_header									{ genNode(C_FUNCTION_PARAM, 1); }
-    ;
 expression_parameter: VAR identifier_list COLON identifier							{ genNode(C_EXPRESSION_PARAM, 2); }
 	| identifier_list COLON identifier												{ genNode(C_EXPRESSION_PARAM, 2); }
 	;
 statement: unlabeled_statement														{ genNode(C_STATEMENT, 1); }
 	| identifier COLON unlabeled_statement											{ genNode(C_STATEMENT, 2); }
 	;
-/* array is optional */ variable: identifier array 									{ genNode(C_VARIABLE, 2); }
-    | identifier																	{ genNode(C_VARIABLE, 1); }
-	;
-/* optional */ array: OPEN_BRACKET expression CLOSE_BRACKET							{ genNode(C_ARRAY, 1); }
-    | array OPEN_BRACKET expression CLOSE_BRACKET									{ genNode(C_ARRAY, 1); insertTopList(); }
-    ;
 unlabeled_statement: assignment														{ genNode(C_UNLABELED_STATEMENT, 1); }
 	| function_call_statement														{ genNode(C_UNLABELED_STATEMENT, 1); }
 	| goto																			{ genNode(C_UNLABELED_STATEMENT, 1); }
@@ -217,6 +189,10 @@ identifier_list: identifier									                        { genNode(C_IDENTIFI
 	;
 expression_list: expression									                        { genNode(C_EXPRESSION_LIST, 1); }
 	| expression_list COMMA expression												{ genNode(C_EXPRESSION_LIST, 1); insertTopList(); }
+	;
+variable: identifier																{ genNode(C_VARIABLE, 1); }
+	;
+type: identifier																	{ genNode(C_TYPE, 1); }
 	;
 identifier: IDENTIFIER																{ genIdent($1); }
 	;
