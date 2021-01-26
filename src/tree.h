@@ -52,8 +52,8 @@ typedef enum {
     C_FORMAL_PARAM,
     C_EXPRESSION_PARAM,
     C_FUNCTION_PARAM,
-    C_ARRAY,
-    C_LABELS    
+    C_LABELS,
+	C_BOOLEAN	
 } Categ;
 
 typedef struct _treeNode {

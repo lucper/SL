@@ -9,6 +9,8 @@ int lexerror = 0;    /* to be used in later tasks */
 
 %%
 
+"true" 					{ yylval.symbol = yytext; return BOOLEAN; }
+"false" 				{ yylval.symbol = yytext; return BOOLEAN; }
 "else"                  { return ELSE; }
 "functions"             { return FUNCTIONS; }
 "goto"                  { return GOTO; }

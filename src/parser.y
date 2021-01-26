@@ -9,6 +9,7 @@ void genNode3(Categ categ, int numComps, char *ident);
 void genNode(Categ categ, int numComps);
 void genIdent(char *token_val);
 void genInt(char *token_val);
+void genBool(char *token_val);
 void genEmpty();
 void genOpSymbol(Categ categ);
 %}
@@ -16,6 +17,7 @@ void genOpSymbol(Categ categ);
 %union {
 	char *symbol;
 }
+%token <symbol> BOOLEAN
 %token EQUAL
 %token DIFFERENT
 %token LESS
@@ -179,6 +181,7 @@ multiplicative_operator: MULTIPLY													{ genOpSymbol(C_MULTIPLY); }
 	;
 factor: variable																	{ genNode(C_FACTOR, 1); }
 	| integer																		{ genNode(C_FACTOR, 1); }
+	| boolean 																		{ genNode(C_FACTOR, 1); }
 	| function_call																	{ genNode(C_FACTOR, 1); }
 	| OPEN_PAREN expression CLOSE_PAREN												{ genNode(C_FACTOR, 1); }
 	;
@@ -197,6 +200,8 @@ type: identifier																	{ genNode(C_TYPE, 1); }
 identifier: IDENTIFIER																{ genIdent($1); }
 	;
 integer: INTEGER																	{ genInt($1); }
+	;
+boolean: BOOLEAN 																	{ genBool($1); }
 	;
 empty: /*empty*/																	{ genEmpty(); }
 	;
@@ -237,6 +242,11 @@ void genIdent(char *token_val)
 void genInt(char *token_val)
 {	
 	genNode3(C_INTEGER, 0, token_val);
+}
+
+void genBool(char *token_val)
+{
+	genNode3(C_BOOLEAN, 0, token_val);
 }
 
 void genEmpty() 

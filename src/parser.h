@@ -54,44 +54,45 @@ extern int yydebug;
     YYEOF = 0,                     /* "end of file"  */
     YYerror = 256,                 /* error  */
     YYUNDEF = 257,                 /* "invalid token"  */
-    EQUAL = 258,                   /* EQUAL  */
-    DIFFERENT = 259,               /* DIFFERENT  */
-    LESS = 260,                    /* LESS  */
-    LESS_OR_EQUAL = 261,           /* LESS_OR_EQUAL  */
-    GREATER = 262,                 /* GREATER  */
-    GREATER_OR_EQUAL = 263,        /* GREATER_OR_EQUAL  */
-    PLUS = 264,                    /* PLUS  */
-    MINUS = 265,                   /* MINUS  */
-    OR = 266,                      /* OR  */
-    MULTIPLY = 267,                /* MULTIPLY  */
-    DIV = 268,                     /* DIV  */
-    AND = 269,                     /* AND  */
-    CLOSE_BRACE = 270,             /* CLOSE_BRACE  */
-    CLOSE_BRACKET = 271,           /* CLOSE_BRACKET  */
-    CLOSE_PAREN = 272,             /* CLOSE_PAREN  */
-    COLON = 273,                   /* COLON  */
-    COMMA = 274,                   /* COMMA  */
-    ELSE = 275,                    /* ELSE  */
-    END_OF_FILE = 276,             /* END_OF_FILE  */
-    FUNCTIONS = 277,               /* FUNCTIONS  */
-    GOTO = 278,                    /* GOTO  */
-    IDENTIFIER = 279,              /* IDENTIFIER  */
-    ASSIGN = 280,                  /* ASSIGN  */
-    IF = 281,                      /* IF  */
-    INTEGER = 282,                 /* INTEGER  */
-    LABELS = 283,                  /* LABELS  */
-    NOT = 284,                     /* NOT  */
-    OPEN_BRACE = 285,              /* OPEN_BRACE  */
-    OPEN_BRACKET = 286,            /* OPEN_BRACKET  */
-    OPEN_PAREN = 287,              /* OPEN_PAREN  */
-    RETURN = 288,                  /* RETURN  */
-    SEMI_COLON = 289,              /* SEMI_COLON  */
-    TYPES = 290,                   /* TYPES  */
-    VAR = 291,                     /* VAR  */
-    VARS = 292,                    /* VARS  */
-    VOID = 293,                    /* VOID  */
-    WHILE = 294,                   /* WHILE  */
-    LEXICAL_ERROR = 295            /* LEXICAL_ERROR  */
+    BOOLEAN = 258,                 /* BOOLEAN  */
+    EQUAL = 259,                   /* EQUAL  */
+    DIFFERENT = 260,               /* DIFFERENT  */
+    LESS = 261,                    /* LESS  */
+    LESS_OR_EQUAL = 262,           /* LESS_OR_EQUAL  */
+    GREATER = 263,                 /* GREATER  */
+    GREATER_OR_EQUAL = 264,        /* GREATER_OR_EQUAL  */
+    PLUS = 265,                    /* PLUS  */
+    MINUS = 266,                   /* MINUS  */
+    OR = 267,                      /* OR  */
+    MULTIPLY = 268,                /* MULTIPLY  */
+    DIV = 269,                     /* DIV  */
+    AND = 270,                     /* AND  */
+    CLOSE_BRACE = 271,             /* CLOSE_BRACE  */
+    CLOSE_BRACKET = 272,           /* CLOSE_BRACKET  */
+    CLOSE_PAREN = 273,             /* CLOSE_PAREN  */
+    COLON = 274,                   /* COLON  */
+    COMMA = 275,                   /* COMMA  */
+    ELSE = 276,                    /* ELSE  */
+    END_OF_FILE = 277,             /* END_OF_FILE  */
+    FUNCTIONS = 278,               /* FUNCTIONS  */
+    GOTO = 279,                    /* GOTO  */
+    IDENTIFIER = 280,              /* IDENTIFIER  */
+    ASSIGN = 281,                  /* ASSIGN  */
+    IF = 282,                      /* IF  */
+    INTEGER = 283,                 /* INTEGER  */
+    LABELS = 284,                  /* LABELS  */
+    NOT = 285,                     /* NOT  */
+    OPEN_BRACE = 286,              /* OPEN_BRACE  */
+    OPEN_BRACKET = 287,            /* OPEN_BRACKET  */
+    OPEN_PAREN = 288,              /* OPEN_PAREN  */
+    RETURN = 289,                  /* RETURN  */
+    SEMI_COLON = 290,              /* SEMI_COLON  */
+    TYPES = 291,                   /* TYPES  */
+    VAR = 292,                     /* VAR  */
+    VARS = 293,                    /* VARS  */
+    VOID = 294,                    /* VOID  */
+    WHILE = 295,                   /* WHILE  */
+    LEXICAL_ERROR = 296            /* LEXICAL_ERROR  */
   };
   typedef enum yytokentype yytoken_kind_t;
 #endif
@@ -100,11 +101,11 @@ extern int yydebug;
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
 union YYSTYPE
 {
-#line 16 "src/parser.y"
+#line 17 "src/parser.y"
 
 	char *symbol;
 
-#line 108 "src/parser.h"
+#line 109 "src/parser.h"
 
 };
 typedef union YYSTYPE YYSTYPE;
