@@ -163,6 +163,10 @@ void initSymbolTable()
     insertSymbolTable(trueConst);
     SymbEntry *falseConst = newSymbEntry(S_CONST, "false", -1, boolDescr);
     insertSymbolTable(falseConst);
+	SymbEntry *writeFunc = newSymbEntry(S_FUNC, "write", -1, NULL); /* "pseudo" function: no Descr */
+	insertSymbolTable(writeFunc);
+	SymbEntry *readFunc = newSymbEntry(S_FUNC, "read", -1, NULL); /* "pseudo" function: no Descr */
+	insertSymbolTable(readFunc);
 }
 
 void freeSymbolTable()
