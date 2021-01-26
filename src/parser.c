@@ -1432,37 +1432,37 @@ yyreduce:
 
   case 26: /* formal_parameters: OPEN_PAREN formal_parameter_list CLOSE_PAREN  */
 #line 95 "src/parser.y"
-                                                                                                        { genNode(C_FORMAL_PARAMS, 1); }
+                                                                                                        { genNode(C_PARAMS, 1); }
 #line 1437 "src/parser.c"
     break;
 
   case 27: /* formal_parameters: OPEN_PAREN empty CLOSE_PAREN  */
 #line 96 "src/parser.y"
-                                                                                                                                        { genNode(C_FORMAL_PARAMS, 1); }
+                                                                                                                                        { genNode(C_PARAMS, 1); }
 #line 1443 "src/parser.c"
     break;
 
   case 28: /* formal_parameter_list: formal_parameter  */
 #line 98 "src/parser.y"
-                                                                                                                                { genNode(C_FORMAL_PARAM_LIST, 1); }
+                                                                                                                                { genNode(C_PARAM_LIST, 1); }
 #line 1449 "src/parser.c"
     break;
 
   case 29: /* formal_parameter_list: formal_parameter_list COMMA formal_parameter  */
 #line 99 "src/parser.y"
-                                                                                                                        { genNode(C_FORMAL_PARAM_LIST, 1); insertTopList(); }
+                                                                                                                        { genNode(C_PARAM_LIST, 1); insertTopList(); }
 #line 1455 "src/parser.c"
     break;
 
   case 30: /* formal_parameter: VAR identifier_list COLON identifier  */
 #line 101 "src/parser.y"
-                                                                                                                { genNode(C_FORMAL_PARAM, 2); }
+                                                                                                                { genNode(C_REF_PARAM, 2); }
 #line 1461 "src/parser.c"
     break;
 
   case 31: /* formal_parameter: identifier_list COLON identifier  */
 #line 102 "src/parser.y"
-                                                                                                                                        { genNode(C_FORMAL_PARAM, 2); }
+                                                                                                                                        { genNode(C_VAL_PARAM, 2); }
 #line 1467 "src/parser.c"
     break;
 

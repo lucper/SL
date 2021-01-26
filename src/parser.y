@@ -92,14 +92,14 @@ body: OPEN_BRACE statements CLOSE_BRACE												{ genNode(C_BODY, 1); }
 statements: statement																{ genNode(C_STATEMENTS, 1); }
 	| statements statement															{ genNode(C_STATEMENTS, 1); insertTopList(); }
 	;
-formal_parameters: OPEN_PAREN formal_parameter_list CLOSE_PAREN						{ genNode(C_FORMAL_PARAMS, 1); }
-	| OPEN_PAREN empty CLOSE_PAREN													{ genNode(C_FORMAL_PARAMS, 1); }
+formal_parameters: OPEN_PAREN formal_parameter_list CLOSE_PAREN						{ genNode(C_PARAMS, 1); }
+	| OPEN_PAREN empty CLOSE_PAREN													{ genNode(C_PARAMS, 1); }
 	;
-formal_parameter_list: formal_parameter												{ genNode(C_FORMAL_PARAM_LIST, 1); }
-	| formal_parameter_list COMMA formal_parameter									{ genNode(C_FORMAL_PARAM_LIST, 1); insertTopList(); }
+formal_parameter_list: formal_parameter												{ genNode(C_PARAM_LIST, 1); }
+	| formal_parameter_list COMMA formal_parameter									{ genNode(C_PARAM_LIST, 1); insertTopList(); }
 	;
-formal_parameter: VAR identifier_list COLON identifier								{ genNode(C_FORMAL_PARAM, 2); }
-	| identifier_list COLON identifier												{ genNode(C_FORMAL_PARAM, 2); }
+formal_parameter: VAR identifier_list COLON identifier								{ genNode(C_REF_PARAM, 2); }
+	| identifier_list COLON identifier												{ genNode(C_VAL_PARAM, 2); }
 	;
 statement: unlabeled_statement														{ genNode(C_STATEMENT, 1); }
 	| identifier COLON unlabeled_statement											{ genNode(C_STATEMENT, 2); }
