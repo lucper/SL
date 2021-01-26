@@ -99,10 +99,8 @@ formal_parameters: OPEN_PAREN formal_parameter formal_parameter_rest CLOSE_PAREN
 formal_parameter_rest: COMMA formal_parameter										{ genNode(C_FORMAL_PARAMS_REST, 1); }
 	| formal_parameter_rest COMMA formal_parameter									{ genNode(C_FORMAL_PARAMS_REST, 1); insertTopList(); }
 	;
-formal_parameter: expression_parameter												{ genNode(C_FORMAL_PARAM, 1); }
-	;
-expression_parameter: VAR identifier_list COLON identifier							{ genNode(C_EXPRESSION_PARAM, 2); }
-	| identifier_list COLON identifier												{ genNode(C_EXPRESSION_PARAM, 2); }
+formal_parameter: VAR identifier_list COLON identifier								{ genNode(C_FORMAL_PARAM, 2); }
+	| identifier_list COLON identifier												{ genNode(C_FORMAL_PARAM, 2); }
 	;
 statement: unlabeled_statement														{ genNode(C_STATEMENT, 1); }
 	| identifier COLON unlabeled_statement											{ genNode(C_STATEMENT, 2); }
