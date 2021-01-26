@@ -1,6 +1,7 @@
 #include "slc.h" // mandatory for submission
 #include "codegen.h"
 #include <stdio.h>
+#include <string.h>
 
 int currentLevel = -1;
 int currentDispl = 0;
@@ -50,7 +51,7 @@ static void processBlock(TreeNode *block)
             else if (currComp->categ == C_FUNCTIONS)
                 processFunctions(currComp);
             else if (currComp->categ == C_BODY) {
-                TreeNode *stmts = currComp->components[0];
+                TreeNode *stmts = reverse(currComp->components[0]);
                 while (stmts) {
                     processStatement(stmts->components[0]);
                     stmts = stmts->next;
@@ -74,13 +75,38 @@ static TypeDescr *processSimpExpr(TreeNode *expr)
 {
     bool singleTerm = expr->components[0]->categ == C_TERM; 
     if (singleTerm) {
-        if (expr->components[0]->components[0]->components[0]->categ == C_INTEGER) {
-            printf("LVCT %s\n", expr->components[0]->components[0]->components[0]->symbol);
+		TreeNode *factor = expr->components[0]->components[0]->components[0];
+        if (factor->categ == C_INTEGER) {
+            printf("LVCT %s\n", factor->symbol);
             return newTypeDescr(1, T_INTEGER)->type;
-        }
+        } else if (factor->categ == C_BOOLEAN) {
+			printf("LVCT %c\n", strcmp(factor->symbol, "true") == 0 ? '1' : '0');
+			return newTypeDescr(1, T_BOOLEAN)->type;
+		} else if (factor->categ == C_VARIABLE) {
+			char *ident = factor->components[0]->symbol;
+			SymbEntry *entry = searchSymbEntry(ident);
+    		if (!entry)
+        		printf("semantic error: %s undefined\n", entry->ident);
+    		if (entry->categ != S_VAR && entry->categ != S_PARAM)
+        		printf("semantic error: %s not variable nor parameter\n", entry->ident);
+			printf("LDVL %d,%d\n", entry->level, entry->descr->variable->displ);
+			return entry->descr->variable->type;
+		} else if (factor->categ == C_FUNCTION_CALL) {
+			return NULL; /* TODO */
+		} else if (factor->categ == C_EXPRESSION) {
+			return processExpr(factor);
+		} else {
+			printf("not a C_FACTOR node\n");
+			exit(1);
+		}
     } else {
         return NULL;
     }
+}
+
+static void processFuncCall(TreeNode *p)
+{
+	; /* TODO */
 }
 
 TypeDescr *processExpr(TreeNode *p)
@@ -132,7 +158,9 @@ void processStatement(TreeNode *stmt)
         TreeNode *unlabeledStmt = stmt->components[0]->components[0];
         if (unlabeledStmt->categ == C_ASSIGNMENT) {
             processAssign(unlabeledStmt);
-        } /* TODO: other categs */
+        } else if (unlabeledStmt->categ == C_FUNCTION_CALL_STATEMENT) {
+			processFuncCall(unlabeledStmt->components[0]);	
+		} else ; /* TODO */ 
     }
 }
 
@@ -203,7 +231,7 @@ void processFuncDecl(TreeNode *p, bool isMain)
     
     /*** BLOCK ***/
     TreeNode *block = p->components[1];
-    processBlock(block);
+	processBlock(block);
     /*************/
 
     printf("DLOC %d\n", currentDispl);
