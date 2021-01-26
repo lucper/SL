@@ -69,7 +69,7 @@ SymbEntry *newSymbEntry(SymbCateg categ, char *ident, int level, Descr *descr);
 void insertSymbolTable(SymbEntry *entry);
 void saveSymbolTable();
 void restoreSymbolTable();
-void loadFormalsSymbolTable(SymbEntry *formals);
+void loadParamsSymbolTable(SymbEntry *params);
 
 Descr *newTypeDescr(int size, PredefType predefType);
 Descr *newParamDescr(int displ, TypeDescr *type, Passage pass);
