@@ -104,6 +104,15 @@ static TypeDescr *processSimpExpr(TreeNode *expr)
     }
 }
 
+static void processExprList(TreeNode *p)
+{
+	TreeNode *exprList = p; /* reverse? */
+	while (exprList) {
+		processExpr(exprList->components[0]);
+		exprList = exprList->next;
+	}
+}
+
 static void processFuncCall(TreeNode *p)
 {
 	; /* TODO */
