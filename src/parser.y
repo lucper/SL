@@ -92,12 +92,11 @@ body: OPEN_BRACE statements CLOSE_BRACE												{ genNode(C_BODY, 1); }
 statements: statement																{ genNode(C_STATEMENTS, 1); }
 	| statements statement															{ genNode(C_STATEMENTS, 1); insertTopList(); }
 	;
-formal_parameters: OPEN_PAREN formal_parameter formal_parameter_rest CLOSE_PAREN	{ genNode(C_FORMAL_PARAMS, 2); }
-	| OPEN_PAREN formal_parameter CLOSE_PAREN										{ genNode(C_FORMAL_PARAMS, 1); }
+formal_parameters: OPEN_PAREN formal_parameter_list CLOSE_PAREN						{ genNode(C_FORMAL_PARAMS, 1); }
 	| OPEN_PAREN empty CLOSE_PAREN													{ genNode(C_FORMAL_PARAMS, 1); }
 	;
-formal_parameter_rest: COMMA formal_parameter										{ genNode(C_FORMAL_PARAMS_REST, 1); }
-	| formal_parameter_rest COMMA formal_parameter									{ genNode(C_FORMAL_PARAMS_REST, 1); insertTopList(); }
+formal_parameter_list: formal_parameter												{ genNode(C_FORMAL_PARAM_LIST, 1); }
+	| formal_parameter_list COMMA formal_parameter									{ genNode(C_FORMAL_PARAM_LIST, 1); insertTopList(); }
 	;
 formal_parameter: VAR identifier_list COLON identifier								{ genNode(C_FORMAL_PARAM, 2); }
 	| identifier_list COLON identifier												{ genNode(C_FORMAL_PARAM, 2); }
