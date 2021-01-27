@@ -5,6 +5,8 @@
 
 SymbEntry *symbolTable = NULL;
 
+static SymbEntry *symbolTableCpy = NULL;
+
 static bool declaredAtSameLevel(SymbEntry *entry1, SymbEntry *entry2);
 static void freeTypeDescr(TypeDescr *typeDescr);
 static void freeParamDescr(ParamDescr *paramDescr);
@@ -236,4 +238,32 @@ void insertSymbolTable(SymbEntry *newEntry)
         newEntry->next = symbolTable;
     }
     symbolTable = newEntry;
+}
+
+void saveSymbolTable()
+{
+	symbolTableCpy = symbolTable;
+}
+
+void restoreSymbolTable()
+{
+	/* split params from table */
+	SymbEntry *curr = symbolTable;
+	while (curr->next != symbolTableCpy)
+		curr = curr->next;
+	curr->next = NULL;
+
+	/* free params from top of table */	
+	freeParams(symbolTable);
+
+	/* restore */
+	symbolTable = symbolTableCpy;
+}
+
+void loadParamsSymbolTable(SymbEntry *params)
+{
+	symbolTable = params;
+	while (params->next)
+		params = params->next;
+	params->next = symbolTableCpy;
 }
