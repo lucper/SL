@@ -7,6 +7,17 @@ int currentLevel = -1;
 int currentDispl = 0;
 int labelCounter = 99;
 
+static int nextLabel();
+static bool isVoidFunc(TreeNode *p);
+static bool labeledStatement(TreeNode *p);
+static TypeDescr *getType(TreeNode *p);
+static void processBlock(TreeNode *block);
+static TypeDescr *processBinExpr(TreeNode *expr);
+static TypeDescr *processUniExpr(TreeNode *expr);
+static TypeDescr *processFuncCall(TreeNode *p);
+static SymbEntry *processParams(TreeNode *p, int *displ);
+static TypeDescr *processSimpExpr(TreeNode *expr);
+
 static int nextLabel()
 {
     return ++labelCounter;
@@ -14,7 +25,7 @@ static int nextLabel()
 
 static bool isVoidFunc(TreeNode *p)
 {
-    return p->categ == C_FUNCTION_HEADER && p->components[1]->categ == C_FORMAL_PARAMS;
+    return p->categ == C_FUNCTION_HEADER && p->components[1]->categ == C_PARAMS;
 }
 
 static bool labeledStatement(TreeNode *p)
@@ -71,16 +82,78 @@ static TypeDescr *processUniExpr(TreeNode *expr)
     return NULL;
 }
 
+static TypeDescr *processFuncCall(TreeNode *p)
+{
+	char *ident = p->components[0]->symbol;
+	SymbEntry *entry = searchSymbEntry(ident);
+	if (!entry)
+		printf("semantic error: %s undefined\n", ident);
+	if (entry->categ != S_FUNC)
+		printf("semantic error: %s not a function\n", ident);
+	TreeNode *exprList = reverse(p->components[1]);
+	if (strcmp(entry->ident, "write") == 0) {
+		while (exprList) {
+			processExpr(exprList->components[0]);
+			printf("PRNT\n");
+			exprList = exprList->next;
+		}
+		return NULL;
+	} else if (strcmp(entry->ident, "read") == 0) {
+		while (exprList) {
+			printf("READ\n");
+			processExpr(exprList->components[0]);
+			exprList = exprList->next;
+		}
+		return NULL;
+	} else {
+		return NULL;	
+	}
+}
+
+static SymbEntry *processParams(TreeNode *p, int *displ)
+{
+	TreeNode *paramList = p->components[0];
+	ParamDescr *paramsDescr = NULL;
+	SymbEntry *params = NULL, *curr;
+	while (paramList) {
+		TreeNode *param = paramList->components[0];
+		TypeDescr *type = getType(param->components[1]);
+		TreeNode *identList = param->components[0];
+		while (identList) {
+			char *ident = identList->components[0]->symbol;
+			Descr *descr;
+			if (param->categ == C_REF_PARAM)
+				descr = newParamDescr(*++displ, type, P_REF);
+			else if (param->categ == C_VAL_PARAM)
+				descr = newParamDescr(*++displ, type, P_VAL);
+			curr = newSymbEntry(S_PARAM, ident, currentLevel, descr);
+			if (!params)
+				params = curr;
+			curr->next = params;
+			params = curr;
+			identList = identList->next;
+		}
+		paramList = paramList->next;
+	}
+
+	/* DEBUGGING */
+	for (SymbEntry *curr = params; curr != NULL; curr = curr->next) {
+		printf("param ident: %s\n", curr->ident);
+	}	
+
+	return params;
+}
+
 static TypeDescr *processSimpExpr(TreeNode *expr)
 {
     bool singleTerm = expr->components[0]->categ == C_TERM; 
     if (singleTerm) {
 		TreeNode *factor = expr->components[0]->components[0]->components[0];
         if (factor->categ == C_INTEGER) {
-            printf("LVCT %s\n", factor->symbol);
+            printf("LDCT %s\n", factor->symbol);
             return newTypeDescr(1, T_INTEGER)->type;
         } else if (factor->categ == C_BOOLEAN) {
-			printf("LVCT %c\n", strcmp(factor->symbol, "true") == 0 ? '1' : '0');
+			printf("LDCT %c\n", strcmp(factor->symbol, "true") == 0 ? '1' : '0');
 			return newTypeDescr(1, T_BOOLEAN)->type;
 		} else if (factor->categ == C_VARIABLE) {
 			char *ident = factor->components[0]->symbol;
@@ -92,7 +165,7 @@ static TypeDescr *processSimpExpr(TreeNode *expr)
 			printf("LDVL %d,%d\n", entry->level, entry->descr->variable->displ);
 			return entry->descr->variable->type;
 		} else if (factor->categ == C_FUNCTION_CALL) {
-			return NULL; /* TODO */
+			return processFuncCall(factor);
 		} else if (factor->categ == C_EXPRESSION) {
 			return processExpr(factor);
 		} else {
@@ -102,20 +175,6 @@ static TypeDescr *processSimpExpr(TreeNode *expr)
     } else {
         return NULL;
     }
-}
-
-static void processExprList(TreeNode *p)
-{
-	TreeNode *exprList = p; /* reverse? */
-	while (exprList) {
-		processExpr(exprList->components[0]);
-		exprList = exprList->next;
-	}
-}
-
-static void processFuncCall(TreeNode *p)
-{
-	; /* TODO */
 }
 
 TypeDescr *processExpr(TreeNode *p)
@@ -215,15 +274,17 @@ void processFuncDecl(TreeNode *p, bool isMain)
     TreeNode *header = p->components[0];
     TypeDescr *resType = NULL;
     char *name;
-    if (isVoidFunc(header))
+    SymbEntry *params;
+    if (isVoidFunc(header)) {
         name = header->components[0]->symbol;
-    else {
+		params = processParams(header->components[1], &lastDispl);
+	} else {
         name = header->components[1]->symbol;
+		params = processParams(header->components[2], &lastDispl);
         resType = getType(header->components[0]);
     }
     if (resType) /* if function returns value, reserve positions for return value */
         lastDispl -= resType->size;
-    ParamDescr *params = NULL; // TODO: processParams
     Descr *funcDescr = newFuncDescr(lastDispl, resType, params);
     SymbEntry *funcEntry = newSymbEntry(S_FUNC, name, currentLevel - 1, funcDescr);
     insertSymbolTable(funcEntry);
