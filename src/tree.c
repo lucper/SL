@@ -89,7 +89,6 @@ static int count(TreeNode *p, Categ cat)
         if (p->categ == cat)
             countCateg++;
         
-        // TODO: check if this is correct
         if (p->next)
             countCateg += count(p->next, cat);
         
@@ -114,7 +113,7 @@ void counts(void *p, int *functions, int *funcalls, int *whiles, int *ifs, int *
     *funcalls = count(p, C_FUNCTION_CALL);
     *whiles = count(p, C_REPETITIVE);
     *ifs = count(p, C_CONDITIONAL);
-    *bin = count(p, C_MULTIPLICATIVE_FACTOR) + count(p, C_ADDITIVE_TERM) + count(p, C_BINOP_EXPRESSION);
+    *bin = count(p, C_RELOP) + count(p, C_ADDOP) + count(p, C_MULOP);
 }
 
 /* (!) For debugging purposes

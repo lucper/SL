@@ -25,25 +25,19 @@ typedef enum {
     C_FACTOR,
     C_EXPRESSION_LIST,
     C_INTEGER,
+	C_BOOLEAN,
+    C_VARIABLE,
     C_GOTO,
     C_ASSIGNMENT,
-    C_ADDITIVE_TERM,
-    C_PLUS,                     /* TODO: verify if this is correct */
-    C_MINUS,                    /* TODO: verify if this is correct */
-    C_MULTIPLICATIVE_FACTOR,
-    C_MULTIPLY,                 /* TODO: verify if this is correct */
     C_COMPOUND,
     C_CONDITIONAL,
-    C_LESS,                     /* TODO: verify if this is correct */
     C_VARIABLES,
-    C_VARIABLE,
     C_DECLARATION_VARS,
     C_TYPE,
     C_IDENTIFIER_LIST,
     C_UNLABELED_STATEMENTS,
     C_BINOP_EXPRESSION,
     C_REPETITIVE,
-    C_GREATER,                  /* TODO: verify if this is correct */
     C_FUNCTIONS,
     C_DECLARATION_FUNCS,
     C_UNOP_EXPRESSION,
@@ -53,7 +47,24 @@ typedef enum {
 	C_VAL_PARAM,
     C_FUNCTION_PARAM,
     C_LABELS,
-	C_BOOLEAN	
+	C_ADDOP,
+	C_MULOP,
+	C_RELOP,
+	C_UNOP,
+	/* Operators */
+	C_LESS_EQUAL,
+    C_LESS,
+	C_EQUAL,
+	C_DIFFERENT,
+	C_GREATER_EQUAL,
+    C_GREATER,
+    C_PLUS,
+    C_MINUS,
+	C_OR,
+	C_NOT,
+    C_MULTIPLY,
+	C_DIV,
+	C_AND
 } Categ;
 
 typedef struct _treeNode {

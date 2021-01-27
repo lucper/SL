@@ -11,7 +11,7 @@ void genIdent(char *token_val);
 void genInt(char *token_val);
 void genBool(char *token_val);
 void genEmpty();
-void genOpSymbol(Categ categ);
+void genOp(Categ categ);
 %}
 
 %union {
@@ -139,42 +139,35 @@ expression: simple_expression														{ genNode(C_EXPRESSION, 1); }
 	| unop_expression																{ genNode(C_EXPRESSION, 1); }			
 	| empty
 	;
-binop_expression: unop_expression relational_operator simple_expression				{ /*!*/ genNode(C_BINOP_EXPRESSION, 3); }
-	| simple_expression relational_operator simple_expression						{ /*!*/ genNode(C_BINOP_EXPRESSION, 3); }
+binop_expression: unop_expression relational_operator simple_expression				{ genNode(C_BINOP_EXPRESSION, 3); }
+	| simple_expression relational_operator simple_expression						{ genNode(C_BINOP_EXPRESSION, 3); }
 	;
-simple_expression: term additive_term			    								{ genNode(C_SIMPLE_EXPRESSION, 2); }
-	| term																			{ genNode(C_SIMPLE_EXPRESSION, 1); }
+simple_expression: terms			    											{ genNode(C_SIMPLE_EXPRESSION, 1); }
+	| simple_expression additive_operator terms										{ genNode(C_SIMPLE_EXPRESSION, 2); insertTopList(); }
 	;
-unop_expression: unary_operator term additive_term									{ /*!*/ genNode(C_UNOP_EXPRESSION, 3); }
-	| unary_operator term															{ /*!*/ genNode(C_UNOP_EXPRESSION, 2); }
+unop_expression: unary_operator simple_expression									{ genNode(C_UNOP_EXPRESSION, 2); }
 	;
-additive_term: additive_operator term												{ /*!*/ genNode(C_ADDITIVE_TERM, 2); }
-	| additive_term additive_operator term											{ /*!*/ genNode(C_ADDITIVE_TERM, 2); insertTopList(); }
+relational_operator: LESS_OR_EQUAL 													{ genNode(C_RELOP, 1); genOp(C_LESS_EQUAL); }
+	| LESS																			{ genNode(C_RELOP, 1); genOp(C_LESS); }									
+	| EQUAL 																		{ genNode(C_RELOP, 1); genOp(C_EQUAL); }
+	| DIFFERENT 																	{ genNode(C_RELOP, 1); genOp(C_DIFFERENT); }
+	| GREATER_OR_EQUAL 																{ genNode(C_RELOP, 1); genOp(C_GREATER_EQUAL); }
+	| GREATER																		{ genNode(C_RELOP, 1); genOp(C_GREATER); }
 	;
-relational_operator: LESS_OR_EQUAL
-	| LESS																			{ genOpSymbol(C_LESS); }									
-	| EQUAL
-	| DIFFERENT
-	| GREATER_OR_EQUAL
-	| GREATER																		{ genOpSymbol(C_GREATER); }
+additive_operator: PLUS																{ genNode(C_ADDOP, 1); genOp(C_PLUS); }
+	| MINUS																			{ genNode(C_ADDOP, 1); genOp(C_MINUS); }
+	| OR 																			{ genNode(C_ADDOP, 1); genOp(C_OR); }
 	;
-additive_operator: PLUS																{ genOpSymbol(C_PLUS); }
-	| MINUS																			{ genOpSymbol(C_MINUS); }
-	| OR
+unary_operator: PLUS																{ genNode(C_UNOP, 1); genOp(C_PLUS); }
+	| MINUS																			{ genNode(C_UNOP, 1); genOp(C_MINUS); }
+	| NOT 																			{ genNode(C_UNOP, 1); genOp(C_NOT); }
 	;
-unary_operator: PLUS																{ genOpSymbol(C_PLUS); }
-	| MINUS																			{ genOpSymbol(C_MINUS); }
-	| NOT
+terms: factor																		{ genNode(C_TERM, 1); }
+	| terms multiplicative_operator factor											{ genNode(C_TERM, 2); insertTopList(); }
 	;
-term: factor multiplicative_factor													{ genNode(C_TERM, 2); }
-	| factor																		{ genNode(C_TERM, 1); }
-	;
-multiplicative_factor: multiplicative_operator factor								{ /*!*/ genNode(C_MULTIPLICATIVE_FACTOR, 2); }
-	| multiplicative_factor multiplicative_operator factor							{ /*!*/ genNode(C_MULTIPLICATIVE_FACTOR, 2); insertTopList(); }
-	;
-multiplicative_operator: MULTIPLY													{ genOpSymbol(C_MULTIPLY); }
-	| DIV
-	| AND
+multiplicative_operator: MULTIPLY													{ genNode(C_MULOP, 1); genOp(C_MULTIPLY); }
+	| DIV 																			{ genNode(C_MULOP, 1); genOp(C_DIV); }
+	| AND 																			{ genNode(C_MULOP, 1); genOp(C_AND); }
 	;
 factor: variable																	{ genNode(C_FACTOR, 1); }
 	| integer																		{ genNode(C_FACTOR, 1); }
@@ -251,7 +244,7 @@ void genEmpty()
 	push(NULL);
 }
 
-void genOpSymbol(Categ categ)
+void genOp (Categ categ)
 {
 	genNode(categ, 0);
 }
