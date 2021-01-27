@@ -17,6 +17,17 @@ static void freeTypeDescr(TypeDescr *typeDescr)
     free(typeDescr);
 }
 
+static void freeParamDescr(ParamDescr *descr)
+{
+    ParamDescr *prev = NULL;
+    while (paramsDescr) {
+        freeTypeDescr(paramsDescr->type);
+        prev = paramsDescr;
+        paramsDescr = paramsDescr->next;
+        free(prev);
+    }
+}
+
 static void freeVarDescr(VarDescr *varDescr)
 {
     freeTypeDescr(varDescr->type);
@@ -27,17 +38,6 @@ static void freeConstDescr(ConstDescr *constDescr)
 {
     freeTypeDescr(constDescr->type);
     free(constDescr);
-}
-
-static void freeParamDescr(ParamDescr *paramsDescr)
-{
-    ParamDescr *prev = NULL;
-    while (paramsDescr) {
-        freeTypeDescr(paramsDescr->type);
-        prev = paramsDescr;
-        paramsDescr = paramsDescr->next;
-        free(prev);
-    }
 }
 
 static void freeFuncDescr(FuncDescr *funcDescr)

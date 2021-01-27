@@ -73,7 +73,7 @@ void loadParamsSymbolTable(SymbEntry *params);
 
 Descr *newTypeDescr(int size, PredefType predefType);
 Descr *newParamDescr(int displ, TypeDescr *type, Passage pass);
-Descr *newFuncDescr(int displ, TypeDescr *result, ParamDescr *params);
+Descr *newFuncDescr(int displ, TypeDescr *result, SymbEntry *params);
 Descr *newConstDescr(int value, TypeDescr *type);
 Descr *newVarDescr(int displ, TypeDescr *type);
 Descr *newLabelDescr(char *mepaLabel, bool defined);
