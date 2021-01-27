@@ -15,7 +15,6 @@ typedef struct _paramDescr {
     int displ;
     TypeDescr *type;
     Passage pass;
-    struct _paramDescr *next;
 } ParamDescr;
 
 typedef struct {
