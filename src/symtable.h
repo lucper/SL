@@ -3,6 +3,8 @@
 
 #include <stdbool.h>
 
+typedef struct _symbEntry SymbEntry;
+
 /* Descriptors */
 typedef enum {T_INTEGER = 1, T_BOOLEAN} PredefType;
 typedef struct {
@@ -10,8 +12,8 @@ typedef struct {
     PredefType predefType;
 } TypeDescr;
 
-typedef enum {P_VALUE = 1, P_REF} Passage;
-typedef struct _paramDescr {
+typedef enum {P_VAL = 1, P_REF} Passage;
+typedef struct {
     int displ;
     TypeDescr *type;
     Passage pass;
@@ -20,7 +22,7 @@ typedef struct _paramDescr {
 typedef struct {
     int displ;
     TypeDescr *result;
-    ParamDescr *params;
+    SymbEntry *params;
 } FuncDescr;
 
 typedef struct {
@@ -55,13 +57,13 @@ typedef union {
     VarDescr *variable;
     LabelDescr *label;
 } Descr;
-typedef struct _symbEntry {
+struct _symbEntry {
     SymbCateg categ;
     char *ident;
     int level;
     struct _symbEntry *next;
     Descr *descr;
-} SymbEntry;
+};
 
 SymbEntry *searchSymbEntry(char *ident);
 SymbEntry *newSymbEntry(SymbCateg categ, char *ident, int level, Descr *descr);

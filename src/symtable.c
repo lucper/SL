@@ -5,6 +5,16 @@
 
 SymbEntry *symbolTable = NULL;
 
+static bool declaredAtSameLevel(SymbEntry *entry1, SymbEntry *entry2);
+static void freeTypeDescr(TypeDescr *typeDescr);
+static void freeParamDescr(ParamDescr *paramDescr);
+static void freeVarDescr(VarDescr *varDescr);
+static void freeConstDescr(ConstDescr *constDescr);
+static void freeLabelDescr(LabelDescr *labelDescr);
+static void freeDescr(SymbCateg categ, Descr *descr);
+static void freeParams(SymbEntry *params);
+static void freeFuncDescr(FuncDescr *funcDescr);
+
 static bool declaredAtSameLevel(SymbEntry *entry1, SymbEntry *entry2)
 {
     int entry1Level = entry1->level;
@@ -17,15 +27,10 @@ static void freeTypeDescr(TypeDescr *typeDescr)
     free(typeDescr);
 }
 
-static void freeParamDescr(ParamDescr *descr)
+static void freeParamDescr(ParamDescr *paramDescr)
 {
-    ParamDescr *prev = NULL;
-    while (paramsDescr) {
-        freeTypeDescr(paramsDescr->type);
-        prev = paramsDescr;
-        paramsDescr = paramsDescr->next;
-        free(prev);
-    }
+	freeTypeDescr(paramDescr->type);
+	free(paramDescr);
 }
 
 static void freeVarDescr(VarDescr *varDescr)
@@ -38,13 +43,6 @@ static void freeConstDescr(ConstDescr *constDescr)
 {
     freeTypeDescr(constDescr->type);
     free(constDescr);
-}
-
-static void freeFuncDescr(FuncDescr *funcDescr)
-{
-    freeTypeDescr(funcDescr->result);
-    freeParamDescr(funcDescr->params);
-    free(funcDescr);
 }
 
 static void freeLabelDescr(LabelDescr *labelDescr)
@@ -74,6 +72,25 @@ static void freeDescr(SymbCateg categ, Descr *descr)
     free(descr);
 }
 
+static void freeParams(SymbEntry *params)
+{	
+    SymbEntry *prev = NULL;
+    while (params) {
+        freeDescr(params->categ, params->descr);
+        free(params->ident);
+        prev = params;
+        params = params->next;
+        free(prev);
+    }
+}
+
+static void freeFuncDescr(FuncDescr *funcDescr)
+{
+    freeTypeDescr(funcDescr->result);
+    freeParams(funcDescr->params);
+    free(funcDescr);
+}
+
 Descr *newTypeDescr(int size, PredefType predefType)
 {
     TypeDescr *typeDescr = malloc(sizeof(TypeDescr));
@@ -90,13 +107,12 @@ Descr *newParamDescr(int displ, TypeDescr *type, Passage pass)
     paramDescr->displ = displ;
     paramDescr->type = type;
     paramDescr->pass = pass;
-    paramDescr->next = NULL;
     Descr *descr = malloc(sizeof(Descr));
     descr->parameter = paramDescr;
     return descr;
 }
 
-Descr *newFuncDescr(int displ, TypeDescr *result, ParamDescr *params)
+Descr *newFuncDescr(int displ, TypeDescr *result, SymbEntry *params)
 {
     FuncDescr *funcDescr = malloc(sizeof(FuncDescr));
     funcDescr->displ = displ;
