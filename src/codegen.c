@@ -16,7 +16,11 @@ static TypeDescr *processBinExpr(TreeNode *expr);
 static TypeDescr *processUniExpr(TreeNode *expr);
 static TypeDescr *processFuncCall(TreeNode *p);
 static SymbEntry *processParams(TreeNode *p, int *displ);
-static TypeDescr *processSimpExpr(TreeNode *expr);
+static TypeDescr *processSimpExpr(TreeNode *p);
+static TypeDescr *processTerms(TreeNode *p);
+static TypeDescr *processFactor(TreeNode *p);
+static char *mepaBinOp(TreeNode *p);
+static bool compatibleTypes(TreeNode *p, TypeDescr *type1, TypeDescr *type2);
 
 static int nextLabel()
 {
@@ -101,31 +105,37 @@ static TypeDescr *processFuncCall(TreeNode *p)
 	} else if (strcmp(entry->ident, "read") == 0) {
 		while (exprList) {
 			printf("READ\n");
-			processExpr(exprList->components[0]);
+			processExpr(exprList->components[0]); /* TODO: must print STVL */
 			exprList = exprList->next;
 		}
 		return NULL;
 	} else {
-		return NULL;	
+		if (entry->descr->function->result) { /* if function returns value, alloc memory for it */
+			printf("ALOC 1\n"); /* TODO: implement processReturn (?) to dealloc */
+			return entry->descr->function->result;
+		}
+		return NULL; /* TODO: (?) */
 	}
 }
 
 static SymbEntry *processParams(TreeNode *p, int *displ)
 {
-	TreeNode *paramList = p->components[0];
+	if (!p) /* if there are no parameters */
+		return NULL;
+	TreeNode *paramList = p->components[0]; /* TODO: reverse? */
 	ParamDescr *paramsDescr = NULL;
 	SymbEntry *params = NULL, *curr;
 	while (paramList) {
 		TreeNode *param = paramList->components[0];
 		TypeDescr *type = getType(param->components[1]);
-		TreeNode *identList = param->components[0];
+		TreeNode *identList = param->components[0]; /* TODO: reverse? */
 		while (identList) {
 			char *ident = identList->components[0]->symbol;
 			Descr *descr;
 			if (param->categ == C_REF_PARAM)
-				descr = newParamDescr(*++displ, type, P_REF);
+				descr = newParamDescr(*++displ, type, P_REF); /* TODO: check displ */
 			else if (param->categ == C_VAL_PARAM)
-				descr = newParamDescr(*++displ, type, P_VAL);
+				descr = newParamDescr(*++displ, type, P_VAL); /* TODO: check displ */
 			curr = newSymbEntry(S_PARAM, ident, currentLevel, descr);
 			if (!params)
 				params = curr;
@@ -144,37 +154,123 @@ static SymbEntry *processParams(TreeNode *p, int *displ)
 	return params;
 }
 
-static TypeDescr *processSimpExpr(TreeNode *expr)
+static char *mepaBinOp(TreeNode *p)
 {
-    bool singleTerm = expr->components[0]->categ == C_TERM; 
-    if (singleTerm) {
-		TreeNode *factor = expr->components[0]->components[0]->components[0];
-        if (factor->categ == C_INTEGER) {
-            printf("LDCT %s\n", factor->symbol);
-            return newTypeDescr(1, T_INTEGER)->type;
-        } else if (factor->categ == C_BOOLEAN) {
-			printf("LDCT %c\n", strcmp(factor->symbol, "true") == 0 ? '1' : '0');
-			return newTypeDescr(1, T_BOOLEAN)->type;
-		} else if (factor->categ == C_VARIABLE) {
-			char *ident = factor->components[0]->symbol;
-			SymbEntry *entry = searchSymbEntry(ident);
-    		if (!entry)
-        		printf("semantic error: %s undefined\n", entry->ident);
-    		if (entry->categ != S_VAR && entry->categ != S_PARAM)
-        		printf("semantic error: %s not variable nor parameter\n", entry->ident);
-			printf("LDVL %d,%d\n", entry->level, entry->descr->variable->displ);
-			return entry->descr->variable->type;
-		} else if (factor->categ == C_FUNCTION_CALL) {
-			return processFuncCall(factor);
-		} else if (factor->categ == C_EXPRESSION) {
-			return processExpr(factor);
-		} else {
-			printf("not a C_FACTOR node\n");
+	/* C_ADDOP, C_RELOP, C_MULOP */
+	switch (p->components[0]->categ) {
+		case C_PLUS:
+			return "ADDD";
+		case C_MINUS:
+			return "SUBT";
+		case C_MULTIPLY:
+			return "MULT";
+		default: /* TODO: remove later */
+			printf("Op not implemented yet\n");
 			exit(1);
+	}
+}
+
+static bool compatibleTypes(TreeNode *p, TypeDescr *type1, TypeDescr *type2)
+{
+	if (p->categ == C_RELOP) {
+		return type1->predefType == T_BOOLEAN && type2->predefType == T_BOOLEAN;
+	} else {
+		return type1->predefType == T_INTEGER && type2->predefType == T_INTEGER;
+	}
+}
+
+static TypeDescr *processTerms(TreeNode *p)
+{
+	TreeNode *terms = reverse(p);
+	TreeNode *op = NULL;
+	TypeDescr *prevType = NULL, *currType;
+	while (terms) {
+		bool singleFactor = terms->components[0]->categ == C_FACTOR;
+		if (singleFactor)
+			currType = processFactor(terms->components[0]);
+		else {
+			op = terms->components[0];
+			currType = processFactor(terms->components[1]);
+		} 
+		if (op) {
+			if (prevType && !compatibleTypes(op, prevType, currType)) {
+				printf("semantic error: incompatible types\n");
+				exit(1);
+			}
+			printf("%s\n", mepaBinOp(op));
 		}
-    } else {
-        return NULL;
-    }
+		prevType = currType;
+		terms = terms->next;
+	}
+	return currType;
+}
+
+static TypeDescr *processFactor(TreeNode *p)
+{
+	Categ categ = p->components[0]->categ;
+	if (categ == C_VARIABLE) {
+		char *ident = p->components[0]->components[0]->symbol;
+		SymbEntry *entry = searchSymbEntry(ident);
+    	if (!entry)
+        	printf("semantic error: %s undefined\n", ident);
+    	if (entry->categ != S_VAR && entry->categ != S_PARAM)
+	      	printf("semantic error: %s not variable nor parameter\n", entry->ident);
+
+    	/* !!! TODO: fix instructions !!! */
+		if (entry->categ == S_PARAM) {
+        	int level = entry->level;
+        	int displ = entry->descr->parameter->displ;
+        	Passage pass = entry->descr->parameter->pass;
+        	if (pass == P_REF)
+            	printf("STVI %d,%d\n", level, displ);
+        	else
+            	printf("STVL %d,%d\n", level, displ);
+			return entry->descr->parameter->type;
+    	} else {
+        	printf("LDVL %d,%d\n", entry->level, entry->descr->variable->displ);
+			return entry->descr->variable->type;
+		}
+		/* !!! */
+	} else if (categ == C_INTEGER) {
+      	printf("LDCT %s\n", p->components[0]->symbol);
+     	return newTypeDescr(1, T_INTEGER)->type;
+	} else if (categ == C_BOOLEAN) {
+		printf("LDCT %c\n", strcmp(p->components[0]->symbol, "true") == 0 ? '1' : '0');
+		return newTypeDescr(1, T_BOOLEAN)->type;
+	} else if (categ == C_FUNCTION_CALL) {
+		return processFuncCall(p->components[0]);
+	} else if (categ == C_EXPRESSION) {
+		return processExpr(p->components[0]);
+	} else {
+		printf("error: not a C_FACTOR");
+		exit(1);	
+	}
+}
+
+static TypeDescr *processSimpExpr(TreeNode *p)
+{
+	TreeNode *exprs = reverse(p);
+	TreeNode *op = NULL;
+	TypeDescr *prevType = NULL, *currType;
+	while (exprs) {
+		bool singleTerm = exprs->components[0]->categ == C_TERMS;
+		if (singleTerm)
+			currType = processTerms(exprs->components[0]);
+		else {
+			op = exprs->components[0];
+			currType = processTerms(exprs->components[1]);
+		}
+		if (op) {
+			if (prevType && !compatibleTypes(op, prevType, currType)) {
+				printf("semantic error: incompatible types\n");
+				exit(1);
+			}
+			printf("%s\n", mepaBinOp(op));
+		}
+		prevType = currType;
+		exprs = exprs->next;
+	}
+	return currType;
 }
 
 TypeDescr *processExpr(TreeNode *p)
@@ -199,7 +295,7 @@ void processAssign(TreeNode *assign)
     char *ident = variable->components[0]->symbol;
     SymbEntry *entry = searchSymbEntry(ident);
     if (!entry)
-        printf("semantic error: %s undefined\n", entry->ident);
+        printf("semantic error: %s undefined\n", ident);
     if (entry->categ != S_VAR && entry->categ != S_PARAM)
         printf("semantic error: %s not variable nor parameter\n", entry->ident);
     TypeDescr *variableType = entry->descr->variable->type;
@@ -288,7 +384,7 @@ void processFuncDecl(TreeNode *p, bool isMain)
     Descr *funcDescr = newFuncDescr(lastDispl, resType, params);
     SymbEntry *funcEntry = newSymbEntry(S_FUNC, name, currentLevel - 1, funcDescr);
     insertSymbolTable(funcEntry);
-    // saveSymbolTable();
+	saveSymbolTable();
     /**************/
 
     if (isMain)
@@ -311,7 +407,7 @@ void processFuncDecl(TreeNode *p, bool isMain)
     else {
         printf("RTRN %d\n", -lastDispl-4);
         currentLevel--;
-        //restoreSymbolTable();
+		restoreSymbolTable();
     }
 }
 
