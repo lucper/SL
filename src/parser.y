@@ -147,27 +147,53 @@ simple_expression: terms			    											{ genNode(C_SIMPLE_EXPRESSION, 1); }
 	;
 unop_expression: unary_operator simple_expression									{ genNode(C_UNOP_EXPRESSION, 2); }
 	;
-relational_operator: LESS_OR_EQUAL 													{ genNode(C_RELOP, 1); genOp(C_LESS_EQUAL); }
-	| LESS																			{ genNode(C_RELOP, 1); genOp(C_LESS); }									
-	| EQUAL 																		{ genNode(C_RELOP, 1); genOp(C_EQUAL); }
-	| DIFFERENT 																	{ genNode(C_RELOP, 1); genOp(C_DIFFERENT); }
-	| GREATER_OR_EQUAL 																{ genNode(C_RELOP, 1); genOp(C_GREATER_EQUAL); }
-	| GREATER																		{ genNode(C_RELOP, 1); genOp(C_GREATER); }
+relational_operator: op_less_eq 													{ genNode(C_RELOP, 1); }
+	| op_less																		{ genNode(C_RELOP, 1); }									
+	| op_eq 																		{ genNode(C_RELOP, 1); }
+	| op_diff 																		{ genNode(C_RELOP, 1); }
+	| op_greater_eq 																{ genNode(C_RELOP, 1); }
+	| op_greater																	{ genNode(C_RELOP, 1); }
 	;
-additive_operator: PLUS																{ genNode(C_ADDOP, 1); genOp(C_PLUS); }
-	| MINUS																			{ genNode(C_ADDOP, 1); genOp(C_MINUS); }
-	| OR 																			{ genNode(C_ADDOP, 1); genOp(C_OR); }
+op_less_eq: LESS_OR_EQUAL 															{ genOp(C_LESS_EQUAL); }
 	;
-unary_operator: PLUS																{ genNode(C_UNOP, 1); genOp(C_PLUS); }
-	| MINUS																			{ genNode(C_UNOP, 1); genOp(C_MINUS); }
-	| NOT 																			{ genNode(C_UNOP, 1); genOp(C_NOT); }
+op_less: LESS 																		{ genOp(C_LESS); }
 	;
-terms: factor																		{ genNode(C_TERM, 1); }
-	| terms multiplicative_operator factor											{ genNode(C_TERM, 2); insertTopList(); }
+op_eq: EQUAL 																		{ genOp(C_EQUAL); }
 	;
-multiplicative_operator: MULTIPLY													{ genNode(C_MULOP, 1); genOp(C_MULTIPLY); }
-	| DIV 																			{ genNode(C_MULOP, 1); genOp(C_DIV); }
-	| AND 																			{ genNode(C_MULOP, 1); genOp(C_AND); }
+op_diff: DIFFERENT 																	{ genOp(C_DIFFERENT); }
+	;
+op_greater_eq: GREATER_OR_EQUAL 													{ genOp(C_GREATER_EQUAL); }
+	;
+op_greater: GREATER 																{ genOp(C_GREATER); }
+	;
+additive_operator: op_plus															{ genNode(C_ADDOP, 1); }
+	| op_minus																		{ genNode(C_ADDOP, 1); }
+	| op_or																			{ genNode(C_ADDOP, 1); }
+	;
+unary_operator: op_plus																{ genNode(C_UNOP, 1); }
+	| op_minus																		{ genNode(C_UNOP, 1); }
+	| op_not 																		{ genNode(C_UNOP, 1); }
+	;
+op_plus: PLUS 																		{ genOp(C_PLUS); }
+	;
+op_minus: MINUS 																	{ genOp(C_MINUS); }
+	;
+op_not: NOT 																		{ genOp(C_NOT); }
+	;
+op_or: OR 																			{ genOp(C_OR); }
+	;
+terms: factor																		{ genNode(C_TERMS, 1); }
+	| terms multiplicative_operator factor											{ genNode(C_TERMS, 2); insertTopList(); }
+	;
+multiplicative_operator: op_mult 													{ genNode(C_MULOP, 1); }
+	| op_div																		{ genNode(C_MULOP, 1); }
+	| op_and																		{ genNode(C_MULOP, 1); }
+	;
+op_mult: MULTIPLY 																	{ genOp(C_MULTIPLY); }
+	;
+op_div: DIV 																		{ genOp(C_DIV); }
+	;
+op_and: AND 																		{ genOp(C_AND); }
 	;
 factor: variable																	{ genNode(C_FACTOR, 1); }
 	| integer																		{ genNode(C_FACTOR, 1); }
